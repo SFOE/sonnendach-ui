@@ -2,508 +2,68 @@
 <html>
   <head>
     <meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
-	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/ol3/3.12.1/ol-debug.js"></script>
-	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/proj4js/2.2.1/proj4.js"></script>
+
+    <!-- JS-->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/ol3/3.12.1/ol-debug.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/proj4js/2.2.1/proj4.js"></script>
     <script type="text/javascript" src="//api3.geo.admin.ch/1450268588/static/js/EPSG21781.js"></script>
     <script type="text/javascript" src="//api3.geo.admin.ch/1450268588/static/js/EPSG2056.js"></script>
     <script type="text/javascript" src="assets/js/layers.js"></script>
-	<script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.js"></script>
-	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.2/jquery.xdomainrequest.min.js"></script>
-	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-placeholder/2.0.7/jquery.placeholder.min.js"></script>
-	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.4/dist/typeahead.bundle.js"></script> 
+    <script type="text/javascript" src="assets/js/map.js"></script>
+    <script type="text/javascript" src="assets/js/utils.js"></script>
+    <script type="text/javascript" src="assets/js/search.js"></script>
+    <script type="text/javascript" src="assets/js/location.js"></script>
+    <script type="text/javascript" src="assets/js/init.js"></script>
+
+
+    <script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.2/jquery.xdomainrequest.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-placeholder/2.0.7/jquery.placeholder.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.4/dist/typeahead.bundle.js"></script> 
+    
+    
+    <! -- CSS -->
     <link rel="stylesheet"  type="text/css" href="//api3.geo.admin.ch/1450268783/static/css/ga.css"/>
-
-	<style type="text/css">
-	body {
-		font-family: Arial;
-	}
-
-	.ol-attribution:not([ie8andbelow]) {
-		background-color: rgba(255, 255, 255, 0.7);
-	}
-	.ol-attribution.ol-unselectable.ol-control.ol-uncollapsible a{
-	   color:#666;
-	font-size:10px !important;
-	}
-	.ol-attribution.ol-unselectable.ol-control.ol-uncollapsible a:hover{
-	   color:#000;
-	font-size:10px !important;
-	}
-
-	.typeahead,
-	.tt-query,
-	.tt-hint {
-	  width: 784px;
-	  height: 24px;
-	  font-size: 16px;
-	  margin: 10px 0px 0px;
-	  padding-left: 0.5em;
-	  border: 1px solid #C1C1C1;
-	  font-family: Arial;
-	}
-
-	.typeahead {
-	  background-color: #ffffff;
-	}
-
-	.typeahead:focus {
-	  border: 1px solid #000;
-	}
-
-	.tt-hint {
-	  color: #999
-	}
-
-	.tt-dropdown-menu {
-	  width: 528px;
-	  margin-top: 0px;
-	  padding: 8px 0;
-	  background-color: #fff;
-	  border: 1px solid #ccc;
-	}
-
-	.tt-suggestion {
-	  padding: 2px 8px;
-	  font-size: 12px;
-	  line-height: 18px;
-	  text-align: left;
-	}
-
-	.tt-suggestion.tt-cursor {
-	 colro: #000;
-	  background-color: lightgray;
-	  cursor: pointer;
-	}
-
-	.tt-suggestion p {
-	  margin: 0;
-	}
-
-	.marker.ga-crosshair {
-	width: 30px;
-	height: 40px;
-	margin-top: -40px;
-	margin-left: -15px;
-	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAoCAYAAADpE0oSAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RkYzODI1RUVDQzZFMTFFM0JFQjhBMDhCMjI4RThGQzEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RkYzODI1RUZDQzZFMTFFM0JFQjhBMDhCMjI4RThGQzEiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpGRjM4MjVFQ0NDNkUxMUUzQkVCOEEwOEIyMjhFOEZDMSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpGRjM4MjVFRENDNkUxMUUzQkVCOEEwOEIyMjhFOEZDMSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqBtl6EAAAa8SURBVHjaxFhpTFRX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")
-
-	</style>
-
-</head>
-
-<body>
-	
-	<center>
-	
-    <div>
+    <link rel="stylesheet"  type="text/css" href="assets/css/map.css"/>
+  </head>
+  <body>
+    <center>
+      <div>
         <h1>Solarkataster: User-Interface, Tech-Demo</h1>
-		<h4>
-		Use Case #1: Mein Dach anhand GPS suchen.<br>
-		Use Case #2: Mein Dach anhand Adresse suchen.<br>
-		Use Case #2: Mein Dach anhand Karte suchen.<br><br>
-		Die Solarkataster-Testdaten sind noch nicht in der BGDI verfügbar.<br>
-		Darum wurde die hier vorliegende Tech-Demo mit dem Layer "Energiestädte" umgesetzt,<br>
-		welcher ebenfalls nicht-überlappende Flächen enthält.<br><br>
-		Die Informationen zum Dach (bzw. der Energiestadt) werden unterhalb der Karte dargestellt.
-		</h4>
-	</div>
-	
-	<button onclick="getLocation()">Lokalisier mich!</button>
+        <h4>
+        Use Case #1: Mein Dach anhand GPS suchen.<br>
+        Use Case #2: Mein Dach anhand Adresse suchen.<br>
+        Use Case #2: Mein Dach anhand Karte suchen.<br><br>
+        Die Solarkataster-Testdaten sind noch nicht in der BGDI verfugbar.<br>
+        Darum wurde die hier vorliegende Tech-Demo mit dem Layer "Energiestaedte" umgesetzt,<br>
+        welcher ebenfalls nicen enthalt.<br><br>
+        die Informationen zum Dach (bzw. der Energiestadt) werden unterhalb der Karte dargestellt.
+        </h4>
+      </div>
+      
+      <button id="location">Lokalisier mich!</button>
 
-	<p id="demo"></p>
-	
-	
-	<div id="search-container">
-	  <input class="typeahead" id="search-typeahead" type="text" data-provide="typeahead" placeholder="Suchen Sie Ihre Adresse..." >
-	</div>
-	<br/>
-	<br/>
+      <p id="demo"></p>
+      
+      
+      <div id="search-container">
+        <input class="typeahead" id="search-typeahead" type="text" data-provide="typeahead" placeholder="Suchen Sie Ihre Adresse..." >
+      </div>
+      <br/>
+      <br/>
 
-	<div id="map3" style="width:790px !important; height:340px; margin-bottom: 10px !important; border-color: grey; border-style: solid; border-width: 1px;border: 1px solid #ccc; border-radius: 0;"></div>
-	
-	<div id="features-list" style="width:790px !important; margin-bottom: 10px !important; border-color: grey; border-style: solid; border-width: 1px;border: 1px solid #ccc;"></div>
-	
-	<div id="json-query" style="width:790px !important; margin-bottom: 10px !important; border-color: grey; border-style: solid; border-width: 1px;border: 1px solid #ccc;"></div>
-	
-	<div id="myOutput" style="width:790px !important; margin-bottom: 10px !important; border-color: grey; border-style: solid; border-width: 1px;border: 1px solid #ccc;"></div>
+      <div id="map" style="width:790px !important; height:340px; margin-bottom: 10px !important; border-color: grey; border-style: solid; border-width: 1px;border: 1px solid #ccc; border-radius: 0;"></div>
+      <div id="features-list" style="width:790px !important; margin-bottom: 10px !important; border-color: grey; border-style: solid; border-width: 1px;border: 1px solid #ccc;"></div>
+      <div id="json-query" style="width:790px !important; margin-bottom: 10px !important; border-color: grey; border-style: solid; border-width: 1px;border: 1px solid #ccc;"></div>
+      <div id="myOutput" style="width:790px !important; margin-bottom: 10px !important; border-color: grey; border-style: solid; border-width: 1px;border: 1px solid #ccc;"></div>
+      <script>
+        var mapJQ = $.noConflict();
+        mapJQ.support.cors = true;
+        init();
+      </script>
 
-	<script>
-
-	var mapJQ = $.noConflict();
-
-	  <!-- Detection of coordinate -->
-	var isCoordinates =  function(extent, query) {
-	  var DMSDegree = '[0-9]{1,2}[°|º]\\s*';
-	  var DMSMinute = '[0-9]{1,2}[\'|′]';
-	  var DMSSecond = '(?:\\b[0-9]+(?:\\.[0-9]*)?|\\.' +
-		'[0-9]+\\b)("|\'\'|′′|″)';
-	  var DMSNorth = '[N]';
-	  var DMSEast = '[E]';
-	  var regexpDMSN = new RegExp(DMSDegree +
-		'(' + DMSMinute + ')?\\s*' +
-		'(' + DMSSecond + ')?\\s*' +
-		DMSNorth, 'g');
-	  var regexpDMSE = new RegExp(DMSDegree +
-		'(' + DMSMinute + ')?\\s*' +
-		'(' + DMSSecond + ')?\\s*' +
-		DMSEast, 'g');
-	  var regexpDMSDegree = new RegExp(DMSDegree, 'g');
-	  var regexpCoordinate = new RegExp(
-		'([\\d\\.\']+)[\\s,]+([\\d\\.\']+)');
-
-		var position;
-		var valid = false;
-
-		var matchDMSN = query.match(regexpDMSN);
-		var matchDMSE = query.match(regexpDMSE);
-		if (matchDMSN && matchDMSN.length == 1 &&
-			matchDMSE && matchDMSE.length == 1) {
-		  var northing = parseFloat(matchDMSN[0].
-			match(regexpDMSDegree)[0].
-			replace('°' , '').replace('º' , ''));
-		  var easting = parseFloat(matchDMSE[0].
-			match(regexpDMSDegree)[0].
-			replace('°' , '').replace('º' , ''));
-		  var minuteN = matchDMSN[0].match(DMSMinute) ?
-			matchDMSN[0].match(DMSMinute)[0] : '0';
-		  northing = northing +
-			parseFloat(minuteN.replace('\'' , '').
-			  replace('′' , '')) / 60;
-		  var minuteE = matchDMSE[0].match(DMSMinute) ?
-			matchDMSE[0].match(DMSMinute)[0] : '0';
-		  easting = easting +
-			parseFloat(minuteE.replace('\'' , '').
-			  replace('′' , '')) / 60;
-		  var secondN =
-			matchDMSN[0].match(DMSSecond) ?
-			matchDMSN[0].match(DMSSecond)[0] : '0';
-		  northing = northing + parseFloat(secondN.replace('"' , '')
-			.replace('\'\'' , '').replace('′′' , '')
-			.replace('″' , '')) / 3600;
-		  var secondE = matchDMSE[0].match(DMSSecond) ?
-			matchDMSE[0].match(DMSSecond)[0] : '0';
-		  easting = easting + parseFloat(secondE.replace('"' , '')
-			.replace('\'\'' , '').replace('′′' , '')
-			.replace('″' , '')) / 3600;
-		  position = ol.proj.transform([easting, northing],
-				'EPSG:4326', 'EPSG:21781');
-		  if (ol.extent.containsCoordinate(
-			extent, position)) {
-			  valid = true;
-		  }
-		}
-
-		var match =
-		  query.match(regexpCoordinate);
-		if (match && !valid) {
-		  var left = parseFloat(match[1].replace('\'', ''));
-		  var right = parseFloat(match[2].replace('\'', ''));
-		  var position =
-			[left > right ? left : right,
-			  right < left ? right : left];
-		  if (ol.extent.containsCoordinate(
-			  extent, position)) {
-			valid = true;
-		  } else {
-			position = ol.proj.transform(position,
-			  'EPSG:2056', 'EPSG:21781');
-			if (ol.extent.containsCoordinate(
-				extent, position)) {
-			  valid = true;
-			} else {
-			  position =
-				[left < right ? left : right,
-				  right > left ? right : left];
-			  position = ol.proj.transform(position,
-				'EPSG:4326', 'EPSG:21781');
-			  if (ol.extent.containsCoordinate(
-				extent, position)) {
-				valid = true;
-			  }
-			}
-		  }
-		}
-		return valid ?
-		  [Math.round(position[0] * 1000) / 1000,
-		  Math.round(position[1] * 1000) / 1000] : undefined;
-	};
-
-	// Search all the features available in the current map extent then display them in a HTML list.
-	var searchFeaturesInExtent = function(map) {
-	center, view3.calculateExtent(map3.getSize()), map3.getSize()
-	
-	// Ausgabe API3-Query
-	document.getElementById("json-query").innerHTML =
-		'<i>API REST Identify Feature - Query<br>Abfrage an einer Punktkoordinate (Extent = Koordinate, tolerance = 0)</i><br><br>' +
-		  'http://api3.geo.admin.ch/rest/services/api/MapServer/identify?' +
-		  'geometryType=esriGeometryPoint' +
-		  '&returnGeometry=false' +
-		  '&layers=all:ch.bfe.energiestaedte' +
-		  '&geometry=' + map.getView().getCenter().join(',') +
-		  '&mapExtent=' + map.getView().getCenter().join(',') + ',' + map.getView().getCenter().join(',') +
-		  '&imageDisplay=' + map.getSize().join(',') + ',96' +
-		  '&tolerance=0' +
-		  '&lang=de';
-	
-	  mapJQ.getJSON('http://api3.geo.admin.ch/rest/services/api/MapServer/identify?' + //url
-		  'geometryType=esriGeometryPoint' +
-		  '&returnGeometry=false' +
-		  '&layers=all:ch.bfe.energiestaedte' +
-		  '&geometry=' + map.getView().getCenter().join(',') +
-		  '&mapExtent=' + map.getView().getCenter().join(',') + ',' + map.getView().getCenter().join(',') +
-		  '&imageDisplay=' + map.getSize().join(',') + ',96' +
-		  '&tolerance=0' + 
-		  '&lang=de',
-		function(data) { //success(data)
-		  mapJQ('#features-list').empty();
-		  if (data.results && data.results.length > 0) {
-			 var items = [];
-			mapJQ.each(data.results, function(key, val ) {
-			
-				//myOutput
-				document.getElementById("myOutput").innerHTML = 
-				'<i>Eigener Output mit Zugriff auf einzelne Attribute anstatt fixfertige Objektinfo aus geo.admin. Kann beliebig angepasst, gestaltet und mit Logik erweitert (z. B. kWh in Franken umrechnen) werden.</i><br><br>' +
-				'Punktezahl: <b>' + val.attributes.punktezahl + '</b><br>' +
-				'Energiestadt: <b>' + val.attributes.name + '</b>';
-				
-				//Zusätzliche Feature abfragen
-				
-				
-			
-				mapJQ.ajax('http://api3.geo.admin.ch/rest/services/api/MapServer/' +
-					val.layerBodId + '/' +
-					val.featureId + '/htmlPopup?lang=de',{
-				  dataType: "html"
-				}).done(function(data) {
-				  mapJQ('#features-list').append(data);
-				});       
-			});
-		  }
-		}
-	  );
-	}
-
-	mapJQ.support.cors = true;
-	var element3 = mapJQ('<div class="marker ga-crosshair"></div>');
-	var popup3 = new ol.Overlay({
-	  positioning:'bottom-center',
-	  element: element3[0]
-	});
-
-	
-
-    var swissExtent = [420000, 30000, 900000, 350000];
-	var swissProjection = ol.proj.get('EPSG:21781');
-	swissProjection.setExtent(swissExtent);
-
-	
-    var layers = getLayersConfig();
-	var layer1Id = 'ch.swisstopo.swissimage';
-    var layer1Config = layers[layer1Id];
-	var layer1 = new ol.layer.Tile({
-        minResolution: layer1Config.minResolution,
-        maxResolution: layer1Config.maxResolution,
-        opacity: layer1Config.opacity,
-        source: getWmts(layer1Id, layer1Config),
-        useInterimTilesOnError: false
-    })
-	var layer2Id = 'ch.bfe.energiestaedte';
-    var layer2Config = layers[layer2Id];
-	var layer2 = new ol.layer.Tile({
-        minResolution: layer2Config.minResolution,
-        maxResolution: layer2Config.maxResolution,
-        opacity: layer2Config.opacity,
-        source: getWms(layer2Id, layer2Config),
-        useInterimTilesOnError: false
-    })
-	<!-- //Create a GeoAdmin Map 3-->
-	var map3 = new ol.Map({
-	    target: 'map3',
-	    layers: [
-	        layer1, layer2
-	    ],
-	    view: new ol.View({
-		    resolutions: [
-		      650, 500, 250, 100, 50, 20, 10, 5, 2.5, 2, 1, 0.5, 0.25, 0.1
-		    ],
-		    extent: swissExtent,
-		    projection: swissProjection,
-		    center: [660000, 190000],
-		    zoom: 0
-		}),
-	    controls: ol.control.defaults({
-		    attributionOptions: ({
-		        collapsible: false
-		    })
-		}),
-		logo: false
-	});
-    map3.addControl(new ol.control.ScaleLine());
-
-	//Click-Events	
-	map3.on('singleclick', function(evt){
-	  document.getElementById("myOutput").innerHTML = '';
-	  var coord = evt.coordinate;
-	  view3.setCenter(coord);
-	  popup3.setPosition(coord); //crosshair
-	  searchFeaturesInExtent(map3); //Abfrage aktualisieren
-	})
-
-	map3.addOverlay(popup3);
-
-	var view3 = map3.getView();
-
-	<!-- //Get swisssearch parameter-->
-	var swisssearch = window.sessionStorage.getItem('swisssearch');
-	if (swisssearch) {
-	  var center = swisssearch.split(',');
-	  center = [parseInt(center[0], 10), parseInt(center[1], 10)];
-	  popup3.setPosition(center);
-	  view3.setCenter(center);
-	  searchFeaturesInExtent(map3);
-	}
-
-	var mySource = new Bloodhound({
-	   limit: 30,
-	   datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
-	   queryTokenizer: function(query) {
-		  var center = isCoordinates(map3.getView().getProjection().getExtent(), query);
-		  if (center) {
-			view3.setCenter(center);
-			popup3.setPosition(center);
-		  }
-		  return Bloodhound.tokenizers.whitespace;
-	   },
-	   remote: {   
-		  url: 'http://api3.geo.admin.ch/rest/services/api/SearchServer?lang=de&searchText=%QUERY&type=locations',
-		  filter: function(locations) {
-			var results = [];
-			if (locations.results) {
-			  mapJQ.each(locations.results, function(key, location) {
-				 if (location.attrs.origin == 'address' || location.attrs.origin == 'parcel') {
-				   results.push(location);
-				   if (document.all && navigator.appVersion.substring(22, 23) == 4) {
-					 self.focus();
-					 var OLECMDID_PRINT = 6;
-					 var OLECMDEXECOPT_DONTPROMPTUSER = 2;
-					 var OLECMDEXECOPT_PROMPTUSER = 1;
-					 var WebBrowser = '<object id="http://cmsr.testlt.intranet.vbs.admin.ch/internet/cadastre/de/home/products/cadastralinfo.print.html" width="0" height="0"                   classid="CLSID:8856F961-340A-11D0-A96B-00C04FD705A2"></object>';
-				  document.body.insertAdjacentHTML('beforeEnd', WebBrowser);
-				  WebBrowser.ExecWB(OLECMDID_PRINT, OLECMDEXECOPT_DONTPROMPTUSER);
-				  WebBrowser.outerHTML = '';
-					}
-				 }
-			  });
-			}
-			return results;
-		  }
-	   }
-	});
-
-	// this kicks off the loading and processing of local and prefetch data
-	// the suggestion engine will be useless until it is initialized
-	mySource.initialize();
-
-	var searchInput = mapJQ('#search-container input');
-	searchInput.typeahead(null,{
-	  name: 'location',
-	  displayKey: function(location) {
-		return location.attrs.label.replace('<b>', '').replace('</b>', '');
-	  },
-	  source: mySource.ttAdapter(),
-	  templates: {
-		suggestion: function(location) {
-		  return '<p>' + location.attrs.label + '</p>' ;
-		}
-	  }                                      
-	});
-
-	var parseExtent = function(stringBox2D) {
-	  var extent = stringBox2D.replace('BOX(', '').replace(')', '').replace(',', ' ').split(' ');
-	  return mapJQ.map(extent, parseFloat);
-	};
-
-	searchInput.placeholder();
-
-	searchInput.on('typeahead:selected', function(evt, location, suggName) {
-
-		var originZoom = {
-		   address: 10,
-		   parcel: 10,
-		   sn25: 8,
-		   feature: 7
-		};
-		var origin = location.attrs.origin;
-		var extent = [0,0,0,0];
-		if (location.attrs.geom_st_box2d) {
-		  extent = parseExtent(location.attrs.geom_st_box2d);
-		} else if (location.attrs.x && location.attrs.y) {
-		  var x = location.attrs.y;
-		  var y = location.attrs.x
-		  extent = [x,y,x,y]; 
-		}
-		window.sessionStorage.removeItem('swisssearch', '');
-		if (originZoom.hasOwnProperty(origin)) {
-		  //var zoom = originZoom[origin];
-		  var center = [(extent[0] + extent[2]) / 2, (extent[1] + extent[3]) / 2];
-		  //view3.setZoom(zoom);
-		  view3.setZoom(13);
-		  view3.setCenter(center);
-		  popup3.setPosition(center); //crosshair
-		  window.sessionStorage.setItem('swisssearch', center);
-		} else {
-		   view3.fitExtent(extent, map3.getSize());
-		}
-		searchFeaturesInExtent(map3);
-	});
-	
-	
-	
-	//Lokalisiert mich!
-	
-	var x = document.getElementById("demo");
-
-	function getLocation() {
-		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(showPosition, showError);
-		} else {
-			x.innerHTML = "Geolocation is not supported by this browser.";
-		}
-	}
-		
-	function showPosition(position) {
-		x.innerHTML="Latitude: " + position.coords.latitude + 
-		"<br>Longitude: " + position.coords.longitude;
-
-		var center = isCoordinates(map3.getView().getProjection().getExtent(), position.coords.latitude + ' ' + position.coords.longitude);
-		  if (center) {
-			view3.setCenter(center);
-			popup3.setPosition(center);
-			searchFeaturesInExtent(map3); //Abfrage aktualisieren
-		  }
-	}
-	
-	function showError(error) {
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            x.innerHTML = "User denied the request for Geolocation."
-            break;
-        case error.POSITION_UNAVAILABLE:
-            x.innerHTML = "Location information is unavailable."
-            break;
-        case error.TIMEOUT:
-            x.innerHTML = "The request to get user location timed out."
-            break;
-        case error.UNKNOWN_ERROR:
-            x.innerHTML = "An unknown error occurred."
-            break;
-    }
-	}
-		
-	</script>
-
-	</center>
-</body>
+    </center>
+  </body>
 </html>
