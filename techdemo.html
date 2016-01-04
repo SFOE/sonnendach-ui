@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html>
-<head>
-
+  <head>
     <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title></title>
 
-	<script type="text/javascript" src="http://api3.geo.admin.ch/loader.js?lang=de"></script>
-	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.js"></script>
-	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.2/jquery.xdomainrequest.min.js"></script>
-	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery-placeholder/2.0.7/jquery.placeholder.min.js"></script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/ol3/3.12.1/ol-debug.js"></script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/proj4js/2.2.1/proj4.js"></script>
+    <script type="text/javascript" src="//api3.geo.admin.ch/1450268588/static/js/EPSG21781.js"></script>
+    <script type="text/javascript" src="//api3.geo.admin.ch/1450268588/static/js/EPSG2056.js"></script>
+    <script type="text/javascript" src="assets/js/layers.js"></script>
+	<script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.js"></script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.2/jquery.xdomainrequest.min.js"></script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-placeholder/2.0.7/jquery.placeholder.min.js"></script>
 	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.4/dist/typeahead.bundle.js"></script> 
+    <link rel="stylesheet"  type="text/css" href="//api3.geo.admin.ch/1450268783/static/css/ga.css"/>
 
 	<style type="text/css">
 	body {
@@ -285,23 +289,58 @@
 	var element3 = mapJQ('<div class="marker ga-crosshair"></div>');
 	var popup3 = new ol.Overlay({
 	  positioning:'bottom-center',
-	  element: element3 
+	  element: element3[0]
 	});
 
+	
+
+    var swissExtent = [420000, 30000, 900000, 350000];
+	var swissProjection = ol.proj.get('EPSG:21781');
+	swissProjection.setExtent(swissExtent);
+
+	
+    var layers = getLayersConfig();
+	var layer1Id = 'ch.swisstopo.swissimage';
+    var layer1Config = layers[layer1Id];
+	var layer1 = new ol.layer.Tile({
+        minResolution: layer1Config.minResolution,
+        maxResolution: layer1Config.maxResolution,
+        opacity: layer1Config.opacity,
+        source: getWmts(layer1Id, layer1Config),
+        useInterimTilesOnError: false
+    })
+	var layer2Id = 'ch.bfe.energiestaedte';
+    var layer2Config = layers[layer2Id];
+	var layer2 = new ol.layer.Tile({
+        minResolution: layer2Config.minResolution,
+        maxResolution: layer2Config.maxResolution,
+        opacity: layer2Config.opacity,
+        source: getWms(layer2Id, layer2Config),
+        useInterimTilesOnError: false
+    })
 	<!-- //Create a GeoAdmin Map 3-->
-	var map3 = new ga.Map({
-	  target: 'map3',
-	  layers: [
-		ga.layer.create('ch.swisstopo.swissimage'),
-		ga.layer.create('ch.bfe.energiestaedte')
-	  ],
-	  view: new ol.View2D({
-			  resolution: 0.1,
-			  center:  [600000, 200000]
-	  }),
-	  <!-- interactions: [], -->
-	  tooltip: false
+	var map3 = new ol.Map({
+	    target: 'map3',
+	    layers: [
+	        layer1, layer2
+	    ],
+	    view: new ol.View({
+		    resolutions: [
+		      650, 500, 250, 100, 50, 20, 10, 5, 2.5, 2, 1, 0.5, 0.25, 0.1
+		    ],
+		    extent: swissExtent,
+		    projection: swissProjection,
+		    center: [660000, 190000],
+		    zoom: 0
+		}),
+	    controls: ol.control.defaults({
+		    attributionOptions: ({
+		        collapsible: false
+		    })
+		}),
+		logo: false
 	});
+    map3.addControl(new ol.control.ScaleLine());
 
 	//Click-Events	
 	map3.on('singleclick', function(evt){
@@ -384,7 +423,6 @@
 	var parseExtent = function(stringBox2D) {
 	  var extent = stringBox2D.replace('BOX(', '').replace(')', '').replace(',', ' ').split(' ');
 	  return mapJQ.map(extent, parseFloat);
-
 	};
 
 	searchInput.placeholder();
