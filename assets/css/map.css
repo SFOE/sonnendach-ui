@@ -1,0 +1,71 @@
+.ol-attribution:not([ie8andbelow]) {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.ol-attribution.ol-unselectable.ol-control.ol-uncollapsible a{
+  color:#666;
+  font-size:10px !important;
+}
+
+.ol-attribution.ol-unselectable.ol-control.ol-uncollapsible a:hover{
+  color:#000;
+  font-size:10px !important;
+}
+
+.typeahead,
+.tt-query,
+.tt-hint {
+  width: 784px;
+  height: 24px;
+  font-size: 16px;
+  margin: 10px 0px 0px;
+  padding-left: 0.5em;
+  border: 1px solid #C1C1C1;
+  font-family: Arial;
+}
+
+.typeahead {
+  background-color: #ffffff;
+}
+
+.typeahead:focus {
+  border: 1px solid #000;
+}
+
+.tt-hint {
+  color: #999
+}
+
+.tt-dropdown-menu {
+  width: 528px;
+  margin-top: 0px;
+  padding: 8px 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+}
+
+.tt-suggestion {
+  padding: 2px 8px;
+  font-size: 12px;
+  line-height: 18px;
+  text-align: left;
+}
+
+.tt-suggestion.tt-cursor {
+ colro: #000;
+  background-color: lightgray;
+  cursor: pointer;
+}
+
+.tt-suggestion p {
+  margin: 0;
+}
+
+.marker.ga-crosshair {
+  width: 30px;
+  height: 40px;
+  margin-top: -40px;
+  margin-left: -15px;
+  background-image: url('images/marker.png');
+}
+
