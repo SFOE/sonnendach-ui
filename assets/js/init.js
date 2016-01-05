@@ -15,14 +15,14 @@ var init = function() {
     },
     subTitle: {
       de: 'Finden Sie es heraus mit dem Solarkataster Schweiz.',
-      fr: 'Déuvrez le cadastre solaire Suisse.'
+      fr: 'Decouvrez le cadastre solaire Suisse.'
     },
     locateMe: {
       de: 'Lokalisiere mich',
       fr: 'Localisez moi'
     }
   };
- var permalink = addPermalink();
+  var permalink = addPermalink();
   var translator = body.translate({
     lang: (langs.indexOf(permalink.lang) != -1) ? permalink.lang : langs[0],
     t: t

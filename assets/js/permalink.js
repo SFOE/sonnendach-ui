@@ -30,7 +30,7 @@ var addPermalink = function() {
   var lang =  (res.lang || '').split(',');
 
   var url = {
-    lang: (lang[0].length) ? lang : undefined, 
+    lang: (lang[0].length) ? lang[0] : undefined,
   }; 
   return url;
 };
