@@ -1,9 +1,12 @@
 var init = function() {
-   // Create map
+  $.support.cors = true;
+  window.API3_URL = 'https://mf-chsdi3.dev.bgdi.ch/';
+        
+  // Create map
   var map = createMap('map');
 	var marker= new ol.Overlay({
 	  positioning:'bottom-center',
-	  element: mapJQ('<div class="marker ga-crosshair"></div>')[0]
+	  element: $('<div class="marker ga-crosshair"></div>')[0]
 	});
 	map.addOverlay(marker);
   map.on('singleclick', function(evt){
@@ -16,8 +19,9 @@ var init = function() {
 
   // Init the search input
   initSearch(map, marker);
-  
-  mapJQ('#location').click(function() {
+ 
+  // Init Geoloaction button 
+  $('#location').click(function() {
     getLocation(map, marker);
   });
 }		

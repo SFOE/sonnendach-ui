@@ -52,9 +52,10 @@
 }
 
 .tt-suggestion.tt-cursor {
- colro: #000;
+  color: #000;
   background-color: lightgray;
   cursor: pointer;
+  font-family: arial;
 }
 
 .tt-suggestion p {
@@ -69,3 +70,8 @@
   background-image: url('images/marker.png');
 }
 
+#map, #features-list, #json-query, #myOutput {
+  width: 790px;
+  margin-bottom: 10px;
+  border: 1px grey solid;
+}

@@ -3,8 +3,8 @@
  */
 var searchFeaturesInExtent = function(map) {
   var center,
-      jsonQuery = mapJQ('#json-query');
-      featuresList = mapJQ('#features-list');
+      jsonQuery = $('#json-query');
+      featuresList = $('#features-list');
       output = document.getElementById("myOutput");
  
   // Ausgabe API3-Query
@@ -20,7 +20,7 @@ var searchFeaturesInExtent = function(map) {
       '&tolerance=0' +
       '&lang=de');
   
-  mapJQ.getJSON(API3_URL + '/rest/services/api/MapServer/identify?' + //url
+  $.getJSON(API3_URL + '/rest/services/api/MapServer/identify?' + //url
       'geometryType=esriGeometryPoint' +
       '&returnGeometry=false' +
       '&layers=all:ch.bfe.energiestaedte' +
@@ -33,7 +33,7 @@ var searchFeaturesInExtent = function(map) {
       featuresList.empty();
       if (data.results && data.results.length > 0) {
         var items = [];
-        mapJQ.each(data.results, function(key, val ) {
+        $.each(data.results, function(key, val ) {
           output.innerHTML = 
           '<i>Eigener Output mit Zugriff auf einzelne Attribute anstatt fixfertige Objektinfo aus geo.admin.' +
           'Kann beliebig angepasst, gestaltet und mit Logik erweitert (z. B. kWh in Franken umrechnen) werden.</i><br><br>' +
@@ -41,7 +41,7 @@ var searchFeaturesInExtent = function(map) {
           'Energiestadt: <b>' + val.attributes.name + '</b>';
           
         
-          mapJQ.ajax(API3_URL + '/rest/services/api/MapServer/' +
+          $.ajax(API3_URL + '/rest/services/api/MapServer/' +
             val.layerBodId + '/' +
             val.featureId + '/htmlPopup?lang=de',{
             dataType: "html"
@@ -87,7 +87,7 @@ var initSearch = function(map, marker) {
 		   filter: function(locations) {
 			   var results = [];
 			   if (locations.results) {
-			     mapJQ.each(locations.results, function(key, location) {
+			     $.each(locations.results, function(key, location) {
 				     if (location.attrs.origin == 'address' || location.attrs.origin == 'parcel') {
 				       results.push(location);
 	 			     }
@@ -103,7 +103,7 @@ var initSearch = function(map, marker) {
 	mySource.initialize();
 
   // Create the typeahead search box 
-	var searchInput = mapJQ('#search-container input');
+	var searchInput = $('#search-container input');
 	searchInput.typeahead(null,{
 	  name: 'location',
 	  displayKey: function(location) {
@@ -119,7 +119,7 @@ var initSearch = function(map, marker) {
 
 	var parseExtent = function(stringBox2D) {
 	  var extent = stringBox2D.replace('BOX(', '').replace(')', '').replace(',', ' ').split(' ');
-	  return mapJQ.map(extent, parseFloat);
+	  return $.map(extent, parseFloat);
 	};
 
 	searchInput.placeholder();

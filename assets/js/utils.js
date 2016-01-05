@@ -1,5 +1,3 @@
-var API3_URL = 'https://mf-chsdi3.dev.bgdi.ch/';
-
 /**
  * This function detects is a string contains coordinates
  *
