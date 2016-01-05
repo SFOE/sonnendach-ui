@@ -24,4 +24,5 @@ var init = function() {
   $('#location').click(function() {
     getLocation(map, marker);
   });
-}		
+}
+$(window).on('load', init);
