@@ -1,6 +1,48 @@
+/**
+ * Display the marker at the coordinate of an address. Then search the best roof
+ * associates to this address 
+ */
+var onAddressFound = function(map, marker, address) {
+  if (address) {
+    var coord, label;
+    if (!address.attrs) { // Address comes from geolocation
+      coord = [address.geometry.x, address.geometry.y];
+      var attr = address.attributes;
+      label = attr.strname1 + ' ' + attr.deinr + '<br>' +
+          attr.plz4 + ' ' + attr.gdename;
+    } else { // Address comes from search box
+      // WARNING! Coordinates are inverted here.
+      coord = [address.attrs.y, address.attrs.x];
+      label = address.attrs.label.replace('<b>', '<br>')
+          .replace('</b>', '');
+    }
+    marker.setPosition(coord);
+    map.getView().setCenter(coord);
+    map.getView().setResolution(0.1);
+    $('#addressOutput').html(label);
+    $(document.body).addClass('localized');
+    
+    // Search best roof at this address
+
+  } else {
+    clear(map, marker);
+  }
+}
+
+// Put the page at the initial state
+var clear = function(map, marker) {
+  $('#search-container input').val('');
+  marker.setPosition(undefined);
+  $(document.body).removeClass('localized');
+  $(document.body).removeClass('roof');
+}
+
+/**
+ * Initialize the element of the app: map, search box, localizaton
+ */
 var init = function() {
   $.support.cors = true;
-  window.API3_URL = 'https://mf-chsdi3.dev.bgdi.ch/';
+  window.API3_URL = 'https://mf-chsdi3.dev.bgdi.ch/ltfoa_solarenergie_daecher';
   
   var langs = ['de', 'fr'];
   var body = $(document.body);
@@ -40,16 +82,16 @@ var init = function() {
     output.html('');
     var coord = evt.coordinate;
     map.getView().setCenter(coord);
-    marker.setPosition(coord); //crosshair
-    searchFeaturesInExtent(map); //Abfrage aktualisieren
+    marker.setPosition(coord); 
+    //searchBestRoof(map, marker, coordi, onFeatureFound);
   });
 
   // Init the search input
-  initSearch(map, marker);
+  initSearch(map, marker, onAddressFound);
  
   // Init geoloaction button 
   locationBt.click(function() {
-    getLocation(map, marker);
+    getLocation(map, marker, onAddressFound);
   });
 
   // Remove the loading css class 

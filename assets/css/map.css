@@ -85,6 +85,15 @@
   border: 1px grey solid;
 }
 
+.localized .hidden-localized,
+.show-localized,
+.show-roof,
+.show-no-roof,
 .loading .trn {
   display: none;
+}
+
+.localized .show-localized,
+.roof .show-roof {
+  display: block;
 }

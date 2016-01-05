@@ -58,7 +58,7 @@ var searchFeaturesInExtent = function(map) {
 /**
  * Transform the input element in search box
  */
-var initSearch = function(map, marker) {
+var initSearch = function(map, marker, onAddressFound) {
   var view = map.getView();
 	// Get swisssearch parameter
 	var swisssearch = window.sessionStorage.getItem('swisssearch');
@@ -125,7 +125,8 @@ var initSearch = function(map, marker) {
 	searchInput.placeholder();
 
 	searchInput.on('typeahead:selected', function(evt, location, suggName) {
-		var originZoom = {
+		onAddressFound(map, marker, location);
+    /*var originZoom = {
 		   address: 10,
 		   parcel: 10,
 		   sn25: 8,
@@ -153,6 +154,6 @@ var initSearch = function(map, marker) {
 		} else {
 		   view.fitExtent(extent, map.getSize());
 		}
-		searchFeaturesInExtent(map);
+		searchFeaturesInExtent(map);*/
 	});
 };
