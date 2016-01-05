@@ -8,7 +8,7 @@ var onAddressFound = function(map, marker, address, autoSearchRoof) {
     if (!address.attrs) { // Address comes from geolocation
       coord = [address.geometry.x, address.geometry.y];
       var attr = address.attributes;
-      label = attr.strname1 + ' ' + attr.deinr + '<br>' +
+      label = attr.strname1 + ' ' + attr.deinr + ' <br>' +
           attr.plz4 + ' ' + attr.gdename;
     } else { // Address comes from search box
       // WARNING! Coordinates are inverted here.
@@ -23,7 +23,7 @@ var onAddressFound = function(map, marker, address, autoSearchRoof) {
     if (autoSearchRoof) {
       marker.setPosition(coord);
       map.getView().setCenter(coord);
-      map.getView().setResolution(0.1);
+      map.getView().setResolution(0.25);
       searchFeaturesInExtent(map, marker, onRoofFound);
     }
   } else {
@@ -38,7 +38,7 @@ var onRoofFound = function(map, marker, roof) {
   if (roof) {
     $('#pitchOutput').html(roof.attributes.neigung);
     $('#headingOutput').html(roof.attributes.ausrichtung); 
-    $('#areaOutput').html(roof.attributes.flaeche);
+    $('#areaOutput').html(Math.round(roof.attributes.flaeche));
     $(document.body).removeClass('no-roof');
     $(document.body).addClass('roof');
 
