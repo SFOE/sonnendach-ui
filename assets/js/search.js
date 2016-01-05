@@ -62,13 +62,13 @@ var initSearch = function(map, marker) {
   var view = map.getView();
 	// Get swisssearch parameter
 	var swisssearch = window.sessionStorage.getItem('swisssearch');
-	if (swisssearch) {
+	/*if (swisssearch) {
 	  var center = swisssearch.split(',');
 	  center = [parseInt(center[0], 10), parseInt(center[1], 10)];
 	  marker.setPosition(center);
 	  view.setCenter(center);
 	  searchFeaturesInExtent(map);
-	}
+	}*/
 
   // Create the suggestion engine
 	var mySource = new Bloodhound({

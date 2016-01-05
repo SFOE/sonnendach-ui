@@ -16,7 +16,7 @@ var createMap = function(eltId) {
     source: getWmts(layer1Id, layer1Config),
     useInterimTilesOnError: false
   })
-  var layer2Id = 'ch.bfe.energiestaedte';
+  var layer2Id = 'ch.bfe.solarenergie-eignung-daecher';
   var layer2Config = layers[layer2Id];
   var layer2 = new ol.layer.Tile({
     minResolution: layer2Config.minResolution,
@@ -38,9 +38,9 @@ var createMap = function(eltId) {
         650, 500, 250, 100, 50, 20, 10, 5, 2.5, 2, 1, 0.5, 0.25, 0.1
       ],
       extent: extent,
+      center: [637899, 196416],
       projection: proj,
-      center: [660000, 190000],
-      zoom: 0
+      zoom: 10
     }),
     controls: ol.control.defaults({
 		  attributionOptions: ({

@@ -30,11 +30,12 @@ var init = function() {
 
   // Create map
   var map = createMap('map');
-  var marker= new ol.Overlay({
+  var marker = new ol.Overlay({
     positioning:'bottom-center',
-    element: markerElt[0]
+    element: markerElt[0],
+    position: undefined
   });
-	map.addOverlay(marker);
+  map.addOverlay(marker);
   map.on('singleclick', function(evt){
     output.html('');
     var coord = evt.coordinate;
