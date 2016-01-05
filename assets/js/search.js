@@ -1,57 +1,21 @@
 /**
  * Search all the features available in the current map extent then display them in a HTML list.
  */
-var searchFeaturesInExtent = function(map) {
-  var center,
-      jsonQuery = $('#json-query');
-      featuresList = $('#features-list');
-      output = document.getElementById("myOutput");
- 
-  // Ausgabe API3-Query
-  jsonQuery.html('<i>API REST Identify Feature - Query<br>Abfrage an einer' +
-      'Punktkoordinate (Extent = Koordinate, tolerance = 0)</i><br><br>' +
-      API3_URL + '/rest/services/api/MapServer/identify?' +
+var searchFeaturesInExtent = function(map, marker, onRoofFound) {
+  var center = map.getView().getCenter().toString();
+  var url = API3_URL + '/rest/services/api/MapServer/identify?' + //url
       'geometryType=esriGeometryPoint' +
-      '&returnGeometry=false' +
-      '&layers=all:ch.bfe.energiestaedte' +
-      '&geometry=' + map.getView().getCenter().join(',') +
-      '&mapExtent=' + map.getView().getCenter().join(',') + ',' + map.getView().getCenter().join(',') +
-      '&imageDisplay=' + map.getSize().join(',') + ',96' +
-      '&tolerance=0' +
-      '&lang=de');
-  
-  $.getJSON(API3_URL + '/rest/services/api/MapServer/identify?' + //url
-      'geometryType=esriGeometryPoint' +
-      '&returnGeometry=false' +
-      '&layers=all:ch.bfe.energiestaedte' +
-      '&geometry=' + map.getView().getCenter().join(',') +
-      '&mapExtent=' + map.getView().getCenter().join(',') + ',' + map.getView().getCenter().join(',') +
-      '&imageDisplay=' + map.getSize().join(',') + ',96' +
+      '&returnGeometry=true' +
+      '&layers=all:ch.bfe.solarenergie-eignung-daecher' +
+      '&geometry=' + center +
+      '&mapExtent=' + center + ',' + center +
+      '&imageDisplay=' + map.getSize().toString() + ',96' +
       '&tolerance=0' + 
-      '&lang=de', 
-    function(data) { //success(data)
-      featuresList.empty();
-      if (data.results && data.results.length > 0) {
-        var items = [];
-        $.each(data.results, function(key, val ) {
-          output.innerHTML = 
-          '<i>Eigener Output mit Zugriff auf einzelne Attribute anstatt fixfertige Objektinfo aus geo.admin.' +
-          'Kann beliebig angepasst, gestaltet und mit Logik erweitert (z. B. kWh in Franken umrechnen) werden.</i><br><br>' +
-          'Punktezahl: <b>' + val.attributes.punktezahl + '</b><br>' +
-          'Energiestadt: <b>' + val.attributes.name + '</b>';
-          
-        
-          $.ajax(API3_URL + '/rest/services/api/MapServer/' +
-            val.layerBodId + '/' +
-            val.featureId + '/htmlPopup?lang=de',{
-            dataType: "html"
-          }).done(function(data) {
-            featuresList.append(data);
-          });       
-        });
-      }
-    }
-  );
+      '&lang=de';
+  $.getJSON(url, function(data) {
+    // We assume results[0] is the good one
+    onRoofFound(map, marker, data.results[0]);
+  });
 };
 
 
@@ -125,7 +89,7 @@ var initSearch = function(map, marker, onAddressFound) {
 	searchInput.placeholder();
 
 	searchInput.on('typeahead:selected', function(evt, location, suggName) {
-		onAddressFound(map, marker, location);
+		onAddressFound(map, marker, location, true);
     /*var originZoom = {
 		   address: 10,
 		   parcel: 10,

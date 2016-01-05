@@ -2,7 +2,7 @@
  * Display the marker at the coordinate of an address. Then search the best roof
  * associates to this address 
  */
-var onAddressFound = function(map, marker, address) {
+var onAddressFound = function(map, marker, address, autoSearchRoof) {
   if (address) {
     var coord, label;
     if (!address.attrs) { // Address comes from geolocation
@@ -16,16 +16,35 @@ var onAddressFound = function(map, marker, address) {
       label = address.attrs.label.replace('<b>', '<br>')
           .replace('</b>', '');
     }
-    marker.setPosition(coord);
-    map.getView().setCenter(coord);
-    map.getView().setResolution(0.1);
     $('#addressOutput').html(label);
     $(document.body).addClass('localized');
     
     // Search best roof at this address
-
+    if (autoSearchRoof) {
+      marker.setPosition(coord);
+      map.getView().setCenter(coord);
+      map.getView().setResolution(0.1);
+      searchFeaturesInExtent(map, marker, onRoofFound);
+    }
   } else {
     clear(map, marker);
+  }
+};
+
+/**
+ * Display the data of the roof selected
+ */
+var onRoofFound = function(map, marker, roof) {
+  if (roof) {
+    $('#pitchOutput').html(roof.attributes.neigung);
+    $('#headingOutput').html(roof.attributes.ausrichtung); 
+    $('#areaOutput').html(roof.attributes.flaeche);
+    $(document.body).removeClass('no-roof');
+    $(document.body).addClass('roof');
+
+  } else {
+    $(document.body).removeClass('roof');
+    $(document.body).addClass('no-roof');
   }
 }
 
@@ -35,6 +54,8 @@ var clear = function(map, marker) {
   marker.setPosition(undefined);
   $(document.body).removeClass('localized');
   $(document.body).removeClass('roof');
+  $(document.body).removeClass('no-roof');
+
 }
 
 /**
@@ -47,7 +68,6 @@ var init = function() {
   var langs = ['de', 'fr'];
   var body = $(document.body);
   var locationBt = $('#location');
-  var output = $('#myOutput');
   var markerElt = $('<div class="marker ga-crosshair"></div>');
   var t = {
     mainTitle: {
@@ -79,11 +99,12 @@ var init = function() {
   });
   map.addOverlay(marker);
   map.on('singleclick', function(evt){
-    output.html('');
     var coord = evt.coordinate;
-    map.getView().setCenter(coord);
     marker.setPosition(coord); 
-    //searchBestRoof(map, marker, coordi, onFeatureFound);
+    map.getView().setCenter(coord);
+    geocode(map, marker, coord, onAddressFound);
+    searchFeaturesInExtent(map, marker, onRoofFound);
+    //geocode(map, marker, coord, onAddressFound);
   });
 
   // Init the search input

@@ -86,6 +86,7 @@
 }
 
 .localized .hidden-localized,
+.localized.no-roof .show-localized, 
 .show-localized,
 .show-roof,
 .show-no-roof,
@@ -95,5 +96,8 @@
 
 .localized .show-localized,
 .roof .show-roof {
+  display: block;
+}
+.no-roof .show-no-roof {
   display: block;
 }
