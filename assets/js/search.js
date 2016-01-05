@@ -133,9 +133,10 @@ var initSearch = function(map, marker) {
 		};
 		var origin = location.attrs.origin;
 		var extent = [0, 0, 0, 0];
-		if (location.attrs.geom_st_box2d) { //It is always false
+		//adress-coordinates are only supplied by the service if the domain is registered at swisstopo
+		if (location.attrs.geom_st_box2d) {
 		  extent = parseExtent(location.attrs.geom_st_box2d);
-		} else if (location.attrs.x && location.attrs.y) { //It is always false
+		} else if (location.attrs.x && location.attrs.y) {
 		  var x = location.attrs.y;
 		  var y = location.attrs.x
 		  extent = [x, y, x, y];
@@ -143,7 +144,6 @@ var initSearch = function(map, marker) {
 		window.sessionStorage.removeItem('swisssearch', '');
 		if (originZoom.hasOwnProperty(origin)) {
 		  var center = [(extent[0] + extent[2]) / 2, (extent[1] + extent[3]) / 2];
-		  //There is problem: center is always [0, 0] because of the extent which is always [0, 0, 0, 0]
 		  console.log(extent);
 		  console.log(center);
 		  view.setResolution(0.1);
