@@ -13,134 +13,161 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+    <link rel="stylesheet" href="//api3.geo.admin.ch/1450268783/static/css/ga.css"/>
+    <link rel="stylesheet" href="assets/css/map.css"/>
 	</head>
-	<body>
+	<body class="loading">
 	
-	<!-- eid -->
-			<section id="eig" class="main style1 special" style="padding: 2em 0em 0em 0em !important">
-				<div class="container">
-					<div class="row 150%">
-						<div class="3u 12u$(medium)">
-							<span class="image fit">&nbsp;<img style="max-width: 238px !important;" src="https://www.admin.ch/gov/de/_jcr_content/logo/image.imagespooler.png/1443432164932/Logo%20Schweizerische%20Eidgenossenschaft.png" alt="" /></span>
-						</div>
-						<div class="5u 12u$(medium)">
-							
-						</div>
-						<div class="4u$ 12u$(medium)">
-							
-						</div>
-					</div>
-				</div>
-			</section>	
+	  <!-- eid -->
+    <section id="eig" class="main style1 special" style="padding: 2em 0em 0em 0em !important">
+      <div class="container">
+        <div class="row 150%">
+          <div class="3u 12u$(medium)">
+            <span class="image fit">&nbsp;<img style="max-width: 238px !important;" src="https://www.admin.ch/gov/de/_jcr_content/logo/image.imagespooler.png/1443432164932/Logo%20Schweizerische%20Eidgenossenschaft.png" alt="" /></span>
+          </div>
+          <div class="5u 12u$(medium)">
+            
+          </div>
+          <div class="4u$ 12u$(medium)">
+          </div>
+        </div>
+      </div>
+    </section>	
 	
-	<!-- red -->
-			<section id="red" style="background-color: red; height: 5px; line-height: 5px;">
-				<div class="container">
-					<div class="row 150%">
-						<div class="12u 12u$(medium)">
-						</div>
-					</div>
-				</div>
-			</section>	
+	  <!-- red -->
+    <section id="red" style="background-color: red; height: 5px; line-height: 5px;">
+      <div class="container">
+        <div class="row 150%">
+          <div class="12u 12u$(medium)">
+          </div>
+        </div>
+      </div>
+    </section>	
 
 		<!-- Header -->
-			<section id="header">
-				<div class="inner">
-					<span class="icon major fa-sun-o"></span>
-					<h1>Wie viel <strong>Strom</strong> und <strong>Wärme</strong> aus <strong>Sonnenenergie</strong> kann ich auf meinem <strong>Dach</strong> produzieren?</h1>
-					<p>Finden Sie es heraus mit dem Solarkataster Schweiz.</p>
-					<ul class="actions">
-						<li><a href="#one" class="button scrolly">Lokalisiere mich</a></li>
-					</ul>
-				</div>
-			</section>
+    <section id="header">
+      <div class="inner">
+        <span class="icon major fa-sun-o"></span>
+        <h1 class="trn">mainTitle</h1>
+        <p class="trn">subTitle</p>
+        <ul class="actions">
+          <li><a id="location" href="#one" class="button scrolly trn">locateMe</a></li>
+        </ul>
+      </div>
+    </section>
 
 		<!-- One -->
-			<section id="one" class="main style1">
-				<div class="container">
-					<div class="row 150%">
-						<div class="6u 12u$(medium)">
-							<header class="major">
-								<h2>Noch nicht lokalisiert</h2>
-								<h2></h2>
-							</header>
-							<header class="major">
-								<h4>Bitte lokalisieren Sie sich oder suchen Sie eine Adresse.</h4>
-							</header>
-							<p>
-							Neue Adresse suchen:<br><input type="text"></p>
-						</div>
-						<div class="6u$ 12u$(medium) important(medium)">
-							<span class="image fit"><img src="images/pic01.jpg" alt="" /></span>
-						</div>
-					</div>
-				</div>
-			</section>
+    <section id="one" class="main style1">
+      <div class="container">
+        <div class="row 150%">
+          <div class="6u 12u$(medium)">
+            <header class="major">
+              <h2>Noch nicht lokalisiert</h2>
+              <h2></h2>
+            </header>
+            <header class="major">
+              <h4>Bitte lokalisieren Sie sich oder suchen Sie eine Adresse.</h4>
+            </header>
+            <p>
+              Neue Adresse suchen:<br>
+            <span id="search-container">
+              <input class="typeahead" id="search-typeahead" type="text"
+                     data-provide="typeahead"
+                     placeholder="Suchen Sie Ihre Adresse..." >
+            </span>
+            </p>
+          </div>
+          <div class="6u$ 12u$(medium) important(medium)">
+            <div id="map" style="width: 100%; height: 340px;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-		<!-- Two -->
-			<section id="two" class="main style2">
-				<div class="container">
-					<div class="row 150%">
-						<div class="6u 12u$(medium)">
-							<ul class="major-icons">
-								<li><span class="icon style1 major fa-thumbs-o-up"></span></li>
-								<li><span class="icon style2 major fa-money"></span></li>
-							</ul>
-						</div>
-						<div class="6u$ 12u$(medium)">
-							<header class="major">
-								<h2>Eignung noch unbekannt</h2>
-							</header>
-							<p>Bitte lokalisieren Sie sich oder suchen Sie eine Adresse.</p>
-						</div>
-					</div>
-				</div>
-			</section>
+    <!-- Two -->
+    <section id="two" class="main style2">
+      <div class="container">
+        <div class="row 150%">
+          <div class="6u 12u$(medium)">
+            <ul class="major-icons">
+              <li><span class="icon style1 major fa-thumbs-o-up"></span></li>
+              <li><span class="icon style2 major fa-money"></span></li>
+            </ul>
+          </div>
+          <div class="6u$ 12u$(medium)">
+            <header class="major">
+              <h2>Eignung noch unbekannt</h2>
+            </header>
+            <p>Bitte lokalisieren Sie sich oder suchen Sie eine Adresse.</p>
+          </div://mf-geoadmin3.dev.bgdi.ch/teo_sd/techdemo.html>
+        </div>
+      </div>
+    </section>
 
 		<!-- Three -->
-			<section id="three" class="main style1 special">
-				<div class="container">
-					<header class="major">
-						<span class="icon major fa-plug"></span>
-						<h2>Solarstrom-Produktion noch unbekannt</h2>
-					</header>
-					<p>Bitte lokalisieren Sie sich oder suchen Sie eine Adresse.</p>
-				</div>
-			</section>
+    <section id="three" class="main style1 special">
+      <div class="container">
+        <header class="major">
+          <span class="icon major fa-plug"></span>
+          <h2>Solarstrom-Produktion noch unbekannt</h2>
+        </header>
+        <p>Bitte lokalisieren Sie sich oder suchen Sie eine Adresse.</p>
+      </div>
+    </section>
 
 		<!-- Four -->
-			<section id="four" class="main style2 special">
-				<div class="container">
-					<header class="major">
-						<span class="icon major fa-building"></span>&nbsp;&nbsp;&nbsp;&nbsp;
-						<span class="icon major fa-tint"></span>
-						<h2>Solarw&auml;rme-Produktion noch unbekannt</h2>
-					</header>
-					<p>Bitte lokalisieren Sie sich oder suchen Sie eine Adresse.</p>
-				</div>
-			</section>
+    <section id="four" class="main style2 special">
+      <div class="container">
+        <header class="major">
+          <span class="icon major fa-building"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+          <span class="icon major fa-tint"></span>
+          <h2>Solarw&auml;rme-Produktion noch unbekannt</h2>
+        </header>
+        <p>Bitte lokalisieren Sie sich oder suchen Sie eine Adresse.</p>
+      </div>
+    </section>
 
 		<!-- Footer -->
-			<section id="footer">
-				<ul class="icons">
-					<li><a href="#" class="icon alt fa-twitter"><span class="label">Twitter</span></a></li>
-					<li><a href="#" class="icon alt fa-facebook"><span class="label">Facebook</span></a></li>
-					<li><a href="#" class="icon alt fa-instagram"><span class="label">Instagram</span></a></li>
-					<li><a href="#" class="icon alt fa-github"><span class="label">GitHub</span></a></li>
-					<li><a href="#" class="icon alt fa-envelope"><span class="label">Email</span></a></li>
-				</ul>
-				<ul class="copyright">
-					<li>&copy; BFE, swisstopo, MeteoSchweiz</li><li>v 0.1</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-				</ul>
-			</section>
+    <section id="footer">
+      <ul class="icons">
+        <li><a href="#" class="icon alt fa-twitter"><span class="label">Twitter</span></a></li>
+        <li><a href="#" class="icon alt fa-facebook"><span class="label">Facebook</span></a></li>
+        <li><a href="#" class="icon alt fa-instagram"><span class="label">Instagram</span></a></li>
+        <li><a href="#" class="icon alt fa-github"><span class="label">GitHub</span></a></li>
+        <li><a href="#" class="icon alt fa-envelope"><span class="label">Email</span></a></li>
+      </ul>
+      <ul class="copyright">
+        <li>&copy; BFE, swisstopo, MeteoSchweiz</li><li>v 0.1</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+      </ul>
+    </section>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="assets/js/main.js"></script>
+    <script src="//code.jquery.com/jquery-2.1.4.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.2/jquery.xdomainrequest.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-placeholder/2.0.7/jquery.placeholder.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.4/dist/typeahead.bundle.js"></script> 
+    <script src="assets/js/jquery.translate.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.2/jquery.xdomainrequest.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-placeholder/2.0.7/jquery.placeholder.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.4/dist/typeahead.bundle.js"></script> 
+    
+  
 
+	  <script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/skel.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+		<script src="assets/js/main.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/ol3/3.12.1/ol-debug.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/proj4js/2.2.1/proj4.js"></script>
+    <script src="//api3.geo.admin.ch/1450268588/static/js/EPSG21781.js"></script>
+    <script src="//api3.geo.admin.ch/1450268588/static/js/EPSG2056.js"></script>
+    <script src="assets/js/layers.js"></script>
+    <script src="assets/js/map.js"></script>
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/search.js"></script>
+    <script src="assets/js/location.js"></script>
+    <script src="assets/js/permalink.js"></script>
+    <script src="assets/js/init.js"></script>
 	</body>
 </html>

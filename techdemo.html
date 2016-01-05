@@ -6,6 +6,12 @@
 
 
     <!-- JS-->
+    <script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.2/jquery.xdomainrequest.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-placeholder/2.0.7/jquery.placeholder.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.4/dist/typeahead.bundle.js"></script> 
+    
+ 
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/ol3/3.12.1/ol-debug.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/proj4js/2.2.1/proj4.js"></script>
     <script type="text/javascript" src="//api3.geo.admin.ch/1450268588/static/js/EPSG21781.js"></script>
@@ -17,14 +23,8 @@
     <script type="text/javascript" src="assets/js/location.js"></script>
     <script type="text/javascript" src="assets/js/init.js"></script>
 
-
-    <script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.2/jquery.xdomainrequest.min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-placeholder/2.0.7/jquery.placeholder.min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.4/dist/typeahead.bundle.js"></script> 
-    
-    
-    <! -- CSS -->
+   
+    <!-- CSS -->
     <link rel="stylesheet"  type="text/css" href="//api3.geo.admin.ch/1450268783/static/css/ga.css"/>
     <link rel="stylesheet"  type="text/css" href="assets/css/map.css"/>
   </head>
@@ -42,28 +42,19 @@
         die Informationen zum Dach (bzw. der Energiestadt) werden unterhalb der Karte dargestellt.
         </h4>
       </div>
-      
       <button id="location">Lokalisier mich!</button>
-
       <p id="demo"></p>
-      
-      
       <div id="search-container">
-        <input class="typeahead" id="search-typeahead" type="text" data-provide="typeahead" placeholder="Suchen Sie Ihre Adresse..." >
+        <input class="typeahead" id="search-typeahead" type="text"
+               data-provide="typeahead"
+               placeholder="Suchen Sie Ihre Adresse..." >
       </div>
       <br/>
       <br/>
-
-      <div id="map" style="width:790px !important; height:340px; margin-bottom: 10px !important; border-color: grey; border-style: solid; border-width: 1px;border: 1px solid #ccc; border-radius: 0;"></div>
-      <div id="features-list" style="width:790px !important; margin-bottom: 10px !important; border-color: grey; border-style: solid; border-width: 1px;border: 1px solid #ccc;"></div>
-      <div id="json-query" style="width:790px !important; margin-bottom: 10px !important; border-color: grey; border-style: solid; border-width: 1px;border: 1px solid #ccc;"></div>
-      <div id="myOutput" style="width:790px !important; margin-bottom: 10px !important; border-color: grey; border-style: solid; border-width: 1px;border: 1px solid #ccc;"></div>
-      <script>
-        var mapJQ = $.noConflict();
-        mapJQ.support.cors = true;
-        init();
-      </script>
-
+      <div id="map" style="height:340px;"></div>
+      <div id="features-list"></div>
+      <div id="json-query"></div>
+      <div id="myOutput"></div>
     </center>
   </body>
 </html>
