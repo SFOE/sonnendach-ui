@@ -84,3 +84,7 @@
   margin-bottom: 10px;
   border: 1px grey solid;
 }
+
+.loading .trn {
+  display: none;
+}

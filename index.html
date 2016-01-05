@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="//api3.geo.admin.ch/1450268783/static/css/ga.css"/>
     <link rel="stylesheet" href="assets/css/map.css"/>
 	</head>
-	<body>
+	<body class="loading">
 	
 	  <!-- eid -->
     <section id="eig" class="main style1 special" style="padding: 2em 0em 0em 0em !important">
@@ -48,10 +48,10 @@
     <section id="header">
       <div class="inner">
         <span class="icon major fa-sun-o"></span>
-        <h1>Wie viel <strong>Strom</strong> und <strong>Wärme</strong> aus <strong>Sonnenenergie</strong> kann ich auf meinem <strong>Dach</strong> produzieren?</h1>
-        <p>Finden Sie es heraus mit dem Solarkataster Schweiz.</p>
+        <h1 class="trn">mainTitle</h1>
+        <p class="trn">subTitle</p>
         <ul class="actions">
-          <li><a id="location" href="#one" class="button scrolly">Lokalisiere mich</a></li>
+          <li><a id="location" href="#one" class="button scrolly trn">locateMe</a></li>
         </ul>
       </div>
     </section>
@@ -146,7 +146,12 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.2/jquery.xdomainrequest.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-placeholder/2.0.7/jquery.placeholder.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.4/dist/typeahead.bundle.js"></script> 
+    <script src="assets/js/jquery.translate.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.2/jquery.xdomainrequest.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-placeholder/2.0.7/jquery.placeholder.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.4/dist/typeahead.bundle.js"></script> 
     
+  
 
 	  <script src="assets/js/jquery.scrolly.min.js"></script>
 		<script src="assets/js/skel.min.js"></script>
@@ -162,6 +167,7 @@
     <script src="assets/js/utils.js"></script>
     <script src="assets/js/search.js"></script>
     <script src="assets/js/location.js"></script>
+    <script src="assets/js/permalink.js"></script>
     <script src="assets/js/init.js"></script>
 	</body>
 </html>
