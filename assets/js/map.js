@@ -64,7 +64,7 @@ var createMap = function(eltId) {
     logo: false
   });
   map.addControl(new ol.control.ScaleLine());
-  
+  map.getView().setCenter([627800, 255495]); 
   // Change cursor's style when a roof is available
   map.on('pointermove', function(evt) {
     var isHoverLayer = map.forEachLayerAtPixel(evt.pixel, function() {

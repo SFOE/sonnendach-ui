@@ -89,7 +89,8 @@
 .show-roof,
 .show-no-roof,
 .loading .trn,
-.loading section {
+.loading .icon,
+.loading .actions {
   display: none;
 }
 
