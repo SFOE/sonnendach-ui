@@ -113,7 +113,7 @@ var getWmts = function(layer, options) {
     var tileGrid = new ol.tilegrid.WMTS({
       origin: [420000, 350000],
       resolutions: resolutions,
-     matrixIds: goog.array.range(resolutions.length)
+      matrixIds: $.map(resolutions, function(r, i) { return i + ''; })
     });
     var extension = options.format || 'png';
     var timestamp = options['timestamp'] ? options['timestamp'] : options['timestamps'][0];
