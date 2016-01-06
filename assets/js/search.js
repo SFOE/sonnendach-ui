@@ -2,14 +2,14 @@
  * Launch the search of all the features available on the center of the map.
  * Returns a promise.
  */
-var searchFeaturesFromMapCenter = function(map) {
+var searchFeaturesFromCoord = function(map, coord) {
   var center = map.getView().getCenter().toString();
   var url = API3_URL + '/rest/services/api/MapServer/identify?' + //url
       'geometryType=esriGeometryPoint' +
       '&returnGeometry=true' +
       '&layers=all:ch.bfe.solarenergie-eignung-daecher' +
-      '&geometry=' + center +
-      '&mapExtent=' + center + ',' + center +
+      '&geometry=' + coord +
+      '&mapExtent=' + coord + ',' + coord +
       '&imageDisplay=' + map.getSize().toString() + ',96' +
       '&tolerance=0' + 
       '&lang=de';

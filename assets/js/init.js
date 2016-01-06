@@ -23,9 +23,8 @@ var onAddressFound = function(map, marker, address, autoSearchRoof) {
     // Search best roof at this address
     if (autoSearchRoof) {
       marker.setPosition(coord);
-      map.getView().setCenter(coord);
       map.getView().setResolution(0.25);
-      searchFeaturesFromMapCenter(map).then(function(data) {
+      searchFeaturesFromCoord(map, coord).then(function(data) {
         onRoofFound(map, marker, data.results[0], true);
       });
     }
@@ -50,6 +49,8 @@ var updateRoofInfo = function(map, marker, roof) {
   var vectorLayer = clearHighlight(map);
   vectorLayer.getSource().addFeature(new ol.Feature(polygon));
   marker.setPosition(polygon.getInteriorPoint().getCoordinates());
+  map.beforeRender(ol.animation.pan({source:map.getView().getCenter()}));
+  map.getView().setCenter(marker.getPosition());
 };
 
 /**
@@ -126,11 +127,12 @@ var init = function() {
     positioning:'bottom-center',
     element: markerElt[0],
     position: undefined
+    //autoPan: true,
+    //autoPanMargin: 150 
   });
   map.addOverlay(marker);
   map.on('singleclick', function(evt){
     var coord = evt.coordinate;
-    map.getView().setCenter(coord);
     //We call the geocode function here to get the
     //address information for the clicked point using
     //the GWR layer.
@@ -141,7 +143,7 @@ var init = function() {
       onAddressFound(map, marker, data.results[0], false);
     });
     //Do roof search explicitely
-    searchFeaturesFromMapCenter(map).then(function(data) {
+    searchFeaturesFromCoord(map, coord).then(function(data) {
       onRoofFound(map, marker, data.results[0], false);
     });
   });
@@ -157,10 +159,9 @@ var init = function() {
   // Display the fature from permalink
   if (permalink.featureId) {
     searchFeatureFromId(permalink.featureId).then(function(data) {
+      map.getView().setResolution(0.1);
       onRoofFound(map, marker, data.feature);
       var coord = ol.extent.getCenter(data.feature.bbox);
-      marker.setPosition(coord); 
-      map.getView().setCenter(coord);
       geocode(map, coord).then(function(data) {
         // We assume the first of the list is the closest
         onAddressFound(map, marker, data.results[0]);
