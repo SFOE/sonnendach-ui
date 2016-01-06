@@ -41,7 +41,7 @@ var onAddressFound = function(map, marker, address, autoSearchRoof) {
 var updateRoofInfo = function(map, marker, roof) {
   $('#pitchOutput').html(roof.attributes.neigung);
   $('#headingOutput').html(roof.attributes.ausrichtung + 180);
-  $('#headingText').html(getOrientationText(roof.attributes.ausrichtung, permalink.lang));
+  $('#headingText').html(getOrientationText(roof.attributes.ausrichtung, translator));
   $('#areaOutput').html(Math.round(roof.attributes.flaeche));
   $(document.body).removeClass('no-roof').addClass('roof');
   // Clear the highlighted roof the add the new one
@@ -116,7 +116,7 @@ var init = function() {
   var permalink = addPermalink();
 
   // Load the language
-  var translator = body.translate({
+  window.translator = body.translate({
     lang: (langs.indexOf(permalink.lang) != -1) ? permalink.lang : langs[0],
     t: sdTranslations // Object defined in tranlations.js
   });
