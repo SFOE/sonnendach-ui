@@ -65,8 +65,6 @@
 .marker.ga-crosshair {
   width: 30px;
   height: 40px;
-  margin-top: -40px;
-  margin-left: -15px;
   background-image: url('images/marker.png');
 }
 

@@ -3,6 +3,7 @@
  * associates to this address 
  */
 var onAddressFound = function(map, marker, address, autoSearchRoof) {
+  $('#search-container input').val('');
   if (address) {
     var coord, label;
     if (!address.attrs) { // Address comes from geolocation
@@ -22,33 +23,34 @@ var onAddressFound = function(map, marker, address, autoSearchRoof) {
     // Search best roof at this address
     if (autoSearchRoof) {
       marker.setPosition(coord);
-      map.getView().setCenter(coord);
       map.getView().setResolution(0.25);
-      searchFeaturesFromMapCenter(map).then(function(data) {
+      searchFeaturesFromCoord(map, coord).then(function(data) {
         onRoofFound(map, marker, data.results[0], true);
       });
     }
   } else {
-    clear(map, marker);
+    $(document.body).removeClass('localized');
+    if (autoSearchRoof) {
+      marker.setPosition(undefined);
+      $(document.body).removeClass('roof no-roof');
+      clearHighlight(map); 
+    }
   }
 };
 
-var updateRoofInfo = function(roof) {
-  var permalink = addPermalink();
+var updateRoofInfo = function(map, marker, roof) {
   $('#pitchOutput').html(roof.attributes.neigung);
   $('#headingOutput').html(roof.attributes.ausrichtung + 180);
   $('#headingText').html(getOrientationText(roof.attributes.ausrichtung, permalink.lang));
   $('#areaOutput').html(Math.round(roof.attributes.flaeche));
-  $(document.body).removeClass('no-roof');
-  $(document.body).addClass('roof');
-};
-
-var replaceMarker = function(marker, roof) {
-  if (roof.bbox) {
-    var center = [(roof.bbox[0] + roof.bbox[2]) / 2,
-                  (roof.bbox[1] + roof.bbox[3]) / 2];
-    marker.setPosition(center);
-  }
+  $(document.body).removeClass('no-roof').addClass('roof');
+  // Clear the highlighted roof the add the new one
+  var polygon = new ol.geom.Polygon(roof.geometry.rings); 
+  var vectorLayer = clearHighlight(map);
+  vectorLayer.getSource().addFeature(new ol.Feature(polygon));
+  marker.setPosition(polygon.getInteriorPoint().getCoordinates());
+  map.beforeRender(ol.animation.pan({source:map.getView().getCenter()}));
+  map.getView().setCenter(marker.getPosition());
 };
 
 /**
@@ -71,26 +73,32 @@ var onRoofFound = function(map, marker, roof, findBestRoof) {
             bestRoof = roofCandidate;
           }
         }
-        replaceMarker(marker, bestRoof);
-        updateRoofInfo(bestRoof);
+        updateRoofInfo(map, marker, bestRoof);
       });
     } else {
-      updateRoofInfo(roof);
+      updateRoofInfo(map, marker, roof);
     }
   } else {
-    $(document.body).removeClass('roof');
-    $(document.body).addClass('no-roof');
+    // Clear the highlighted roof
+    clearHighlight(map);
+    $(document.body).removeClass('roof').addClass('no-roof');
   }
 }
 
-// Put the page at the initial state
-var clear = function(map, marker) {
-  $('#search-container input').val('');
-  marker.setPosition(undefined);
-  $(document.body).removeClass('localized');
-  $(document.body).removeClass('roof');
-  $(document.body).removeClass('no-roof');
+// Remove the highlighted roof from the map
+// Returns the vectorLayer cleared
+var clearHighlight = function(map) {
+  // Search the vector layer to highlight the roof
+  var vectorLayer;
+  map.getLayers().forEach(function(layer) {
+    if (layer instanceof ol.layer.Vector) {
+      vectorLayer = layer;
+    }
+  });
 
+  // Remove the previous roof highlighted
+  vectorLayer.getSource().clear();
+  return vectorLayer;
 }
 
 /**
@@ -119,12 +127,12 @@ var init = function() {
     positioning:'bottom-center',
     element: markerElt[0],
     position: undefined
+    //autoPan: true,
+    //autoPanMargin: 150 
   });
   map.addOverlay(marker);
   map.on('singleclick', function(evt){
     var coord = evt.coordinate;
-    marker.setPosition(coord); 
-    map.getView().setCenter(coord);
     //We call the geocode function here to get the
     //address information for the clicked point using
     //the GWR layer.
@@ -135,7 +143,7 @@ var init = function() {
       onAddressFound(map, marker, data.results[0], false);
     });
     //Do roof search explicitely
-    searchFeaturesFromMapCenter(map).then(function(data) {
+    searchFeaturesFromCoord(map, coord).then(function(data) {
       onRoofFound(map, marker, data.results[0], false);
     });
   });
@@ -151,10 +159,9 @@ var init = function() {
   // Display the fature from permalink
   if (permalink.featureId) {
     searchFeatureFromId(permalink.featureId).then(function(data) {
+      map.getView().setResolution(0.1);
       onRoofFound(map, marker, data.feature);
       var coord = ol.extent.getCenter(data.feature.bbox);
-      marker.setPosition(coord); 
-      map.getView().setCenter(coord);
       geocode(map, coord).then(function(data) {
         // We assume the first of the list is the closest
         onAddressFound(map, marker, data.results[0]);
