@@ -34,8 +34,10 @@ var onAddressFound = function(map, marker, address, autoSearchRoof) {
 };
 
 var updateRoofInfo = function(roof) {
+  var permalink = addPermalink();
   $('#pitchOutput').html(roof.attributes.neigung);
-  $('#headingOutput').html(roof.attributes.ausrichtung); 
+  $('#headingOutput').html(roof.attributes.ausrichtung + 180);
+  $('#headingText').html(getOrientationText(roof.attributes.ausrichtung, permalink.lang));
   $('#areaOutput').html(Math.round(roof.attributes.flaeche));
   $(document.body).removeClass('no-roof');
   $(document.body).addClass('roof');
@@ -45,7 +47,6 @@ var replaceMarker = function(marker, roof) {
   if (roof.bbox) {
     var center = [(roof.bbox[0] + roof.bbox[2]) / 2,
                   (roof.bbox[1] + roof.bbox[3]) / 2];
-    console.log(center);
     marker.setPosition(center);
   }
 };
