@@ -166,6 +166,7 @@ var init = function() {
         // We assume the first of the list is the closest
         onAddressFound(map, marker, data.results[0]);
       });
+      window.scroll(0, $('#one').offset().top);
     });
   }
 
