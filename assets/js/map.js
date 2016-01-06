@@ -38,7 +38,7 @@ var createMap = function(eltId) {
         650, 500, 250, 100, 50, 20, 10, 5, 2.5, 2, 1, 0.5, 0.25, 0.1
       ],
       extent: extent,
-      center: [637899, 196416],
+      center: [627800, 255495],
       projection: proj,
       zoom: 10
     }),

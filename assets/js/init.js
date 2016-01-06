@@ -25,7 +25,7 @@ var onAddressFound = function(map, marker, address, autoSearchRoof) {
       map.getView().setCenter(coord);
       map.getView().setResolution(0.25);
       searchFeaturesFromMapCenter(map).then(function(data) {
-        onRoofFound(map, marker, data.results[0]);
+        onRoofFound(map, marker, data.results[0], true);
       });
     }
   } else {
@@ -33,17 +33,49 @@ var onAddressFound = function(map, marker, address, autoSearchRoof) {
   }
 };
 
+var updateRoofInfo = function(roof) {
+  $('#pitchOutput').html(roof.attributes.neigung);
+  $('#headingOutput').html(roof.attributes.ausrichtung); 
+  $('#areaOutput').html(Math.round(roof.attributes.flaeche));
+  $(document.body).removeClass('no-roof');
+  $(document.body).addClass('roof');
+};
+
+var replaceMarker = function(marker, roof) {
+  if (roof.bbox) {
+    var center = [(roof.bbox[0] + roof.bbox[2]) / 2,
+                  (roof.bbox[1] + roof.bbox[3]) / 2];
+    console.log(center);
+    marker.setPosition(center);
+  }
+};
+
 /**
  * Display the data of the roof selected
  */
-var onRoofFound = function(map, marker, roof) {
+var onRoofFound = function(map, marker, roof, findBestRoof) {
   if (roof) {
-    $('#pitchOutput').html(roof.attributes.neigung);
-    $('#headingOutput').html(roof.attributes.ausrichtung); 
-    $('#areaOutput').html(Math.round(roof.attributes.flaeche));
-    $(document.body).removeClass('no-roof');
-    $(document.body).addClass('roof');
-
+    // Find best roof for given building
+    if (findBestRoof) {
+      var url = API3_URL + '/rest/services/api/MapServer/find?' +
+        'layer=ch.bfe.solarenergie-eignung-daecher&' +
+        'searchField=building_id&' +
+        'searchText=' + roof.attributes.building_id;
+      $.getJSON(url, function(data) {
+        var bestRoof = data.results[0];
+        for (var i = 0; i < data.results.length; i++) {
+          roofCandidate = data.results[i];
+          if (roofCandidate.attributes.mstrahlung >
+              bestRoof.attributes.mstrahlung) {
+            bestRoof = roofCandidate;
+          }
+        }
+        replaceMarker(marker, bestRoof);
+        updateRoofInfo(bestRoof);
+      });
+    } else {
+      updateRoofInfo(roof);
+    }
   } else {
     $(document.body).removeClass('roof');
     $(document.body).addClass('no-roof');
@@ -66,6 +98,7 @@ var clear = function(map, marker) {
 var init = function() {
   $.support.cors = true;
   window.API3_URL = 'https://mf-chsdi3.dev.bgdi.ch/ltfoa_solarenergie_daecher';
+  window.API3_SEARCHURL = 'https://api3.geo.admin.ch';
   
   var langs = ['de', 'fr'];
   var body = $(document.body);
@@ -91,12 +124,18 @@ var init = function() {
     var coord = evt.coordinate;
     marker.setPosition(coord); 
     map.getView().setCenter(coord);
+    //We call the geocode function here to get the
+    //address information for the clicked point using
+    //the GWR layer.
+    //The false parameter indicates that geocode does
+    //not trigger a roof search.
     geocode(map, coord).then(function(data) {
       // We assume the first of the list is the closest
-      onAddressFound(map, marker, data.results[0]);
+      onAddressFound(map, marker, data.results[0], false);
     });
+    //Do roof search explicitely
     searchFeaturesFromMapCenter(map).then(function(data) {
-      onRoofFound(map, marker, data.results[0]);
+      onRoofFound(map, marker, data.results[0], false);
     });
   });
 
