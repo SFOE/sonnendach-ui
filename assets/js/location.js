@@ -1,7 +1,8 @@
 /**
- * Transform a EPSG:21781 coordinates to an address.
+ * Launch the search of an address from a coordinate (EPSG:21781).
+ * Returns a promie.
  */
-var geocode = function(map, marker, coords, onAddressFound, searchRoof) {
+var geocode = function(map, coords) {
   var addressOutput = $('#addressOutput');
   var mapExtent = map.getView().calculateExtent(map.getSize());
   var url = API3_URL + '/rest/services/api/MapServer/identify?' +
@@ -11,11 +12,7 @@ var geocode = function(map, marker, coords, onAddressFound, searchRoof) {
      '&mapExtent=' + mapExtent.toString() +
      '&tolerance=100' + 
      '&layers=all:ch.bfs.gebaeude_wohnungs_register&returnGeometry=true';
-  $.getJSON(url, function(data) {
-    // Get the closer adress
-    // For now, we assume the first of the list is the closest
-    onAddressFound(map, marker, data.results[0], searchRoof);
-  })
+  return $.getJSON(url);
 }
 
 /**
@@ -30,7 +27,10 @@ var getLocation = function(map, marker, onAddressFound) {
        position.coords.longitude,
        position.coords.latitude
      ], 'EPSG:4326', map.getView().getProjection());
-     geocode(map, marker, coord21781, onAddressFound, true);
+     geocode(map, coord21781).then(function(data) {
+       // We assume the first of the list is the closest
+       onAddressFound(map, marker, data.results[0], true);
+     });
     }, showError);
   } else {
     var x = document.getElementById("demo");
