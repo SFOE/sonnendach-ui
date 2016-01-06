@@ -1,7 +1,8 @@
 /**
- * Search all the features available in the current map extent then display them in a HTML list.
+ * Launch the search of all the features available on the center of the map.
+ * Returns a promise.
  */
-var searchFeaturesInExtent = function(map, marker, onRoofFound) {
+var searchFeaturesFromMapCenter = function(map) {
   var center = map.getView().getCenter().toString();
   var url = API3_URL + '/rest/services/api/MapServer/identify?' + //url
       'geometryType=esriGeometryPoint' +
@@ -12,12 +13,19 @@ var searchFeaturesInExtent = function(map, marker, onRoofFound) {
       '&imageDisplay=' + map.getSize().toString() + ',96' +
       '&tolerance=0' + 
       '&lang=de';
-  $.getJSON(url, function(data) {
-    // We assume results[0] is the good one
-    onRoofFound(map, marker, data.results[0]);
-  });
+  return $.getJSON(url);
 };
 
+/**
+ * Launch the search of a feature defined by its id.
+ * Returns a promise.
+ */
+var searchFeatureFromId = function(featureId) {
+  var url = API3_URL + '/rest/services/all/MapServer/' +
+      'ch.bfe.solarenergie-eignung-daecher/' + 
+      featureId + '?geometryFormat=esriGeojson';
+  return $.getJSON(url);
+};
 
 /**
  * Transform the input element in search box
@@ -90,34 +98,5 @@ var initSearch = function(map, marker, onAddressFound) {
 
 	searchInput.on('typeahead:selected', function(evt, location, suggName) {
 		onAddressFound(map, marker, location, true);
-    /*var originZoom = {
-		   address: 10,
-		   parcel: 10,
-		   sn25: 8,
-		   feature: 7
-		};
-		var origin = location.attrs.origin;
-		var extent = [0, 0, 0, 0];
-		//adress-coordinates are only supplied by the service if the domain is registered at swisstopo
-		if (location.attrs.geom_st_box2d) {
-		  extent = parseExtent(location.attrs.geom_st_box2d);
-		} else if (location.attrs.x && location.attrs.y) {
-		  var x = location.attrs.y;
-		  var y = location.attrs.x
-		  extent = [x, y, x, y];
-		}
-		window.sessionStorage.removeItem('swisssearch', '');
-		if (originZoom.hasOwnProperty(origin)) {
-		  var center = [(extent[0] + extent[2]) / 2, (extent[1] + extent[3]) / 2];
-		  console.log(extent);
-		  console.log(center);
-		  view.setResolution(0.1);
-		  view.setCenter(center);
-		  marker.setPosition(center); //crosshair
-		  window.sessionStorage.setItem('swisssearch', center);
-		} else {
-		   view.fitExtent(extent, map.getSize());
-		}
-		searchFeaturesInExtent(map);*/
 	});
 };

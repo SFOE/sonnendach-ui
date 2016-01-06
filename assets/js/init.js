@@ -8,8 +8,8 @@ var onAddressFound = function(map, marker, address, autoSearchRoof) {
     if (!address.attrs) { // Address comes from geolocation
       coord = [address.geometry.x, address.geometry.y];
       var attr = address.attributes;
-      label = attr.strname1 + ' ' + attr.deinr + ' <br>' +
-          attr.plz4 + ' ' + attr.gdename;
+      label = attr.strname1 + ' ' + (attr.deinr || '') +
+          ' <br>' + attr.plz4 + ' ' + attr.gdename;
     } else { // Address comes from search box
       // WARNING! Coordinates are inverted here.
       coord = [address.attrs.y, address.attrs.x];
@@ -24,7 +24,9 @@ var onAddressFound = function(map, marker, address, autoSearchRoof) {
       marker.setPosition(coord);
       map.getView().setCenter(coord);
       map.getView().setResolution(0.25);
-      searchFeaturesInExtent(map, marker, onRoofFound);
+      searchFeaturesFromMapCenter(map).then(function(data) {
+        onRoofFound(map, marker, data.results[0]);
+      });
     }
   } else {
     clear(map, marker);
@@ -70,6 +72,8 @@ var init = function() {
   var locationBt = $('#location');
   var markerElt = $('<div class="marker ga-crosshair"></div>');
   var permalink = addPermalink();
+
+  // Load the language
   var translator = body.translate({
     lang: (langs.indexOf(permalink.lang) != -1) ? permalink.lang : langs[0],
     t: sdTranslations // Object defined in tranlations.js
@@ -87,9 +91,13 @@ var init = function() {
     var coord = evt.coordinate;
     marker.setPosition(coord); 
     map.getView().setCenter(coord);
-    geocode(map, marker, coord, onAddressFound);
-    searchFeaturesInExtent(map, marker, onRoofFound);
-    //geocode(map, marker, coord, onAddressFound);
+    geocode(map, coord).then(function(data) {
+      // We assume the first of the list is the closest
+      onAddressFound(map, marker, data.results[0]);
+    });
+    searchFeaturesFromMapCenter(map).then(function(data) {
+      onRoofFound(map, marker, data.results[0]);
+    });
   });
 
   // Init the search input
@@ -99,6 +107,20 @@ var init = function() {
   locationBt.click(function() {
     getLocation(map, marker, onAddressFound);
   });
+
+  // Display the fature from permalink
+  if (permalink.featureId) {
+    searchFeatureFromId(permalink.featureId).then(function(data) {
+      onRoofFound(map, marker, data.feature);
+      var coord = ol.extent.getCenter(data.feature.bbox);
+      marker.setPosition(coord); 
+      map.getView().setCenter(coord);
+      geocode(map, coord).then(function(data) {
+        // We assume the first of the list is the closest
+        onAddressFound(map, marker, data.results[0]);
+      });
+    });
+  }
 
   // Remove the loading css class 
   body.removeClass('loading');
