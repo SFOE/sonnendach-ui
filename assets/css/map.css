@@ -88,7 +88,8 @@
 .show-localized,
 .show-roof,
 .show-no-roof,
-.loading .trn {
+.loading .trn,
+.loading section {
   display: none;
 }
 
@@ -96,6 +97,33 @@
 .roof .show-roof {
   display: block;
 }
+
 .no-roof .show-no-roof {
   display: block;
+}
+
+
+/* Correction template */
+#eig .container {
+  width: 100% !important;
+  margin: 20px; 
+}
+#eig .container img {
+  padding-right: 27px;
+  border-right: 1px solid #e5e5e5;
+}
+
+.amt {
+  font-weight: bold;
+}
+
+#lang {
+  position: absolute;
+  right: 0px;
+}
+
+#lang > a {
+  text-decoration: none;
+  border: none;
+  padding: 0px 5px;
 }

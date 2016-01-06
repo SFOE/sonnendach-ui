@@ -1,4 +1,8 @@
 var sdTranslations = {
+  bfe: {
+    de: 'Bundesamt für Energie BFE',
+    fr: 'Office féral de l\'érgie OFEN'
+  },
   mainTitle: {
     de: 'Wie viel <strong>Strom</strong> und <strong>W&auml;rme</strong> ' +
         'aus Sonnenenergie kann ich auf meinem Dach produzieren?',

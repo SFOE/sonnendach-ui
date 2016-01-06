@@ -168,6 +168,13 @@ var init = function() {
         // We assume the first of the list is the closest
         onAddressFound(map, marker, data.results[0]);
       });
+
+      window.scroll(0, $('#one').offset().top);
+      
+      // Add the featureId to the lang link href
+      $('#lang a').attr('href', function(index, attr) {
+        this.href = attr + '&featureId=' + permalink.featureId;
+      });
     });
   }
 
