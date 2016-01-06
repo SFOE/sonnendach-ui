@@ -98,161 +98,26 @@ var isCoordinates =  function(extent, query) {
     Math.round(position[1] * 1000) / 1000] : undefined;
 };
 
-function getOrientationText(orient, language) {
+function getOrientationText(orient, translator) {
     var orientation;
     if (orient >= 157 && orient <=180) {
-       switch (language){
-          case 'de':
-          orientation = "Nord";
-          break;
-          case 'fr':
-          orientation = "nord";
-          break;
-          case 'it':
-          orientation = "nord";
-          break;
-          case 'en':
-          orientation = "north";
-          break;
-          default:
-          orientation = "Nord";
-         }
+       orientation = translator.get('north');
     } else if (orient >= -180 && orient <= -157) {
-       switch (language){
-          case 'de':
-          orientation = "Nord";
-          break;
-          case 'fr':
-          orientation = "nord";
-          break;
-          case 'it':
-          orientation = "nord";
-          break;
-          case 'en':
-          orientation = "north";
-          break;
-          default:
-          orientation = "Nord";
-         }
+       orientation = translator.get('north');
     } else if (orient >= -158 && orient <= -113) {
-       switch (language){
-          case 'de':
-          orientation = "Nordost";
-          break;
-          case 'fr':
-          orientation = "nord-est ";
-          break;
-          case 'it':
-          orientation = "nord-est";
-          break;
-          case 'en':
-          orientation = "northeast";
-          break;
-          default:
-          orientation = "Nordost";
-         }
+       orientation = translator.get('northeast');
     } else if (orient >= -112 && orient <= -67) {
-       switch (language){
-          case 'de':
-          orientation = "Ost";
-          break;
-          case 'fr':
-          orientation = "est ";
-          break;
-          case 'it':
-          orientation = "est";
-          break;
-          case 'en':
-          orientation = "east";
-          break;
-          default:
-          orientation = "Ost";
-         }
+       orientation = translator.get('east');
     } else if (orient >= -68 && orient <= -23) {
-       switch (language){
-          case 'de':
-          orientation = "Südost";
-          break;
-          case 'fr':
-          orientation = "sud-est";
-          break;
-          case 'it':
-          orientation = "sud-est";
-          break;
-          case 'en':
-          orientation = "south-east";
-          break;
-          default:
-          orientation = "Südost";
-         }
+       orientation = translator.get('southeast');
     } else if (orient >= -22 && orient <= 22) {
-       switch (language){
-          case 'de':
-          orientation = "Süd";
-          break;
-          case 'fr':
-          orientation = "sud";
-          break;
-          case 'it':
-          orientation = "sud";
-          break;
-          case 'en':
-          orientation = "south";
-          break;
-          default:
-          orientation = "Süd";
-         }
+       orientation = translator.get('south');
     } else if (orient >= 23 && orient <= 67) {
-       switch (language){
-          case 'de':
-          orientation = "Südwest";
-          break;
-          case 'fr':
-          orientation = "sud-ouest";
-          break;
-          case 'it':
-          orientation = "sud-ovest";
-          break;
-          case 'en':
-          orientation = "south-west";
-          break;
-          default:
-          orientation = "Südwest";
-         }
+       orientation = translator.get('southwest');
     } else if (orient >= 68 && orient <= 112) {
-       switch (language){
-          case 'de':
-          orientation = "West";
-          break;
-          case 'fr':
-          orientation = "ouest";
-          break;
-          case 'it':
-          orientation = "ovest";
-          break;
-          case 'en':
-          orientation = "west";
-          break;
-          default:
-          orientation = "West";
-         }
+       orientation = translator.get('west');
     } else if (orient >= 113 && orient <= 156) {
-       switch (language){
-          case 'de':
-          orientation = "Nordwest";
-          break;
-          case 'fr':
-          orientation = "nord-ouest";
-          break;
-          case 'it':
-          orientation = "nord-ovest";
-          break;
-          case 'en':
-          orientation = "north-west";
-          break;
-          default:
-          orientation = "Nordwest";
-         }
+       orientation = translator.get('northwest');
     } 
 return (orientation);
 };

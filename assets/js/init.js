@@ -41,8 +41,10 @@ var onAddressFound = function(map, marker, address, autoSearchRoof) {
 var updateRoofInfo = function(map, marker, roof) {
   $('#pitchOutput').html(roof.attributes.neigung);
   $('#headingOutput').html(roof.attributes.ausrichtung + 180);
-  $('#headingText').html(getOrientationText(roof.attributes.ausrichtung, translator));
+  $('#headingText').html(getOrientationText(roof.attributes.ausrichtung, window.translator));
   $('#areaOutput').html(Math.round(roof.attributes.flaeche));
+  $('#eignung').html(roof.attributes.klasse);
+  $('#eignung2').html(roof.attributes.klasse);
   $(document.body).removeClass('no-roof').addClass('roof');
   // Clear the highlighted roof the add the new one
   var polygon = new ol.geom.Polygon(roof.geometry.rings); 
@@ -114,12 +116,12 @@ var init = function() {
   var locationBt = $('#location');
   var markerElt = $('<div class="marker ga-crosshair"></div>');
   var permalink = addPermalink();
-
   // Load the language
   window.translator = body.translate({
     lang: (langs.indexOf(permalink.lang) != -1) ? permalink.lang : langs[0],
     t: sdTranslations // Object defined in tranlations.js
   });
+
 
   // Create map
   var map = createMap('map');
