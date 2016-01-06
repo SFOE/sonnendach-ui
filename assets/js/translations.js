@@ -15,5 +15,9 @@ var sdTranslations = {
   noRoofFound: {
     de: 'Momentan decken wir einen Drittel der Schweiz ab. Wir f&uuml;gen halbj&auml;hrlich neue D&auml;cher hinzu. Anfang 2018 ist die ganze Schweiz abgedeckt.',
     fr: 'french no roof found'
+  },
+  txtNewAddress: {
+    de: 'Neue Adresse suchen:',
+    fr: 'txtfrench'
   }
 };
