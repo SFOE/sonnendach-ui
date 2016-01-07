@@ -4,7 +4,7 @@
  * @method
  * @return {Object}
  */
-var getLayersConfig = function() {
+var getLayersConfig = function(lang) {
   return {
     "ch.swisstopo.swissimage": {
       "attribution": "CNES, Spot Image, swisstopo, NPOC",
@@ -14,7 +14,7 @@ var getLayersConfig = function() {
       "hasLegend": false,
       "serverLayerName": "ch.swisstopo.swissimage",
       "selectbyrectangle": false,
-      "attributionUrl": "http://www.swisstopo.admin.ch/internet/swisstopo/de/home.html",
+      "attributionUrl": "http://www.swisstopo.admin.ch/internet/swisstopo/" + lang + "/home.html",
       "timeBehaviour": "last",
       "tooltip": false,
       "label": "SWISSIMAGE",
@@ -76,7 +76,7 @@ var getLayersConfig = function() {
       "format": "png",
       "serverLayerName": "ch.bfe.solarenergie-eignung-daecher",
       "selectbyrectangle": true,
-      "attributionUrl": "http://www.bfe.admin.ch/index.html?lang=fr",
+      "attributionUrl": "http://www.bfe.admin.ch/index.html?lang=" + lang,
       "timeBehaviour": "last",
       "tooltip": true,
       "label": "ch.bfe.solarenergie-eignung-daecher",

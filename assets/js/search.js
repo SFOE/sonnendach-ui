@@ -94,6 +94,7 @@ var initSearch = function(map, marker, onAddressFound) {
 	  return $.map(extent, parseFloat);
 	};
 
+  searchInput.attr('placeholder', translator.get('placeholder')); 
 	searchInput.placeholder();
 
 	searchInput.on('typeahead:selected', function(evt, location, suggName) {

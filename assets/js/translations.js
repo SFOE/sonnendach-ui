@@ -21,6 +21,24 @@ var sdTranslations = {
     it: 'Ufficio federale di topografia swisstopo',
     en: 'Federal Office of Topography swisstopo'
   },
+  bfeAbbr: {
+    de: 'BFE',
+    fr: 'OFEN',
+    it: 'UFE',
+    en: 'SFOE'
+  },
+  meteoschweizAbbr: {
+    de: 'MeteoSchweiz',
+    fr: 'MétéoSuisse',
+    it: 'MeteoSvizzera',
+    en: 'MeteoSwiss'
+  },
+  swisstopoAbbr: {
+    de: 'swisstopo',
+    fr: 'swisstopo',
+    it: 'swisstopo',
+    en: 'swisstopo'
+  },
   mainTitle: {
     de: 'Wie viel <strong>Strom</strong> und <strong>W&auml;rme</strong> ' +
         'aus Sonnenenergie kann ich auf meinem Dach produzieren?',
@@ -217,5 +235,11 @@ var sdTranslations = {
    fr: 'excellent',
    it: 'ottimo',
    en: 'excellent'
+ },
+ placeholder: {
+   de: 'Suchen Sie Ihre Adresse',
+   fr: 'Chercher votre adresse',
+   it: 'Suchen Sie Ihre Adresse IT',
+   en: 'Suchen Sie Ihre Adresse EN'
  }
 };
