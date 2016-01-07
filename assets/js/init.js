@@ -137,7 +137,8 @@ var init = function() {
   var marker = new ol.Overlay({
     positioning:'bottom-center',
     element: markerElt[0],
-    position: undefined
+    position: undefined,
+    stopEvent: false
     //autoPan: true,
     //autoPanMargin: 150 
   });
