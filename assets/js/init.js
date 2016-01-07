@@ -44,6 +44,7 @@ var onAddressFound = function(map, marker, address, autoSearchRoof) {
 var updateRoofInfo = function(map, marker, roof) {
   var suitability = getSuitabilityText(roof.attributes.klasse, window.translator);
 
+  //fill content with attributes
   $('#pitchOutput').html(roof.attributes.neigung);
   $('#headingOutput').html(roof.attributes.ausrichtung + 180);
   $('#headingText').html(getOrientationText(roof.attributes.ausrichtung, window.translator));
@@ -52,10 +53,39 @@ var updateRoofInfo = function(map, marker, roof) {
   $('#eignung2').html(suitability);
   $('#stromertrag').html(formatNumber(Math.round((roof.attributes.gstrahlung*0.17*0.8)/100)*100));
   $('#finanzertrag').html(formatNumber(Math.round(roof.attributes.finanzertrag/100)*100));
-  $('#waermeertrag').html(formatNumber(Math.round(roof.attributes.waermeertrag/100)*100));
-  $('#dg_heizung').html(Math.round(roof.attributes.dg_heizung/100)*100);
   $('#duschgaenge').html(roof.attributes.duschgaenge);
+
+  //add css-class
   $(document.body).removeClass('no-roof').addClass('roof');
+  
+  // check if no waermeertrag and if no dg_heizung
+  var titleHeat = '';
+  if (roof.attributes.waermeertrag > 0) {
+    titleHeat += formatNumber(Math.round(roof.attributes.waermeertrag/100)*100)
+                + ' ' + translator.get('solarthermieTitel1');
+
+    if (roof.attributes.dg_heizung > 0) {
+      titleHeat += ' ' + roof.attributes.dg_heizung + '&nbsp;'
+                   + translator.get('solarthermieTitel2');
+    }
+
+  } else {
+    titleHeat = translator.get('solarthermieTitelnoHeat');
+  }
+
+  $('#heatTitle').html(titleHeat);
+
+  var textHeat = '';
+  if (roof.attributes.duschgaenge > 0) {
+    textHeat += translator.get('solarthermieText1') 
+                + ' ' + roof.attributes.duschgaenge
+                + translator.get('solarthermieText2');
+  } else {
+    textHeat = '';
+  }
+
+  $('#heatText').html(textHeat);
+
   // Clear the highlighted roof the add the new one
   var polygon = new ol.geom.Polygon(roof.geometry.rings); 
   var vectorLayer = clearHighlight(map);
