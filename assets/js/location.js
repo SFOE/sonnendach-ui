@@ -5,12 +5,15 @@
 var geocode = function(map, coords) {
   var addressOutput = $('#addressOutput');
   var mapExtent = map.getView().calculateExtent(map.getSize());
+  // Get pixel tolerance for 100.0 meters
+  var pixelTolerance = getToleranceInPixels(100.0, mapExtent, map.getSize());
   var url = API3_URL + '/rest/services/api/MapServer/identify?' +
      'geometryType=esriGeometryPoint' +
      '&geometry=' + coords.toString() +
      '&imageDisplay=' + map.getSize().toString() + ',96' +
      '&mapExtent=' + mapExtent.toString() +
-     '&tolerance=100' + 
+     '&tolerance=' + pixelTolerance +
+     '&order=distance' +
      '&layers=all:ch.bfs.gebaeude_wohnungs_register&returnGeometry=true';
   return $.getJSON(url);
 }

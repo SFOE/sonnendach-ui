@@ -195,3 +195,15 @@ function formatNumber(number) {
     return number;
 
 };
+
+var getToleranceInPixels = function(toleranceMeters, mapExtent, display) {
+  var mapMeterWidth = Math.abs(mapExtent[0] - mapExtent[2]);
+  var mapMeterHeight = Math.abs(mapExtent[1] - mapExtent[3]);
+  var imgPixelWidth = display[0];
+  var imgPixelHeight = display[1];
+  var factor = Math.max(mapMeterWidth / imgPixelWidth, mapMeterHeight / imgPixelHeight);
+  if (isFinite(factor) && !isNaN(factor)) {
+    return Math.ceil(toleranceMeters / factor);
+  }
+  return 1;
+}
