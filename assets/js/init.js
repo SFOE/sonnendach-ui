@@ -66,8 +66,8 @@ var updateRoofInfo = function(map, marker, roof) {
   // check if no waermeertrag and if no dg_heizung
   var titleHeat = '';
   if (roof.attributes.waermeertrag > 0) {
-    titleHeat += formatNumber(Math.round(roof.attributes.waermeertrag/100)*100)
-                + ' ' + translator.get('solarthermieTitel1');
+    titleHeat += '<strong>' + formatNumber(Math.round(roof.attributes.waermeertrag/100)*100)
+                + '</strong> ' + translator.get('solarthermieTitel1');
 
     if (roof.attributes.dg_heizung > 0) {
       titleHeat += ' ' + roof.attributes.dg_heizung + '&nbsp;'
