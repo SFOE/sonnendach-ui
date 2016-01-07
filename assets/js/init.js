@@ -45,6 +45,11 @@ var updateRoofInfo = function(map, marker, roof) {
   $('#areaOutput').html(Math.round(roof.attributes.flaeche));
   $('#eignung').html(roof.attributes.klasse);
   $('#eignung2').html(roof.attributes.klasse);
+  $('#stromertrag').html(Math.round((roof.attributes.gstrahlung*0.17*0.8)/100)*100);
+  $('#finanzertrag').html(Math.round(roof.attributes.finanzertrag/100)*100);
+  $('#waermeertrag').html(Math.round(roof.attributes.waermeertrag/100)*100);
+  $('#dg_heizung').html(Math.round(roof.attributes.dg_heizung/100)*100);
+  $('#duschgaenge').html(roof.attributes.duschgaenge);
   $(document.body).removeClass('no-roof').addClass('roof');
   // Clear the highlighted roof the add the new one
   var polygon = new ol.geom.Polygon(roof.geometry.rings); 
