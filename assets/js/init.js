@@ -23,9 +23,12 @@ var onAddressFound = function(map, marker, address, autoSearchRoof) {
     // Search best roof at this address
     if (autoSearchRoof) {
       marker.setPosition(coord);
-      map.getView().setResolution(0.25);
       searchFeaturesFromCoord(map, coord).then(function(data) {
         onRoofFound(map, marker, data.results[0], true);
+        // If no roof found zoom on the marker
+        if (!data.results.length) {
+          flyTo(map, coord, 0.25);
+        }
       });
     }
   } else {
@@ -58,8 +61,7 @@ var updateRoofInfo = function(map, marker, roof) {
   var vectorLayer = clearHighlight(map);
   vectorLayer.getSource().addFeature(new ol.Feature(polygon));
   marker.setPosition(polygon.getInteriorPoint().getCoordinates());
-  map.beforeRender(ol.animation.pan({source:map.getView().getCenter()}));
-  map.getView().setCenter(marker.getPosition());
+  flyTo(map, marker.getPosition(), 0.25);
 };
 
 /**
@@ -168,7 +170,6 @@ var init = function() {
   // Display the fature from permalink
   if (permalink.featureId) {
     searchFeatureFromId(permalink.featureId).then(function(data) {
-      map.getView().setResolution(0.1);
       onRoofFound(map, marker, data.feature);
       var coord = ol.extent.getCenter(data.feature.bbox);
       geocode(map, coord).then(function(data) {

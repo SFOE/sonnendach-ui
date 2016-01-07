@@ -122,18 +122,53 @@ function getOrientationText(orient, translator) {
 return (orientation);
 };
 
-function getSuitabilityText(suit, translator) {
-   var suitability;
-   if (suit == 1) {
-      suitability = translator.get('low');
-   } else if (suit == 2) {
-      suitability = translator.get('medium');
-   } else if (suit == 3) {
-      suitability = translator.get('good');
-   } else if (suit == 4) {
-      suitability = translator.get('veryGood');
-   } else if (suit == 5) {
-      suitability = translator.get('excellent');
-   }
-return (suitability);
+var getSuitabilityText = function(suit, translator) {
+  var suitability;
+  if (suit == 1) {
+    suitability = translator.get('low');
+  } else if (suit == 2) {
+    suitability = translator.get('medium');
+  } else if (suit == 3) {
+    suitability = translator.get('good');
+  } else if (suit == 4) {
+    suitability = translator.get('veryGood');
+  } else if (suit == 5) {
+    suitability = translator.get('excellent');
+  }
+  return (suitability);
+};
+
+var flyTo = function(map, dest, destRes) {
+  var size = map.getSize();
+  var source = map.getView().getCenter();
+  var sourceRes = map.getView().getResolution();
+  var dist = Math.sqrt(Math.pow(source[0] - dest[0], 2),
+      Math.pow(source[1] - dest[1], 2));
+  var duration = Math.min(Math.sqrt(300 + dist / sourceRes * 1000),
+      3000);
+  var start = +new Date();
+  var pan = ol.animation.pan({
+    duration: duration,
+    source: source,
+    start: start
+  });
+  if (sourceRes != destRes) {
+    var bounce = ol.animation.bounce({
+      duration: duration,
+      resolution: Math.max(sourceRes, dist / 1000,
+          // needed to don't have up an down and up again in zoom
+          destRes * 1.2),
+      start: start
+    });
+    var zoom = ol.animation.zoom({
+      resolution: sourceRes,
+      duration: duration,
+      start: start
+    });
+    map.beforeRender(pan, zoom, bounce);
+    map.getView().setResolution(destRes);
+  } else {
+    map.beforeRender(pan);
+  }
+  map.getView().setCenter(dest);
 };
