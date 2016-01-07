@@ -1,17 +1,3 @@
-.ol-attribution:not([ie8andbelow]) {
-  background-color: rgba(255, 255, 255, 0.7);
-}
-
-.ol-attribution.ol-unselectable.ol-control.ol-uncollapsible a{
-  color:#666;
-  font-size:10px !important;
-}
-
-.ol-attribution.ol-unselectable.ol-control.ol-uncollapsible a:hover{
-  color:#000;
-  font-size:10px !important;
-}
-
 .typeahead,
 .tt-query,
 .tt-hint {
@@ -116,6 +102,7 @@
   height: 66px;
   padding-right: 20px;
 }
+
 .amts {
   position: absolute;
   left: 268px;
@@ -123,9 +110,11 @@
   text-align: left;
   padding-left: 20px;
   min-width: 350px;
-}
-.amt {
   font: bold 13px Arial, sans-serif !important;
+}
+
+.amt-abbr {
+  display: none;
 }
 
 #lang {
@@ -142,18 +131,38 @@
 }
 
 @media screen and (max-width: 736px) {
+  #eig .container {
+    margin: 0;
+    height: 40px;
+  }
+
+  #lang {
+    top: 6px;
+  }
+
   .logo {
-    width: 56px;
-    height: 66px;
-    background-image: url('images/logo.ch.small.png');
+    width: 36px;
+    height: 40px;
+    padding: 0;
+    background: url('images/logo.ch.small.png') no-repeat center center;
+    background-size: 19px;
   }
 
   .amts {
-    left: 76px;
+    top: 14px;
+    left: 31px;
+  }
+  
+  .amt {
+    display: none;
+  }
+  
+  .amt-abbr {
+    display: block;
   }
 }
 
-/* ol.css */
+/* Openlayers elements css */
 .ol-scale-line {
   background: #fff;
   background: rgba(255, 255, 255, 0.7);
