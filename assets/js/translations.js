@@ -40,8 +40,7 @@ var sdTranslations = {
     en: 'swisstopo'
   },
   mainTitle: {
-    de: 'Wie viel <strong>Strom</strong> und <strong>W&auml;rme</strong> ' +
-        'aus Sonnenenergie kann ich auf meinem Dach produzieren?',
+    de: 'Wie viel <strong>Strom</strong> und <strong>W&auml;rme</strong> aus Sonnenenergie kann mein Dach produzieren?',
     fr: 'Combien d\'<trong>energie</strong> je peux produire sur  mon toit'
   },
   subTitle: {
