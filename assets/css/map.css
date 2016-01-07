@@ -1,3 +1,6 @@
+body {
+  overflow-x: hidden;
+}
 .typeahead,
 .tt-query,
 .tt-hint {
@@ -93,6 +96,18 @@
 
 #eig .container > div {
   margin-right: 100px;
+}
+
+ul.actions.uniform li > a.button {
+  height: auto;
+  line-height: 2em;
+  padding: 10px 0; 
+}
+
+ul.actions.uniform li > a.button > span {
+  width: 100%;
+  white-space: normal;
+  padding: 0 5px;
 }
 
 .logo {
