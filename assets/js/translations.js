@@ -187,5 +187,35 @@ var sdTranslations = {
   druckenButton: {
     de: 'drucken',
     fr: 'drucken FR'
-  }
+  },
+  low: {
+   de: 'gering',
+   fr: 'bas',
+   it: 'bassa',
+   en: 'low'
+ },
+ medium: {
+   de: 'mittel',
+   fr: 'moyen',
+   it: 'media',
+   en: 'medium'
+ },
+ good: {
+   de: 'gut',
+   fr: 'bon',
+   it: 'buono',
+   en: 'good'
+ },
+ veryGood: {
+   de: 'sehr gut',
+   fr: 'très bient',
+   it: 'molot bene',
+   en: 'very good'
+ },
+ excellent: {
+   de: 'hervorragend',
+   fr: 'excellent',
+   it: 'ottimo',
+   en: 'excellent'
+ }
 };

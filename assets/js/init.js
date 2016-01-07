@@ -43,8 +43,8 @@ var updateRoofInfo = function(map, marker, roof) {
   $('#headingOutput').html(roof.attributes.ausrichtung + 180);
   $('#headingText').html(getOrientationText(roof.attributes.ausrichtung, window.translator));
   $('#areaOutput').html(Math.round(roof.attributes.flaeche));
-  $('#eignung').html(roof.attributes.klasse);
-  $('#eignung2').html(roof.attributes.klasse);
+  $('#eignung').html(getSuitabilityText(roof.attributes.klasse, window.translator));
+  $('#eignung2').html(getSuitabilityText(roof.attributes.klasse, window.translator));
   $('#stromertrag').html(Math.round((roof.attributes.gstrahlung*0.17*0.8)/100)*100);
   $('#finanzertrag').html(Math.round(roof.attributes.finanzertrag/100)*100);
   $('#waermeertrag').html(Math.round(roof.attributes.waermeertrag/100)*100);
