@@ -207,10 +207,10 @@ var sdTranslations = {
    en: 'good'
  },
  veryGood: {
-   de: 'sehr gut',
-   fr: 'très bient',
-   it: 'molot bene',
-   en: 'very good'
+   de: 'sehr&nbsp;gut',
+   fr: 'très&nbsp;biens',
+   it: 'molot&nbsp;bene',
+   en: 'very&nbsp;good'
  },
  excellent: {
    de: 'hervorragend',
