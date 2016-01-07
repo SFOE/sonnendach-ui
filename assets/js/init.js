@@ -52,8 +52,13 @@ var updateRoofInfo = function(map, marker, roof) {
   $('#eignung').html(suitability.substr(0, 1).toUpperCase() + suitability.substr(1));
   $('#eignung2').html(suitability);
   $('#stromertrag').html(formatNumber(Math.round((roof.attributes.gstrahlung*0.17*0.8)/100)*100));
-  $('#finanzertrag').html(formatNumber(Math.round(roof.attributes.finanzertrag/100)*100));
-  $('#duschgaenge').html(roof.attributes.duschgaenge);
+  //$('#duschgaenge').html(roof.attributes.duschgaenge);
+
+  if (roof.attributes.stromertrag < 1000) {
+    $('#finanzertrag').html(formatNumber(Math.round(roof.attributes.finanzertrag/10)*10));
+  } else {
+    $('#finanzertrag').html(formatNumber(Math.round(roof.attributes.finanzertrag/100)*100));
+  }
 
   //add css-class
   $(document.body).removeClass('no-roof').addClass('roof');
