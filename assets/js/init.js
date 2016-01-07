@@ -50,9 +50,9 @@ var updateRoofInfo = function(map, marker, roof) {
   $('#areaOutput').html(Math.round(roof.attributes.flaeche));
   $('#eignung').html(suitability.substr(0, 1).toUpperCase() + suitability.substr(1));
   $('#eignung2').html(suitability);
-  $('#stromertrag').html(Math.round((roof.attributes.gstrahlung*0.17*0.8)/100)*100);
-  $('#finanzertrag').html(Math.round(roof.attributes.finanzertrag/100)*100);
-  $('#waermeertrag').html(Math.round(roof.attributes.waermeertrag/100)*100);
+  $('#stromertrag').html(formatNumber(Math.round((roof.attributes.gstrahlung*0.17*0.8)/100)*100));
+  $('#finanzertrag').html(formatNumber(Math.round(roof.attributes.finanzertrag/100)*100));
+  $('#waermeertrag').html(formatNumber(Math.round(roof.attributes.waermeertrag/100)*100));
   $('#dg_heizung').html(Math.round(roof.attributes.dg_heizung/100)*100);
   $('#duschgaenge').html(roof.attributes.duschgaenge);
   $(document.body).removeClass('no-roof').addClass('roof');

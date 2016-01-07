@@ -172,3 +172,26 @@ var flyTo = function(map, dest, destRes) {
   }
   map.getView().setCenter(dest);
 };
+
+
+function formatNumber(number) {
+  number = '' + number;
+
+  if (number.length > 3) {
+    var mod = number.length % 3; 
+    var output = (mod > 0 ? (number.substring(0,mod)) : ''); 
+
+    for (i=0 ; i < Math.floor(number.length / 3); i++) {
+
+      if ((mod == 0) && (i == 0))
+        output += number.substring(mod+ 3 * i, mod + 3 * i + 3);
+      else
+        output += '&apos;' + number.substring(mod + 3 * i, mod + 3 * i + 3);
+      }
+      return (output);
+    }
+
+  else
+    return number;
+
+};
