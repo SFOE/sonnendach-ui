@@ -62,15 +62,10 @@
   margin: 0;
 }
 
-.marker.ga-crosshair {
-  width: 30px;
-  height: 40px;
-  background-image: url('images/marker.png');
-}
-
 #map {
   width: 100%;
   height: 340px;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAnRSTlMAAHaTzTgAAAARSURBVHgBY3iKBFEAOp/+MgB+UQnYeBZPWAAAAABJRU5ErkJggg==');
 }
 
 #search-container, #search-container input, .twitter-typeahead {
@@ -109,17 +104,33 @@
   width: 100% !important;
   margin: 20px; 
 }
-#eig .container img {
-  padding-right: 27px;
-  border-right: 1px solid #e5e5e5;
+
+#eig .container > div {
+  margin-right: 100px;
 }
 
+.logo {
+  border-right: 1px solid #e5e5e5;
+  background: url('images/logo.jpg') no-repeat center left;
+  width: 248px;
+  height: 66px;
+  padding-right: 20px;
+}
+.amts {
+  position: absolute;
+  left: 268px;
+  top: 20px;
+  text-align: left;
+  padding-left: 20px;
+  min-width: 350px;
+}
 .amt {
-  font-weight: bold;
+  font: bold 13px Arial, sans-serif !important;
 }
 
 #lang {
   position: absolute;
+  top: 0px;
   right: 0px;
 }
 
@@ -127,4 +138,189 @@
   text-decoration: none;
   border: none;
   padding: 0px 5px;
+  font: normal 12px Arial, sans-serif !important;
 }
+
+@media screen and (max-width: 736px) {
+  .logo {
+    width: 56px;
+    height: 66px;
+    background-image: url('images/logo.ch.small.png');
+  }
+
+  .amts {
+    left: 76px;
+  }
+}
+
+/* ol.css */
+.ol-scale-line {
+  background: #fff;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 4px;
+  bottom: 0;
+  left: 8px;
+  padding: 2px;
+  position: absolute;
+}
+
+.ol-scale-line-inner {
+  border: 2px solid #000;
+  border-top: none;
+  color: #333;
+  font: bold 11px Arial,"Helvetica Neue",Helvetica,sans-serif;
+  text-align: center;
+  margin: 1px;
+  line-height: 1em;
+  will-change: contents, width;
+}
+
+.ol-overlay-container {
+  will-change: left,right,top,bottom;
+}
+
+.ol-unsupported {
+  display: none;
+}
+
+.ol-viewport .ol-unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.ol-control {
+  position: absolute;
+  background-color: #eee;
+  background-color: rgba(255,255,255,0.4);
+  border-radius: 4px;
+  padding: 2px;
+}
+
+.ol-control:hover {
+  background-color: rgba(255,255,255,0.6);
+}
+
+.ol-zoom {
+  top: .5em;
+  left: .5em;
+}
+
+@media print {
+  .ol-control {
+    display: none;
+  }
+}
+
+.ol-control button {
+  display: block;
+  margin: 1px;
+  padding: 0;
+  color: white !important;
+  font-size: 1.14em;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  height: 1.375em;
+  width: 1.375em;
+  line-height: .4em;
+  background-color: #333 !important;
+  background-color: rgba(51, 51, 51, 0.4) !important;
+  border: none;
+  border-radius: 2px !important;
+}
+
+.ol-control button::-moz-focus-inner {
+  border: none;
+  padding: 0;
+}
+
+.ol-touch .ol-control button {
+  font-size: 1.5em;
+}
+
+.ol-control button:hover,
+.ol-control button:focus {
+  text-decoration: none;
+  background-color: #333 !important;
+  background-color: rgba(51, 51, 51, 0.7) !important;
+}
+
+.ol-zoom .ol-zoom-in {
+  border-radius: 2px 2px 0 0 !important;
+}
+
+.ol-zoom .ol-zoom-out {
+  border-radius: 0 0 2px 2px !important;
+}
+
+.ol-attribution {
+  text-align: right;
+  bottom: .5em;
+  right: .5em;
+  max-width: calc(100% - 1.3em);
+  background-color: rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 1px 5px;
+  color: black;
+  font: normal 11px Arial,"Helvetica Neue",Helvetica,sans-serif;
+}
+
+.ol-attribution ul {
+  margin: 0;
+  padding: 0 .5em;
+  line-height: 1.375em;
+  color: #000;
+  max-width: none;
+  text-shadow: none;
+}
+
+.ol-attribution li {
+  display: inline;
+  list-style: none;
+  line-height: inherit;
+}
+
+.ol-attribution a {
+  color: black !important;
+  border: none;
+}
+
+.ol-attribution li:not(:last-child):after {
+  content: "  |";
+}
+
+.ol-attribution ul, .ol-attribution button {
+  display: inline-block;
+}
+
+.ol-attribution.ol-collapsed ul {
+  display: none;
+}
+
+.ol-attribution:not(.ol-collapsed) {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.ol-attribution.ol-uncollapsible {
+  bottom: 0;
+  right: 0;
+  border-radius: 4px 0 0;
+  height: auto;
+  line-height: 1em;
+}
+
+.ol-attribution.ol-uncollapsible button {
+  display: none;
+}
+
+.marker.ga-crosshair {
+  width: 30px;
+  height: 40px;
+  background-image: url('images/marker.png');
+}
+                                                                                                     
