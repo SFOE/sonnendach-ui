@@ -71,6 +71,7 @@
 #map {
   width: 100%;
   height: 340px;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAnRSTlMAAHaTzTgAAAARSURBVHgBY3iKBFEAOp/+MgB+UQnYeBZPWAAAAABJRU5ErkJggg==');
 }
 
 #search-container, #search-container input, .twitter-typeahead {
