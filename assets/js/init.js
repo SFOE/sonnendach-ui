@@ -52,8 +52,13 @@ var updateRoofInfo = function(map, marker, roof) {
   $('#eignung').html(suitability.substr(0, 1).toUpperCase() + suitability.substr(1));
   $('#eignung2').html(suitability);
   $('#stromertrag').html(formatNumber(Math.round((roof.attributes.gstrahlung*0.17*0.8)/100)*100));
-  $('#finanzertrag').html(formatNumber(Math.round(roof.attributes.finanzertrag/100)*100));
-  $('#duschgaenge').html(roof.attributes.duschgaenge);
+  //$('#duschgaenge').html(roof.attributes.duschgaenge);
+
+  if (roof.attributes.stromertrag < 1000) {
+    $('#finanzertrag').html(formatNumber(Math.round(roof.attributes.finanzertrag/10)*10));
+  } else {
+    $('#finanzertrag').html(formatNumber(Math.round(roof.attributes.finanzertrag/100)*100));
+  }
 
   //add css-class
   $(document.body).removeClass('no-roof').addClass('roof');
@@ -61,8 +66,8 @@ var updateRoofInfo = function(map, marker, roof) {
   // check if no waermeertrag and if no dg_heizung
   var titleHeat = '';
   if (roof.attributes.waermeertrag > 0) {
-    titleHeat += formatNumber(Math.round(roof.attributes.waermeertrag/100)*100)
-                + ' ' + translator.get('solarthermieTitel1');
+    titleHeat += '<strong>' + formatNumber(Math.round(roof.attributes.waermeertrag/100)*100)
+                + '</strong> ' + translator.get('solarthermieTitel1');
 
     if (roof.attributes.dg_heizung > 0) {
       titleHeat += ' ' + roof.attributes.dg_heizung + '&nbsp;'
