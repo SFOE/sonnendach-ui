@@ -126,7 +126,7 @@ var init = function() {
   var markerElt = $('<div class="marker ga-crosshair"></div>');
   var permalink = addPermalink();
   // Load the language
-  window.translator = body.translate({
+  window.translator = $('html').translate({
     lang: (langs.indexOf(permalink.lang) != -1) ? permalink.lang : langs[0],
     t: sdTranslations // Object defined in tranlations.js
   });
