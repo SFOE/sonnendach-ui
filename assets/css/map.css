@@ -76,7 +76,7 @@ body {
 .show-heat-dg,
 .loading .trn,
 .loading .icon,
-.loading .actions,{
+.loading .actions {
   display: none;
 }
 

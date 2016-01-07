@@ -178,6 +178,10 @@ var sdTranslations = {
     de: 'Solarw&auml;rme-Produktion noch unbekannt',
     fr: 'Solarw&auml;rme-Produktion noch unbekannt FR'
   },
+  solarthermieTitelnoHeat: {
+    de: 'Solarw&auml;rme-Produktion leider unbekannt',
+    fr: 'Solarw&auml;rme-Produktion leider unbekannt FR'
+  },
   solarthermieTitel1: {
     de: '<strong>kWh Solarw&auml;rme</strong> um',
     fr: '<strong>kWh Solarw&auml;rme</strong> um FR'

@@ -59,23 +59,33 @@ var updateRoofInfo = function(map, marker, roof) {
   $(document.body).removeClass('no-roof').addClass('roof');
   
   // check if no waermeertrag and if no dg_heizung
-  var text = '';
+  var titleHeat = '';
   if (roof.attributes.waermeertrag > 0) {
-    text += '<strong>' + formatNumber(Math.round(roof.attributes.waermeertrag/100)*100) +
-        '</strong>' + translator.get('solarthermieTitel1');
-  }
-  if (roof.attributes.dg_heizung > 0) {
-    if (text) {
-      text += translator.get('and');
+    titleHeat += formatNumber(Math.round(roof.attributes.waermeertrag/100)*100)
+                + ' ' + translator.get('solarthermieTitel1');
+
+    if (roof.attributes.dg_heizung > 0) {
+      titleHeat += ' ' + roof.attributes.dg_heizung + '&nbsp;'
+                   + translator.get('solarthermieTitel2');
     }
-    text += '<strong>' + formatNumber(Math.round(roof.attributes.dg_heizung/100)*100) +
-        '</strong>' + translator.get('solarthermieTitel2');
+
+  } else {
+    titleHeat = translator.get('solarthermieTitelnoHeat');
   }
-  if (!text) {
-    text += translator.get('solarthermieTitelnR');
+
+  $('#heatTitle').html(titleHeat);
+
+  var textHeat = '';
+  if (roof.attributes.duschgaenge > 0) {
+    textHeat += translator.get('solarthermieText1') 
+                + ' ' + roof.attributes.duschgaenge
+                + translator.get('solarthermieText2');
+  } else {
+    textHeat = '';
   }
-  $('#heatText').html(text);
-  
+
+  $('#heatText').html(textHeat);
+
   // Clear the highlighted roof the add the new one
   var polygon = new ol.geom.Polygon(roof.geometry.rings); 
   var vectorLayer = clearHighlight(map);
