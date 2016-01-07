@@ -109,17 +109,33 @@
   width: 100% !important;
   margin: 20px; 
 }
-#eig .container img {
-  padding-right: 27px;
-  border-right: 1px solid #e5e5e5;
+
+#eig .container > div {
+  margin-right: 100px;
 }
 
+.logo {
+  border-right: 1px solid #e5e5e5;
+  background: url('images/logo.jpg') no-repeat center left;
+  width: 248px;
+  height: 66px;
+  padding-right: 20px;
+}
+.amts {
+  position: absolute;
+  left: 268px;
+  top: 20px;
+  text-align: left;
+  padding-left: 20px;
+  min-width: 350px;
+}
 .amt {
-  font-weight: bold;
+  font: bold 13px Arial, sans-serif !important;
 }
 
 #lang {
   position: absolute;
+  top: 0px;
   right: 0px;
 }
 
@@ -127,4 +143,16 @@
   text-decoration: none;
   border: none;
   padding: 0px 5px;
+  font: normal 12px Arial, sans-serif !important;
+}
+
+@media screen and (max-width: 736px) {
+  .logo {
+    width: 56px;
+    height: 66px;
+    background-image: url('images/logo.ch.small.png');
+  }
+  .amts {
+    left: 76px;
+  }
 }
