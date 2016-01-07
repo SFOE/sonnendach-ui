@@ -125,15 +125,16 @@ var init = function() {
   var locationBt = $('#location');
   var markerElt = $('<div class="marker ga-crosshair"></div>');
   var permalink = addPermalink();
+
   // Load the language
+  var lang = (langs.indexOf(permalink.lang) != -1) ? permalink.lang : langs[0]; 
   window.translator = $('html').translate({
-    lang: (langs.indexOf(permalink.lang) != -1) ? permalink.lang : langs[0],
+    lang: lang,
     t: sdTranslations // Object defined in tranlations.js
   });
 
-
   // Create map
-  var map = createMap('map');
+  var map = createMap('map', lang);
   var marker = new ol.Overlay({
     positioning:'bottom-center',
     element: markerElt[0],

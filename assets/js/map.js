@@ -3,10 +3,10 @@
  *
  * returns an openlayers map
  */
-var createMap = function(eltId) {
+var createMap = function(eltId, lang) {
 	
   // Create the layers
-  var layers = getLayersConfig();
+  var layers = getLayersConfig(lang);
   var layer1Id = 'ch.swisstopo.swissimage';
   var layer1Config = layers[layer1Id];
   var layer1 = new ol.layer.Tile({

@@ -217,5 +217,11 @@ var sdTranslations = {
    fr: 'excellent',
    it: 'ottimo',
    en: 'excellent'
+ },
+ placeholder: {
+   de: 'Suchen Sie Ihre Adresse',
+   fr: 'Chercher votre adresse',
+   it: 'Suchen Sie Ihre Adresse IT',
+   en: 'Suchen Sie Ihre Adresse EN'
  }
 };
