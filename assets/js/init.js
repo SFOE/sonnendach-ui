@@ -39,12 +39,19 @@ var onAddressFound = function(map, marker, address, autoSearchRoof) {
 };
 
 var updateRoofInfo = function(map, marker, roof) {
+  var suitability = getSuitabilityText(roof.attributes.klasse, window.translator);
+
   $('#pitchOutput').html(roof.attributes.neigung);
   $('#headingOutput').html(roof.attributes.ausrichtung + 180);
   $('#headingText').html(getOrientationText(roof.attributes.ausrichtung, window.translator));
   $('#areaOutput').html(Math.round(roof.attributes.flaeche));
-  $('#eignung').html(roof.attributes.klasse);
-  $('#eignung2').html(roof.attributes.klasse);
+  $('#eignung').html(suitability.substr(0, 1).toUpperCase() + suitability.substr(1));
+  $('#eignung2').html(suitability);
+  $('#stromertrag').html(Math.round((roof.attributes.gstrahlung*0.17*0.8)/100)*100);
+  $('#finanzertrag').html(Math.round(roof.attributes.finanzertrag/100)*100);
+  $('#waermeertrag').html(Math.round(roof.attributes.waermeertrag/100)*100);
+  $('#dg_heizung').html(Math.round(roof.attributes.dg_heizung/100)*100);
+  $('#duschgaenge').html(roof.attributes.duschgaenge);
   $(document.body).removeClass('no-roof').addClass('roof');
   // Clear the highlighted roof the add the new one
   var polygon = new ol.geom.Polygon(roof.geometry.rings); 

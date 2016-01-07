@@ -121,3 +121,19 @@ function getOrientationText(orient, translator) {
     } 
 return (orientation);
 };
+
+function getSuitabilityText(suit, translator) {
+   var suitability;
+   if (suit == 1) {
+      suitability = translator.get('low');
+   } else if (suit == 2) {
+      suitability = translator.get('medium');
+   } else if (suit == 3) {
+      suitability = translator.get('good');
+   } else if (suit == 4) {
+      suitability = translator.get('veryGood');
+   } else if (suit == 5) {
+      suitability = translator.get('excellent');
+   }
+return (suitability);
+};

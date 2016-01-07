@@ -1,7 +1,25 @@
 var sdTranslations = {
+  pagetitle: {
+    de: 'Wie nutze ich die Sonne auf meinem Dach?',
+    fr: 'Wie nutze ich die Sonne auf meinem Dach? FR'
+  },
   bfe: {
     de: 'Bundesamt für Energie BFE',
-    fr: 'Office féral de l\'érgie OFEN'
+    fr: 'Office fédéral de l\'énergie OFEN',
+    it: 'Ufficio federale dell\'energia UFE',
+    en: 'Swiss Federal Office of Energy SFOE'
+  },
+  meteoschweiz: {
+    de: 'Bundesamt für Meteorologie und Klimatologie MeteoSchweiz',
+    fr: 'Office fédéral de météorologie et de climatologie MétéoSuisse',
+    it: 'Ufficio federale di meteorologia e climatologia MeteoSvizzera',
+    en: 'Federal Office of Meteorology and Climatology MeteoSwiss'
+  },
+  swisstopo: {
+    de: 'Bundesamt für Landestopografie swisstopo',
+    fr: 'Office fédéral de topographie swisstopo',
+    it: 'Ufficio federale di topografia swisstopo',
+    en: 'Federal Office of Topography swisstopo'
   },
   mainTitle: {
     de: 'Wie viel <strong>Strom</strong> und <strong>W&auml;rme</strong> ' +
@@ -117,5 +135,87 @@ var sdTranslations = {
   eignungText2: {
     de: 'geeignet. Die Eignung der Dachfläche wird durch die Sonneneinstrahlung, Ausrichtung, Neigung und Verschattung bestimmt.',
     fr: 'geeignet. Die Eignung der Dachfläche wird durch die Sonneneinstrahlung, Ausrichtung, Neigung und Verschattung bestimmt. FR'
-  }
+  },
+  solarstromTitelnR: {
+    de: 'Solarstrom-Produktion noch unbekannt',
+    fr: 'Solarstrom-Produktion noch unbekannt FR'
+  },
+  solarstromTitel: {
+    de: '<strong>kWh Solarstrom</strong> pro Jahr im Wert von',
+    fr: '<strong>kWh Solarstrom</strong> pro Jahr im Wert von FR'
+  },
+  solarstromTitel2: {
+    de: 'Franken',
+    fr: 'Franken FR'
+  },
+  solarstromText: {
+    de: 'Typischer Vebrauch eines Vier-Personen-Haushalts: 3\'500 kWh',
+    fr: 'Typischer Vebrauch eines Vier-Personen-Haushalts: 3\'500 kWh FR'
+  },
+  solarstromButton: {
+    de: 'Was kostet meine Photovolatik-Anlage?',
+    fr: 'Was kostet meine Photovolatik-Anlage? FR'
+  },
+  solarthermieTitelnR: {
+    de: 'Solarw&auml;rme-Produktion noch unbekannt',
+    fr: 'Solarw&auml;rme-Produktion noch unbekannt FR'
+  },
+  solarthermieTitel1: {
+    de: '<strong>kWh Solarw&auml;rme</strong> um',
+    fr: '<strong>kWh Solarw&auml;rme</strong> um FR'
+  },
+  solarthermieTitel2: {
+    de: '% der Heizkosten zu sparen',
+    fr: '% der Heizkosten zu sparen FR'
+  },
+  solarthermieText1: {
+    de: 'Dies entspricht',
+    fr: 'Dies entspricht FR'
+  },
+  solarthermieText2: {
+    de: '-mal Duschen pro Tag',
+    fr: '-mal Duschen pro Tag FR'
+  },
+  solarthermieButton: {
+    de: 'Was kostet meine Solarthermie-Anlage?',
+    fr: 'Was kostet meine Solarthermie-Anlage? FR'
+  },
+  druckenTitel: {
+    de: 'Alle Informationen über das Dach <strong>drucken</strong>',
+    fr: 'Alle Informationen über das Dach <strong>drucken</strong> FR'
+  },
+  druckenButton: {
+    de: 'drucken',
+    fr: 'drucken FR'
+  },
+  low: {
+   de: 'gering',
+   fr: 'bas',
+   it: 'bassa',
+   en: 'low'
+ },
+ medium: {
+   de: 'mittel',
+   fr: 'moyen',
+   it: 'media',
+   en: 'medium'
+ },
+ good: {
+   de: 'gut',
+   fr: 'bon',
+   it: 'buono',
+   en: 'good'
+ },
+ veryGood: {
+   de: 'sehr gut',
+   fr: 'très bient',
+   it: 'molot bene',
+   en: 'very good'
+ },
+ excellent: {
+   de: 'hervorragend',
+   fr: 'excellent',
+   it: 'ottimo',
+   en: 'excellent'
+ }
 };
