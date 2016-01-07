@@ -72,14 +72,16 @@ body {
 .show-localized,
 .show-roof,
 .show-no-roof,
+.show-heat,
+.show-heat-dg,
 .loading .trn,
 .loading .icon,
-.loading .actions {
+.loading .actions,{
   display: none;
 }
 
 .localized .show-localized,
-.roof .show-roof {
+.roof .show-roof{
   display: block;
 }
 

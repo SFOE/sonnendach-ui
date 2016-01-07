@@ -44,6 +44,7 @@ var onAddressFound = function(map, marker, address, autoSearchRoof) {
 var updateRoofInfo = function(map, marker, roof) {
   var suitability = getSuitabilityText(roof.attributes.klasse, window.translator);
 
+  //fill content with attributes
   $('#pitchOutput').html(roof.attributes.neigung);
   $('#headingOutput').html(roof.attributes.ausrichtung + 180);
   $('#headingText').html(getOrientationText(roof.attributes.ausrichtung, window.translator));
@@ -52,10 +53,29 @@ var updateRoofInfo = function(map, marker, roof) {
   $('#eignung2').html(suitability);
   $('#stromertrag').html(formatNumber(Math.round((roof.attributes.gstrahlung*0.17*0.8)/100)*100));
   $('#finanzertrag').html(formatNumber(Math.round(roof.attributes.finanzertrag/100)*100));
-  $('#waermeertrag').html(formatNumber(Math.round(roof.attributes.waermeertrag/100)*100));
-  $('#dg_heizung').html(Math.round(roof.attributes.dg_heizung/100)*100);
   $('#duschgaenge').html(roof.attributes.duschgaenge);
+
+  //add css-class
   $(document.body).removeClass('no-roof').addClass('roof');
+  
+  // check if no waermeertrag and if no dg_heizung
+  var text = '';
+  if (roof.attributes.waermeertrag > 0) {
+    text += '<strong>' + formatNumber(Math.round(roof.attributes.waermeertrag/100)*100) +
+        '</strong>' + translator.get('solarthermieTitel1');
+  }
+  if (roof.attributes.dg_heizung > 0) {
+    if (text) {
+      text += translator.get('and');
+    }
+    text += '<strong>' + formatNumber(Math.round(roof.attributes.dg_heizung/100)*100) +
+        '</strong>' + translator.get('solarthermieTitel2');
+  }
+  if (!text) {
+    text += translator.get('solarthermieTitelnR');
+  }
+  $('#heatText').html(text);
+  
   // Clear the highlighted roof the add the new one
   var polygon = new ol.geom.Polygon(roof.geometry.rings); 
   var vectorLayer = clearHighlight(map);
