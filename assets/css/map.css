@@ -154,6 +154,16 @@ ul.actions.uniform li > a.button > span {
   display: none;
 }
 
+.arrows {
+  padding-top: 1em;
+  text-align: center;
+}
+
+.arrows a {
+  border-bottom: none;
+  cursor: pointer !important;
+}
+
 #lang {
   position: absolute;
   top: 0px;
