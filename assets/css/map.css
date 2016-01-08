@@ -150,6 +150,11 @@ ul.actions.uniform li > a.button > span {
   font: normal 12px Arial, sans-serif !important;
 }
 
+.loading {
+  background: transparent url('images/loader.gif') no-repeat scroll right center content-box !important;
+  background-size: 25px;
+}
+
 @media screen and (max-width: 736px) {
   #eig .container {
     margin: 0;

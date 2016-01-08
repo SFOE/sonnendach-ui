@@ -69,7 +69,15 @@ var initSearch = function(map, marker, onAddressFound) {
 	 		     });
 			   }
 			   return results;
-		   }
+		   },
+       ajax: {
+         beforeSend: function() {
+           $('.typeahead').addClass('loading'); 
+         },
+         complete: function() {
+           $('.typeahead').removeClass('loading');
+         }
+       }
 	   }
 	});
 
