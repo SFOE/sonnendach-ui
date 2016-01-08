@@ -210,3 +210,10 @@ var getToleranceInPixels = function(toleranceMeters, mapExtent, display) {
   }
   return 0;
 }
+
+/**
+ * This function scroll smoothly to an element
+ */
+var goTo = function(id) {
+  $('#goTo' + (id.charAt(0).toUpperCase() + id.slice(1))).click();
+}

@@ -3,7 +3,7 @@
  * associates to this address 
  */
 var onAddressFound = function(map, marker, address, autoSearchRoof, roofSearchTolerance) {
-  $('#search-typeahead').data().ttTypeahead.setVal('');
+  $('.typeahead').typeahead('val', '');
   if (address) {
     var coord, label;
     if (!address.attrs) { // Address comes from geolocation
@@ -215,7 +215,7 @@ var init = function() {
         onAddressFound(map, marker, data.results[0], false, 50.0);
       });
 
-      window.scroll(0, $('#one').offset().top);
+      goTo('one');
       
       // Add the featureId to the lang link href
       $('#lang a').attr('href', function(index, attr) {

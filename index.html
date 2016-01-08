@@ -33,7 +33,19 @@
     <link rel="stylesheet" href="assets/css/map.css"/>
 	</head>
 	<body class="is-loading">
-	
+	  
+    <!-- Hidden links to navigate smoothly in the page using scrolly plugin -->
+    <div style="display: none;">
+      <a id="goToEig" href="#eig" class="scrolly"></a>
+      <a id="goToHeader" href="#header" class="scrolly"></a>
+      <a id="goToOne" href="#one" class="scrolly"></a>
+      <a id="goToTwo" href="#two" class="scrolly"></a>
+      <a id="goToThree" href="#three" class="scrolly"></a>
+      <a id="goToFour" href="#four" class="scrolly"></a>
+      <a id="goToFive" href="#five" class="scrolly"></a>
+      <a id="goToSix" href="#six" class="scrolly"></a>
+    </div>
+
 	  <!-- eid -->
     <section id="eig" class="main style1 special" style="padding: 0 !important">
       <div class="container">
@@ -73,7 +85,16 @@
         <h1 class="trn">mainTitle</h1>
         <p class="trn">subTitle</p>
         <ul class="actions">
-          <li><a id="location" href="#one" class="button scrolly trn">locateMe</a></li>
+          <li>
+            <span class="search-container">
+              <input class="typeahead" id="searchTypeahead1" type="text"
+                     data-provide="typeahead"
+                     placeholder="Suchen Sie Ihre Adresse..." >
+              <i class="fa fa-search"></i>
+            </span>
+
+            <a id="location" href="#one" class="button scrolly trn">locateMe</a>
+          </li>
         </ul>
       </div>
     </section>
@@ -112,10 +133,11 @@
               <div class="roof-loading"></div>
             </header>
             <p><span class="trn">newAddress</span>:<br>
-            <span id="search-container">
-              <input class="typeahead" id="search-typeahead" type="text"
+            <span class="search-container">
+              <input class="typeahead" id="searchTypeahead2" type="text"
                      data-provide="typeahead"
                      placeholder="Suchen Sie Ihre Adresse..." >
+              <i class="fa fa-search"></i>
             </span>
             </p>
           </div>
@@ -264,7 +286,7 @@
     <script src="assets/js/jquery-2.1.4.min.js"></script>
     <script src="assets/js/jquery.xdomainrequest.1.0.2.min.js"></script>
     <script src="assets/js/jquery.placeholder.2.0.7.min.js"></script>
-    <script src="assets/js/typeahead.bundle.0.10.4.js"></script> 
+    <script src="assets/js/typeahead.bundle.0.11.1.js"></script> 
     <script src="assets/js/jquery.translate.0.9.1.js"></script>
 
 	  <script src="assets/js/jquery.scrolly.min.js"></script>

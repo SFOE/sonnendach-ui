@@ -48,8 +48,8 @@ var sdTranslations = {
     fr: 'Decouvrez le cadastre solaire Suisse.'
   },
   locateMe: {
-    de: 'Lokalisiere mich',
-    fr: 'Localisez moi'
+    de: 'oder lokalisiere mich',
+    fr: 'or localisez moi'
   },
   notLocalised: {
     de: 'Noch nicht lokalisiert',
