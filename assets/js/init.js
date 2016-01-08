@@ -3,7 +3,7 @@
  * associates to this address 
  */
 var onAddressFound = function(map, marker, address, autoSearchRoof, roofSearchTolerance) {
-  $('#search-container input').val('');
+  $('#search-typeahead').data().ttTypeahead.setVal('');
   if (address) {
     var coord, label;
     if (!address.attrs) { // Address comes from geolocation

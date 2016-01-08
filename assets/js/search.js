@@ -118,8 +118,7 @@ var initSearch = function(map, marker, onAddressFound) {
 	mySource.initialize();
 
   // Create the typeahead search box 
-	var searchInput = $('#search-container input');
-	searchInput.typeahead({
+	var searchInput = $('#search-typeahead').typeahead({
     hint: true,
     highlight: true,
     minLength: 3
