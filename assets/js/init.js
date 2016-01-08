@@ -3,7 +3,6 @@
  * associates to this address 
  */
 var onAddressFound = function(map, marker, address, autoSearchRoof, roofSearchTolerance) {
-  $('#search-container input').val('');
   if (address) {
     var coord, label;
     if (!address.attrs) { // Address comes from geolocation
@@ -18,7 +17,7 @@ var onAddressFound = function(map, marker, address, autoSearchRoof, roofSearchTo
           .replace('</b>', '');
     }
     $('#addressOutput').html(label);
-    $(document.body).addClass('localized');
+    $(document.body).addClass('localized').removeClass('localized-error');
     
     // Search best roof at this address
     if (autoSearchRoof) {
@@ -30,13 +29,14 @@ var onAddressFound = function(map, marker, address, autoSearchRoof, roofSearchTo
           flyTo(map, coord, 0.25);
         }
       });
+    } else {
+      $('#search-container input').val('');
     }
   } else {
     $(document.body).removeClass('localized');
     if (autoSearchRoof) {
-      marker.setPosition(undefined);
       $(document.body).removeClass('roof no-roof');
-      clearHighlight(map); 
+      clearHighlight(map, marker); 
     }
   }
 };
@@ -93,7 +93,7 @@ var updateRoofInfo = function(map, marker, roof) {
 
   // Clear the highlighted roof the add the new one
   var polygon = new ol.geom.Polygon(roof.geometry.rings); 
-  var vectorLayer = clearHighlight(map);
+  var vectorLayer = clearHighlight(map, marker);
   vectorLayer.getSource().addFeature(new ol.Feature(polygon));
   marker.setPosition(polygon.getInteriorPoint().getCoordinates());
   flyTo(map, marker.getPosition(), 0.25);
@@ -126,14 +126,15 @@ var onRoofFound = function(map, marker, roof, findBestRoof) {
     }
   } else {
     // Clear the highlighted roof
-    clearHighlight(map);
+    clearHighlight(map, marker);
     $(document.body).removeClass('roof').addClass('no-roof');
   }
 }
 
 // Remove the highlighted roof from the map
 // Returns the vectorLayer cleared
-var clearHighlight = function(map) {
+var clearHighlight = function(map, marker) {
+  marker.setPosition(undefined);
   // Search the vector layer to highlight the roof
   var vectorLayer;
   map.getLayers().forEach(function(layer) {
@@ -201,7 +202,11 @@ var init = function() {
  
   // Init geoloaction button 
   locationBt.click(function() {
-    getLocation(map, marker, onAddressFound);
+    body.removeClass('localized-error');
+    getLocation(map, marker, onAddressFound, function(msg) {
+      $(document.body).addClass('localized-error');
+      $('#locationError').html(msg);
+    });
   });
 
   // Display the fature from permalink
