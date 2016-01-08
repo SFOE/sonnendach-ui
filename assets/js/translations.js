@@ -244,5 +244,35 @@ var sdTranslations = {
    fr: 'Chercher votre adresse',
    it: 'Suchen Sie Ihre Adresse IT',
    en: 'Suchen Sie Ihre Adresse EN'
+ },
+ geolocErrorNotSupported: {
+   de: 'the geolocation is not supported by this browser DE',
+   fr: 'the geolocation is not supported by this browser FR',
+   it: 'the geolocation is not supported by this browser IT',
+   en: 'the geolocation is not supported by this browser'
+ },
+ geolocErrorPermDenied: {
+   de: 'the user denied the request for Geolocation. DE',
+   fr: 'the user denied the request for Geolocation. FR',
+   it: 'the user denied the request for Geolocation. IT',
+   en: 'the user denied the request for Geolocation.'
+ },
+ geolocErrorPosUnavail: {
+   de: 'the location information is unavailable. DE',
+   fr: 'the location information is unavailable. FR',
+   it: 'the location information is unavailable. IT',
+   en: 'the location information is unavailable.'
+ },
+ geolocErrorTimeOut: {
+   de: 'the request to get user location timed out. DE',
+   fr: 'the request to get user location timed out. FR',
+   it: 'the request to get user location timed out. IT',
+   en: 'the request to get user location timed out.'
+ },
+ geolocErrorUnknown: {
+   de: 'an unknown error occurred. DE',
+   fr: 'an unknown error occurred. FR',
+   it: 'an unknown error occurred. IT',
+   en: 'an unknown error occurred.'
  }
 };

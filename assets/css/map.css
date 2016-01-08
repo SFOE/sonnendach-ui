@@ -68,8 +68,10 @@ body {
 }
 
 .localized .hidden-localized,
+.localized-error .hidden-localized-error,
 .localized.no-roof .show-localized, 
 .show-localized,
+.show-localized-error,
 .show-roof,
 .show-no-roof,
 .show-heat,
@@ -80,6 +82,7 @@ body {
   display: none;
 }
 
+.localized-error .show-localized-error,
 .localized .show-localized,
 .roof .show-roof{
   display: block;

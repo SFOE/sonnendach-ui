@@ -3,7 +3,6 @@
  * Returns a promie.
  */
 var geocode = function(map, coords) {
-  var addressOutput = $('#addressOutput');
   var mapExtent = map.getView().calculateExtent(map.getSize());
   // Get pixel tolerance for 100.0 meters
   var pixelTolerance = getToleranceInPixels(100.0, mapExtent, map.getSize());
@@ -16,49 +15,53 @@ var geocode = function(map, coords) {
      '&order=distance' +
      '&layers=all:ch.bfs.gebaeude_wohnungs_register&returnGeometry=true';
   return $.getJSON(url);
-}
+};
 
 /**
  * Get the current position of the user, then center the map on the
  * corresponding address.
  */
-var getLocation = function(map, marker, onAddressFound) {
+var getLocation = function(map, marker, onAddressFound, onError) {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
-     console.log(position);
-     var coord21781 = ol.proj.transform([
-       position.coords.longitude,
-       position.coords.latitude
-     ], 'EPSG:4326', map.getView().getProjection());
-     geocode(map, coord21781).then(function(data) {
-       // We assume the first of the list is the closest
-       onAddressFound(map, marker, data.results[0], true, position.coords.accuracy);
-     });
-    }, showError);
+      var coord21781 = ol.proj.transform([
+        position.coords.longitude,
+        position.coords.latitude
+      ], 'EPSG:4326', map.getView().getProjection());
+      geocode(map, coord21781).then(function(data) {
+        // We assume the first of the list is the closest
+        onAddressFound(map, marker, data.results[0], true, position.coords.accuracy);
+      });
+    }, function(error) {
+      onError(getErrorMsg(error));
+    });
   } else {
-    var x = document.getElementById("demo");
-    x.innerHTML = "Geolocation is not supported by this browser.";
+    onError(getErrorMsg());
   }
-}
+};
 
 /**
- * Display an alert message if we don't get the position.
+ * Get a user friendly message when the geolocation is unavailable.
  */
-var showError = function(error) {
+var getErrorMsg = function(error) {
   var msg;
-  switch(error.code) {
-    case error.PERMISSION_DENIED:
-      msg = "User denied the request for Geolocation."
-      break;
-    case error.POSITION_UNAVAILABLE:
-      msg = "Location information is unavailable."
-      break;
-    case error.TIMEOUT:
-      msg = "The request to get user location timed out."
-      break;
-    case error.UNKNOWN_ERROR:
-      msg = "An unknown error occurred."
-      break;
+  if (!navigator.geolocation) {
+    msg = translator.get('geolocErrorNotSupported');
+  } else {
+    switch(error.code) {
+      case error.PERMISSION_DENIED:
+        msg = translator.get('geolocErrorPermDenied')
+        break;
+      case error.POSITION_UNAVAILABLE:
+        msg = translator.get('geolocErrorPosUnavail');
+        break;
+      case error.TIMEOUT:
+        msg = translator.get('geolocErrorTimeOut');
+        break;
+      case error.UNKNOWN_ERROR:
+        msg = translator.get('geolocErrorUnknown');
+        break;
+    }
   }
-  alert(msg);
-}
+  return msg;
+ };
