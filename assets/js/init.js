@@ -55,6 +55,9 @@ var updateRoofInfo = function(map, marker, roof) {
   $('#stromertrag').html(formatNumber(Math.round((roof.attributes.gstrahlung*0.17*0.8)/100)*100));
   //$('#duschgaenge').html(roof.attributes.duschgaenge);
 
+  //symbol for suitability
+  document.getElementById("eignungSymbol").src = 'images/' + roof.attributes.klasse + '.png';
+
   if (roof.attributes.stromertrag < 1000) {
     $('#finanzertrag').html(formatNumber(Math.round(roof.attributes.finanzertrag/10)*10));
     $('#finanzertrag2').html(formatNumber(Math.round(roof.attributes.finanzertrag/10)*10));
