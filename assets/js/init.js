@@ -106,20 +106,8 @@ var onRoofFound = function(map, marker, roof, findBestRoof) {
   if (roof) {
     // Find best roof for given building
     if (findBestRoof) {
-      var url = API3_URL + '/rest/services/api/MapServer/find?' +
-        'layer=ch.bfe.solarenergie-eignung-daecher&' +
-        'searchField=building_id&' +
-        'searchText=' + roof.attributes.building_id;
-      $.getJSON(url, function(data) {
-        var bestRoof = data.results[0];
-        for (var i = 0; i < data.results.length; i++) {
-          roofCandidate = data.results[i];
-          if (roofCandidate.attributes.mstrahlung >
-              bestRoof.attributes.mstrahlung) {
-            bestRoof = roofCandidate;
-          }
-        }
-        updateRoofInfo(map, marker, bestRoof);
+      searchBestRoofFromBuildingId(roof.attributes.building_id).then(function(roof) {
+        updateRoofInfo(map, marker, roof);
       });
     } else {
       updateRoofInfo(map, marker, roof);
@@ -182,18 +170,21 @@ var init = function() {
   map.addOverlay(marker);
   map.on('singleclick', function(evt){
     var coord = evt.coordinate;
-    //We call the geocode function here to get the
-    //address information for the clicked point using
-    //the GWR layer.
-    //The false parameter indicates that geocode does
-    //not trigger a roof search.
-    geocode(map, coord).then(function(data) {
-      // We assume the first of the list is the closest
-      onAddressFound(map, marker, data.results[0], false, 0.0);
-    });
+   
     //Do roof search explicitely
     searchFeaturesFromCoord(map, coord, 0.0).then(function(data) {
       onRoofFound(map, marker, data.results[0], false);
+      // We call the geocode function here to get the
+      // address information for the clicked point using
+      // the GWR layer.
+      // The false parameter indicates that geocode does
+      // not trigger a roof search.
+      // Relouch the roof search with the coordinate of address if necessary.
+      var relaunchRoofSearch = (data.results.length == 0);
+      geocode(map, coord).then(function(data) {
+        // We assume the first of the list is the closest
+        onAddressFound(map, marker, data.results[0], relaunchRoofSearch, 0.0);
+      });
     });
   });
 
