@@ -119,7 +119,11 @@ var initSearch = function(map, marker, onAddressFound) {
 
   // Create the typeahead search box 
 	var searchInput = $('#search-container input');
-	searchInput.typeahead(null,{
+	searchInput.typeahead({
+    hint: true,
+    highlight: true,
+    minLength: 3
+  }, {
 	  name: 'location',
 	  displayKey: function(location) {
 		  return location.attrs.label.replace('<b>', '').replace('</b>', '');
@@ -127,7 +131,7 @@ var initSearch = function(map, marker, onAddressFound) {
 	  source: mySource.ttAdapter(),
 	  templates: {
 		  suggestion: function(location) {
-		    return '<p>' + location.attrs.label + '</p>' ;
+		    return location.attrs.label;
 		  }
 	  }                                      
 	});

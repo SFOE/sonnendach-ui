@@ -10,7 +10,7 @@ header {
 .tt-hint {
   width: 784px;
   height: 24px;
-  font-size: 16px;
+  font-size: 21px;
   margin: 10px 0px 0px;
   padding-left: 0.5em;
   border: 1px solid #C1C1C1;
@@ -30,29 +30,34 @@ header {
 }
 
 .tt-dropdown-menu {
-  width: 528px;
+  width: 100%;
+  max-height: 200px;
   margin-top: 0px;
   padding: 8px 0;
   background-color: #fff;
   border: 1px solid #ccc;
+  overflow: auto;
 }
 
 .tt-suggestion {
   padding: 2px 8px;
-  font-size: 12px;
-  line-height: 18px;
+  font-size: 20px;
+  line-height: 34px;
   text-align: left;
+  height: 40px;
 }
 
 .tt-suggestion.tt-cursor {
-  color: #000;
-  background-color: lightgray;
+  background-color: lightblue;
   cursor: pointer;
-  font-family: arial;
 }
 
 .tt-suggestion p {
   margin: 0;
+}
+
+.tt-highlight {
+  font-weight: bold;
 }
 
 #map {
