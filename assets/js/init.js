@@ -2,7 +2,7 @@
  * Display the marker at the coordinate of an address. Then search the best roof
  * associates to this address 
  */
-var onAddressFound = function(map, marker, address, autoSearchRoof) {
+var onAddressFound = function(map, marker, address, autoSearchRoof, roofSearchTolerance) {
   $('#search-container input').val('');
   if (address) {
     var coord, label;
@@ -23,7 +23,7 @@ var onAddressFound = function(map, marker, address, autoSearchRoof) {
     // Search best roof at this address
     if (autoSearchRoof) {
       marker.setPosition(coord);
-      searchFeaturesFromCoord(map, coord).then(function(data) {
+      searchFeaturesFromCoord(map, coord, roofSearchTolerance).then(function(data) {
         onRoofFound(map, marker, data.results[0], true);
         // If no roof found zoom on the marker
         if (!data.results.length) {
@@ -188,10 +188,10 @@ var init = function() {
     //not trigger a roof search.
     geocode(map, coord).then(function(data) {
       // We assume the first of the list is the closest
-      onAddressFound(map, marker, data.results[0], false);
+      onAddressFound(map, marker, data.results[0], false, 0.0);
     });
     //Do roof search explicitely
-    searchFeaturesFromCoord(map, coord).then(function(data) {
+    searchFeaturesFromCoord(map, coord, 0.0).then(function(data) {
       onRoofFound(map, marker, data.results[0], false);
     });
   });
@@ -211,7 +211,7 @@ var init = function() {
       var coord = ol.extent.getCenter(data.feature.bbox);
       geocode(map, coord).then(function(data) {
         // We assume the first of the list is the closest
-        onAddressFound(map, marker, data.results[0]);
+        onAddressFound(map, marker, data.results[0], false, 50.0);
       });
 
       window.scroll(0, $('#one').offset().top);

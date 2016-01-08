@@ -32,7 +32,7 @@ var getLocation = function(map, marker, onAddressFound) {
      ], 'EPSG:4326', map.getView().getProjection());
      geocode(map, coord21781).then(function(data) {
        // We assume the first of the list is the closest
-       onAddressFound(map, marker, data.results[0], true);
+       onAddressFound(map, marker, data.results[0], true, position.coords.accuracy);
      });
     }, showError);
   } else {

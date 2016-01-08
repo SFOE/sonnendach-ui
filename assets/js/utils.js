@@ -197,6 +197,9 @@ function formatNumber(number) {
 };
 
 var getToleranceInPixels = function(toleranceMeters, mapExtent, display) {
+  if (!toleranceMeters) {
+    return 0;
+  }
   var mapMeterWidth = Math.abs(mapExtent[0] - mapExtent[2]);
   var mapMeterHeight = Math.abs(mapExtent[1] - mapExtent[3]);
   var imgPixelWidth = display[0];
@@ -205,5 +208,5 @@ var getToleranceInPixels = function(toleranceMeters, mapExtent, display) {
   if (isFinite(factor) && !isNaN(factor)) {
     return Math.ceil(toleranceMeters / factor);
   }
-  return 1;
+  return 0;
 }

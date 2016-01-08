@@ -2,8 +2,10 @@
  * Launch the search of all the features available on the center of the map.
  * Returns a promise.
  */
-var searchFeaturesFromCoord = function(map, coord) {
+var searchFeaturesFromCoord = function(map, coord, tolerance) {
   var center = map.getView().getCenter().toString();
+  var mapExtent = map.getView().calculateExtent(map.getSize());
+  var pixelTolerance = getToleranceInPixels(tolerance, mapExtent, map.getSize());
   var url = API3_URL + '/rest/services/api/MapServer/identify?' + //url
       'geometryType=esriGeometryPoint' +
       '&returnGeometry=true' +
@@ -11,7 +13,8 @@ var searchFeaturesFromCoord = function(map, coord) {
       '&geometry=' + coord +
       '&mapExtent=' + coord + ',' + coord +
       '&imageDisplay=' + map.getSize().toString() + ',96' +
-      '&tolerance=0' + 
+      '&tolerance=' + pixelTolerance +
+      '&order=distance' +
       '&lang=de';
   return $.getJSON(url);
 };
@@ -98,6 +101,6 @@ var initSearch = function(map, marker, onAddressFound) {
 	searchInput.placeholder();
 
 	searchInput.on('typeahead:selected', function(evt, location, suggName) {
-		onAddressFound(map, marker, location, true);
+		onAddressFound(map, marker, location, true, 0.0);
 	});
 };
