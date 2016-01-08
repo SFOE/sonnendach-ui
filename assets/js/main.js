@@ -18,30 +18,24 @@
 	$(function() {
 
 		var	$window = $(window),
-			$body = $('body');
+	  $body = $('body');
 
 		// Disable animations/transitions until the page has loaded.
-			$body.addClass('is-loading');
-
-			$window.on('load', function() {
-				window.setTimeout(function() {
-					$body.removeClass('is-loading');
-				}, 250);
-			});
+		$body.addClass('is-loading');
 
 		// Fix: Placeholder polyfill.
-			$('form').placeholder();
+		$('form').placeholder();
 
 		// Prioritize "important" elements on mobile.
-			skel.on('+mobile -mobile', function() {
-				$.prioritize(
-					'.important\\28 mobile\\29',
-					skel.breakpoint('mobile').active
-				);
-			});
+		skel.on('+mobile -mobile', function() {
+			$.prioritize(
+				'.important\\28 mobile\\29',
+				skel.breakpoint('mobile').active
+			);
+		});
 
 		// Scrolly.
-			$('.scrolly').scrolly();
+		$('.scrolly').scrolly();
 
 	});
 

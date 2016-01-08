@@ -32,7 +32,7 @@
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
     <link rel="stylesheet" href="assets/css/map.css"/>
 	</head>
-	<body class="loading">
+	<body class="is-loading">
 	
 	  <!-- eid -->
     <section id="eig" class="main style1 special" style="padding: 0 !important">
@@ -87,19 +87,21 @@
               <h2 class="show-localized-error" id="locationError"></h2>
               <h2 class="hidden-localized hidden-localized-error trn">notLocalised</h2>
               <h2 class="show-localized" id="addressOutput"></h2>
-              <h2 class="show-no-roof trn">noMatch</h2>
+              <div class="address-loading"></div>
             </header>
             <header class="major">
+              <h2 class="show-no-roof trn">noMatch</h2>
               <h4 class="hidden-localized trn">bittelokal</h4>
               <h4 class="show-no-roof trn">noRoofFound</h4>
               <h4 class="show-roof">
                 <span class="trn">roofInclination</span>:&nbsp;
-                <span id="pitchOutput">45</span>&deg;  |  
+                <span id="pitchOutput"></span>&deg;  |  
                 <span class="trn">roofOrientation</span>:&nbsp; 
-                <span id="headingOutput">20</span>&deg;&nbsp;<span id="headingText">Nord</span>  |  
+                <span id="headingOutput"></span>&deg;&nbsp;<span id="headingText">Nord</span>  |  
                 <span class="trn">roofArea</span>:&nbsp;
-                <span id="areaOutput">50</span>&nbsp;m<sup>2</sup>
+                <span id="areaOutput"></span>&nbsp;m<sup>2</sup>
               </h4>
+              <div class="roof-loading"></div>
             </header>
             <p><span class="trn">newAddress</span>:<br>
             <span id="search-container">

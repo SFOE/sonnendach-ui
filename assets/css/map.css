@@ -1,6 +1,10 @@
 body {
   overflow-x: hidden;
 }
+
+header {
+  position: relative;
+}
 .typeahead,
 .tt-query,
 .tt-hint {
@@ -69,16 +73,13 @@ body {
 
 .localized .hidden-localized,
 .localized-error .hidden-localized-error,
-.localized.no-roof .show-localized, 
 .show-localized,
 .show-localized-error,
 .show-roof,
 .show-no-roof,
 .show-heat,
 .show-heat-dg,
-.loading .trn,
-.loading .icon,
-.loading .actions {
+.is-loading .trn {
   display: none;
 }
 
@@ -149,6 +150,27 @@ ul.actions.uniform li > a.button > span {
   padding: 0px 5px;
   font: normal 12px Arial, sans-serif !important;
 }
+
+.loading {
+  background: transparent url('images/loader.gif') no-repeat scroll right center content-box !important;
+  background-size: 25px;
+}
+.address-loading, .roof-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white url('images/loader.gif') no-repeat scroll center center content-box !important;
+  background-size: 25px;
+  display: none;
+}
+
+.ajax-address .address-loading,
+.ajax-roof .roof-loading {
+  display: block;
+}
+
 
 @media screen and (max-width: 736px) {
   #eig .container {

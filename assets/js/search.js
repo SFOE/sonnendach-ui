@@ -1,5 +1,5 @@
 /**
- * Launch the search of all the features available on the center of the map.
+ * Launch the search of all the features available at a cordinates.
  * Returns a promise.
  */
 var searchFeaturesFromCoord = function(map, coord, tolerance) {
@@ -16,7 +16,11 @@ var searchFeaturesFromCoord = function(map, coord, tolerance) {
       '&tolerance=' + pixelTolerance +
       '&order=distance' +
       '&lang=de';
-  return $.getJSON(url);
+  $(document.body).addClass('ajax-roof');
+  return $.getJSON(url).then(function(data) {
+    $(document.body).removeClass('ajax-roof');
+    return data;
+  });
 };
 
 /**
@@ -27,7 +31,35 @@ var searchFeatureFromId = function(featureId) {
   var url = API3_URL + '/rest/services/all/MapServer/' +
       'ch.bfe.solarenergie-eignung-daecher/' + 
       featureId + '?geometryFormat=esriGeojson';
-  return $.getJSON(url);
+  $(document.body).addClass('ajax-roof');
+  return $.getJSON(url).then(function(data) {
+    $(document.body).removeClass('ajax-roof');
+    return data;
+  });
+};
+
+/**
+ * Launch the search for the best roof of a building.
+ * Returns a promise.
+ */
+var searchBestRoofFromBuildingId = function(buildingId) {
+  var url = API3_URL + '/rest/services/api/MapServer/find?' +
+      'layer=ch.bfe.solarenergie-eignung-daecher&' +
+      'searchField=building_id&' +
+      'searchText=' + buildingId;
+  $(document.body).addClass('ajax-roof');
+  return $.getJSON(url).then(function(data) {
+    var bestRoof = data.results[0];
+    for (var i = 0; i < data.results.length; i++) {
+      roofCandidate = data.results[i];
+      if (roofCandidate.attributes.mstrahlung >
+          bestRoof.attributes.mstrahlung) {
+        bestRoof = roofCandidate;
+      }
+    }
+    $(document.body).removeClass('ajax-roof');
+    return bestRoof;
+  });
 };
 
 /**
@@ -69,7 +101,15 @@ var initSearch = function(map, marker, onAddressFound) {
 	 		     });
 			   }
 			   return results;
-		   }
+		   },
+       ajax: {
+         beforeSend: function() {
+           $('.typeahead').addClass('loading'); 
+         },
+         complete: function() {
+           $('.typeahead').removeClass('loading');
+         }
+       }
 	   }
 	});
 

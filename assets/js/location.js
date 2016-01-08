@@ -14,7 +14,12 @@ var geocode = function(map, coords) {
      '&tolerance=' + pixelTolerance +
      '&order=distance' +
      '&layers=all:ch.bfs.gebaeude_wohnungs_register&returnGeometry=true';
-  return $.getJSON(url);
+  $(document.body).addClass('ajax-address');
+  return $.getJSON(url).then(function(data) {
+    $(document.body).removeClass('ajax-address');
+    return data;
+  });
+return $.getJSON(url);
 };
 
 /**
