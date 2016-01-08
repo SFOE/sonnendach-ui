@@ -51,6 +51,7 @@ var updateRoofInfo = function(map, marker, roof) {
   $('#areaOutput').html(Math.round(roof.attributes.flaeche));
   $('#eignung').html(suitability.substr(0, 1).toUpperCase() + suitability.substr(1));
   $('#eignung2').html(suitability);
+  $('#eignung3').html(suitability.substr(0, 1).toUpperCase() + suitability.substr(1));
   $('#stromertrag').html(formatNumber(Math.round((roof.attributes.gstrahlung*0.17*0.8)/100)*100));
   //$('#duschgaenge').html(roof.attributes.duschgaenge);
 

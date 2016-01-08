@@ -94,12 +94,28 @@
               <h4 class="hidden-localized trn">bittelokal</h4>
               <h4 class="show-no-roof trn">noRoofFound</h4>
               <h4 class="show-roof">
+                <ul class="actions uniform show-roof">
+                  <li>
+                    <a href="#two" class="button scrolly">
+                      <span class="trn">eignungTitel</span>: <span id="eignung"></span>
+                    </a>
+                  </li>
+                </ul>
+                <ul class="actions uniform show-roof">
+                  <li>
+                    <a href="#three" class="button scrolly">
+                      Solarstrom im Wert von <span id="finanzertrag"></span> Franken
+                    </a>
+                  </li>
+                </ul>                
+                <!--
                 <span class="trn">roofInclination</span>:&nbsp;
                 <span id="pitchOutput"></span>&deg;  |  
                 <span class="trn">roofOrientation</span>:&nbsp; 
                 <span id="headingOutput"></span>&deg;&nbsp;<span id="headingText">Nord</span>  |  
                 <span class="trn">roofArea</span>:&nbsp;
-                <span id="areaOutput"></span>&nbsp;m<sup>2</sup>
+                <span id="areaOutput">50</span>&nbsp;m<sup>2</sup>
+                -->
               </h4>
               <div class="roof-loading"></div>
             </header>
@@ -114,6 +130,9 @@
           <div class="6u$ 12u$(medium) important(medium)">
             <div id="map" style="width: 100%; height: 340px;"></div>
           </div>
+          <div class="12u$ 12u$(medium) important(medium) show-roof" style="padding: 0 0 0 0;margin: 0 0 0 0;">
+            <center style="padding: 0 0 0 0;margin: 0 0 0 0;"><a href="#two" class="scrolly"><span class="icon major fa-angle-double-down" style="padding: 1em 0 0 0;"></span></a></center>
+          </div>          
         </div>
       </div>
     </section>
@@ -132,7 +151,8 @@
             <header class="major">
               <h2 class="hidden-localized trn">eignungTitelnR</h2>
               <h2 class="show-no-roof trn">eignungTitelnR</h2>
-              <h2 class="show-roof"><strong><span class="trn">eignungTitel</span>: <span id="eignung"></span></strong></h2>
+              <h2 class="show-roof"><strong><span class="trn">eignungTitel</span>: 
+                <span id="eignung3"></span></strong></h2>
             </header>
             <p class="hidden-localized"><span class="trn">bittelokal</span></p>
             <p class="show-no-roof"><span class="trn">bittelokal</span></p>
@@ -142,6 +162,9 @@
               <span class="trn">eignungText2</span>
             </p>
           </div>
+          <div class="12u$ 12u$(medium) important(medium) show-roof" style="padding: 0 0 0 0;margin: 0 0 0 0;">
+            <center><a href="#three" class="scrolly"><span class="icon major fa-angle-double-down" style="padding: 1em 0 0 0;"></span></a></center>
+          </div>          
         </div>
       </div>
     </section>
@@ -166,6 +189,9 @@
         <ul class="actions uniform show-roof">
           <li><a href="#" class="button"><span class="trn">solarstromButton</span></a></li>
         </ul>
+        <div class="12u$ 12u$(medium) important(medium) show-roof" style="padding: 0 0 0 0;margin: 0 0 0 0;">
+          <center><a href="#four" class="scrolly"><span class="icon major fa-angle-double-down" style="padding: 1em 0 0 0;"></span></a></center>
+        </div>
       </div>
     </section>
 
@@ -184,12 +210,15 @@
         </p>
         <ul class="actions uniform show-roof">
           <li><a href="#" class="button"><span class="trn">solarthermieButton</span></a></li>
-        </ul>        
+        </ul>      
+        <div class="12u$ 12u$(medium) important(medium) show-roof" style="padding: 0 0 0 0;margin: 0 0 0 0;">
+          <center><a href="#five" class="scrolly"><span class="icon major fa-angle-double-down" style="padding: 1em 0 0 0;"></span></a></center>
+        </div>          
       </div>
     </section>
 
     <!-- Five: Drucken -->
-      <section id="three" class="main style1 special show-roof">
+      <section id="five" class="main style1 special show-roof">
         <div class="container">
           <header class="major">
             <span class="icon major fa-print"></span>
