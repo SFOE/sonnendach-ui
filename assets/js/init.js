@@ -229,7 +229,7 @@ var init = function() {
   }
 
   // Remove the loading css class 
-  body.removeClass('loading');
+	body.removeClass('is-loading');
 }
 
 // Launch init function when document is ready

@@ -76,9 +76,7 @@ body {
 .show-no-roof,
 .show-heat,
 .show-heat-dg,
-.loading .trn,
-.loading .icon,
-.loading .actions {
+.is-loading .trn {
   display: none;
 }
 
