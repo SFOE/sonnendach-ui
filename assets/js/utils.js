@@ -152,7 +152,7 @@ var flyTo = function(map, dest, destRes) {
     source: source,
     start: start
   });
-  if (sourceRes != destRes) {
+  if (dist > 1000 || sourceRes != destRes) {
     var bounce = ol.animation.bounce({
       duration: duration,
       resolution: Math.max(sourceRes, dist / 1000,

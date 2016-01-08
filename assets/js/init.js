@@ -3,6 +3,7 @@
  * associates to this address 
  */
 var onAddressFound = function(map, marker, address, autoSearchRoof, roofSearchTolerance) {
+  $('#search-container input').val('');
   if (address) {
     var coord, label;
     if (!address.attrs) { // Address comes from geolocation
@@ -29,8 +30,6 @@ var onAddressFound = function(map, marker, address, autoSearchRoof, roofSearchTo
           flyTo(map, coord, 0.25);
         }
       });
-    } else {
-      $('#search-container input').val('');
     }
   } else {
     $(document.body).removeClass('localized');
