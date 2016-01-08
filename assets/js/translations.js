@@ -274,5 +274,9 @@ var sdTranslations = {
    fr: 'an unknown error occurred. FR',
    it: 'an unknown error occurred. IT',
    en: 'an unknown error occurred.'
+ },
+ yourRoof: {
+    de: 'Ihre Dachfläche',
+    fr: 'Ihre Dachfläche FR'
  }
 };
