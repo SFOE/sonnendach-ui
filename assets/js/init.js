@@ -3,6 +3,7 @@
  * associates to this address 
  */
 var onAddressFound = function(map, marker, address, autoSearchRoof, roofSearchTolerance) {
+  $('.typeahead').typeahead('val', '');
   if (address) {
     var coord, label;
     if (!address.attrs) { // Address comes from geolocation
@@ -29,8 +30,6 @@ var onAddressFound = function(map, marker, address, autoSearchRoof, roofSearchTo
           flyTo(map, coord, 0.25);
         }
       });
-    } else {
-      $('#search-container input').val('');
     }
   } else {
     $(document.body).removeClass('localized');
@@ -216,7 +215,7 @@ var init = function() {
         onAddressFound(map, marker, data.results[0], false, 50.0);
       });
 
-      window.scroll(0, $('#one').offset().top);
+      goTo('one');
       
       // Add the featureId to the lang link href
       $('#lang a').attr('href', function(index, attr) {

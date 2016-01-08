@@ -79,7 +79,6 @@ var initSearch = function(map, marker, onAddressFound) {
 
   // Create the suggestion engine
 	var mySource = new Bloodhound({
-	   limit: 30,
 	   datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
 	   queryTokenizer: function(query) {
 		  var center = isCoordinates(view.getProjection().getExtent(), query);
@@ -91,6 +90,7 @@ var initSearch = function(map, marker, onAddressFound) {
 	   },
 	   remote: {   
 		   url: API3_SEARCHURL + '/rest/services/api/SearchServer?lang=de&searchText=%QUERY&type=locations',
+       wildcard: '%QUERY',
 		   filter: function(locations) {
 			   var results = [];
 			   if (locations.results) {
@@ -101,14 +101,7 @@ var initSearch = function(map, marker, onAddressFound) {
 	 		     });
 			   }
 			   return results;
-		   },
-       ajax: {
-         beforeSend: function() {
-           $('.typeahead').addClass('loading'); 
-         },
-         complete: function() {
-           $('.typeahead').removeClass('loading');
-         }
+		   
        }
 	   }
 	});
@@ -117,30 +110,35 @@ var initSearch = function(map, marker, onAddressFound) {
 	// the suggestion engine will be useless until it is initialized
 	mySource.initialize();
 
-  // Create the typeahead search box 
-	var searchInput = $('#search-container input');
-	searchInput.typeahead(null,{
+  // Create the 2 typeahead search box
+  var searchInputs = $('.typeahead').typeahead({
+    hint: true,
+    highlight: true,
+    minLength: 3
+  }, {
 	  name: 'location',
 	  displayKey: function(location) {
 		  return location.attrs.label.replace('<b>', '').replace('</b>', '');
 	  },
+    limit: 30,
 	  source: mySource.ttAdapter(),
 	  templates: {
 		  suggestion: function(location) {
-		    return '<p>' + location.attrs.label + '</p>' ;
+		    return '<div>' + location.attrs.label + '</div>';
 		  }
 	  }                                      
 	});
-
-	var parseExtent = function(stringBox2D) {
-	  var extent = stringBox2D.replace('BOX(', '').replace(')', '').replace(',', ' ').split(' ');
-	  return $.map(extent, parseFloat);
-	};
-
-  searchInput.attr('placeholder', translator.get('placeholder')); 
-	searchInput.placeholder();
-
-	searchInput.on('typeahead:selected', function(evt, location, suggName) {
+  searchInputs.attr('placeholder', translator.get('placeholder')); 
+	searchInputs.placeholder();
+	searchInputs.on('typeahead:selected', function(evt, location, suggName) {
 		onAddressFound(map, marker, location, true, 0.0);
-	});
+    if (this.id == 'searchTypeahead1') {
+      goTo('one');
+      $(this).blur();
+    }
+	}).on('typeahead:asyncrequest', function() {
+    $(this).addClass('loading'); 
+  }).on('typeahead:asyncreceive', function() {
+    $(this).removeClass('loading'); 
+  });
 };

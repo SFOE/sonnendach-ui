@@ -152,7 +152,7 @@ var flyTo = function(map, dest, destRes) {
     source: source,
     start: start
   });
-  if (sourceRes != destRes) {
+  if (dist > 1000 || sourceRes != destRes) {
     var bounce = ol.animation.bounce({
       duration: duration,
       resolution: Math.max(sourceRes, dist / 1000,
@@ -209,4 +209,11 @@ var getToleranceInPixels = function(toleranceMeters, mapExtent, display) {
     return Math.ceil(toleranceMeters / factor);
   }
   return 0;
+}
+
+/**
+ * This function scroll smoothly to an element
+ */
+var goTo = function(id) {
+  $('#goTo' + (id.charAt(0).toUpperCase() + id.slice(1))).click();
 }
