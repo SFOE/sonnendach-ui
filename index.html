@@ -107,15 +107,7 @@
                       Solarstrom im Wert von <span id="finanzertrag"></span> Franken
                     </a>
                   </li>
-                </ul>                
-                <!--
-                <span class="trn">roofInclination</span>:&nbsp;
-                <span id="pitchOutput"></span>&deg;  |  
-                <span class="trn">roofOrientation</span>:&nbsp; 
-                <span id="headingOutput"></span>&deg;&nbsp;<span id="headingText">Nord</span>  |  
-                <span class="trn">roofArea</span>:&nbsp;
-                <span id="areaOutput">50</span>&nbsp;m<sup>2</sup>
-                -->
+                </ul>
               </h4>
               <div class="roof-loading"></div>
             </header>
@@ -179,7 +171,7 @@
           <h2 class="show-roof">
             <strong><span id="stromertrag"></span></strong>
             <span class="trn">solarstromTitel</span>
-            <strong><span id="finanzertrag"></span>
+            <strong><span id="finanzertrag2"></span>
             <span class="trn">solarstromTitel2</span></strong>
           </h2>          
         </header>
@@ -217,8 +209,35 @@
       </div>
     </section>
 
-    <!-- Five: Drucken -->
+    <!-- Five: Ihre Dachflaeche -->
       <section id="five" class="main style1 special show-roof">
+        <div class="container">
+          <header class="major">
+            <span class="icon major fa-home"></span>
+            <h2><span class="trn">yourRoof</span></h2>
+          </header>
+          <div class="row 150%">
+            <div class="4u 12u$(medium)">
+              <h1><span id="pitchOutput"></span>&deg;</h1>
+              <h3><span class="trn">roofInclination</span></h3>
+            </div>
+            <div class="4u 12u$(medium)">
+              <h1><span id="headingOutput"></span>&deg;&nbsp;<span id="headingText"></span></h1>
+              <h3><span class="trn">roofOrientation</span></h3>
+            </div>
+            <div class="4u$ 12u$(medium)">
+              <h1><span id="areaOutput"></span>&nbsp;m<sup>2</sup></h1>
+              <h3><span class="trn">roofArea</span></h3>
+            </div>
+          </div>
+          <div class="12u$ 12u$(medium) important(medium) show-roof" style="padding: 0 0 0 0;margin: 0 0 0 0;">
+            <center><a href="#six" class="scrolly"><span class="icon major fa-angle-double-down" style="padding: 1em 0 0 0;"></span></a></center>
+          </div>          
+        </div>
+      </section>
+
+    <!-- Six: Drucken -->
+      <section id="six" class="main style2 special show-roof">
         <div class="container">
           <header class="major">
             <span class="icon major fa-print"></span>

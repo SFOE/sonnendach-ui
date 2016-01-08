@@ -48,7 +48,7 @@ var updateRoofInfo = function(map, marker, roof) {
   $('#pitchOutput').html(roof.attributes.neigung);
   $('#headingOutput').html(roof.attributes.ausrichtung + 180);
   $('#headingText').html(getOrientationText(roof.attributes.ausrichtung, window.translator));
-  $('#areaOutput').html(Math.round(roof.attributes.flaeche));
+  $('#areaOutput').html(formatNumber(Math.round(roof.attributes.flaeche)));
   $('#eignung').html(suitability.substr(0, 1).toUpperCase() + suitability.substr(1));
   $('#eignung2').html(suitability);
   $('#eignung3').html(suitability.substr(0, 1).toUpperCase() + suitability.substr(1));
@@ -57,8 +57,10 @@ var updateRoofInfo = function(map, marker, roof) {
 
   if (roof.attributes.stromertrag < 1000) {
     $('#finanzertrag').html(formatNumber(Math.round(roof.attributes.finanzertrag/10)*10));
+    $('#finanzertrag2').html(formatNumber(Math.round(roof.attributes.finanzertrag/10)*10));
   } else {
     $('#finanzertrag').html(formatNumber(Math.round(roof.attributes.finanzertrag/100)*100));
+    $('#finanzertrag2').html(formatNumber(Math.round(roof.attributes.finanzertrag/100)*100));
   }
 
   //add css-class
