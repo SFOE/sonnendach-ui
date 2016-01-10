@@ -164,6 +164,9 @@ var init = function() {
     t: sdTranslations // Object defined in tranlations.js
   });
 
+  //add locate-symbol
+  document.getElementById("location").innerHTML = document.getElementById("location").innerHTML + ' <span class="icon fa-location-arrow"></span>';
+
   // Create map
   var map = createMap('map', lang);
   var marker = new ol.Overlay({
