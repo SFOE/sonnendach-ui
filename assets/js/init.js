@@ -65,6 +65,8 @@ var updateRoofInfo = function(map, marker, roof) {
     $('#finanzertrag2').html(formatNumber(Math.round(roof.attributes.finanzertrag/100)*100));
   }
 
+  document.getElementById("eignungbutton2").className = 'button2 scrolly button2suit' + roof.attributes.klasse;
+
   //add css-class
   $(document.body).removeClass('no-roof').addClass('roof');
   
