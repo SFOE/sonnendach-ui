@@ -55,7 +55,9 @@ var updateRoofInfo = function(map, marker, roof) {
   //$('#duschgaenge').html(roof.attributes.duschgaenge);
 
   //symbol for suitability
-  document.getElementById("eignungSymbol").src = 'images/' + roof.attributes.klasse + '.png';
+  if (document.contains(document.getElementById("eignungSymbol"))) {
+    document.getElementById("eignungSymbol").src = 'images/' + roof.attributes.klasse + '.png';
+  }
 
   if (roof.attributes.stromertrag < 1000) {
     $('#finanzertrag').html(formatNumber(Math.round(roof.attributes.finanzertrag/10)*10));
@@ -65,7 +67,9 @@ var updateRoofInfo = function(map, marker, roof) {
     $('#finanzertrag2').html(formatNumber(Math.round(roof.attributes.finanzertrag/100)*100));
   }
 
-  document.getElementById("eignungbutton2").className = 'button2 scrolly button2suit' + roof.attributes.klasse;
+  if (document.contains(document.getElementById("eignungbutton2"))) {
+    document.getElementById("eignungbutton2").className = 'button2 scrolly button2suit' + roof.attributes.klasse;
+  }
 
   //add css-class
   $(document.body).removeClass('no-roof').addClass('roof');
@@ -97,6 +101,10 @@ var updateRoofInfo = function(map, marker, roof) {
   }
 
   $('#heatText').html(textHeat);
+
+  if (document.contains(document.getElementById('printLink'))) {
+    document.getElementById('printLink').href = 'print.html?featureId=' + roof.featureId;
+  }  
 
   // Clear the highlighted roof the add the new one
   var polygon = new ol.geom.Polygon(roof.geometry.rings); 
@@ -165,7 +173,9 @@ var init = function() {
   });
 
   //add locate-symbol
-  document.getElementById("location").innerHTML = document.getElementById("location").innerHTML + ' <span class="icon fa-location-arrow"></span>';
+  if (document.contains(document.getElementById("location"))) {
+    document.getElementById("location").innerHTML = document.getElementById("location").innerHTML + ' <span class="icon fa-location-arrow"></span>';
+  }
 
   // Create map
   var map = createMap('map', lang);
@@ -210,7 +220,7 @@ var init = function() {
     });
   });
 
-  // Display the fature from permalink
+  // Display the feature from permalink
   if (permalink.featureId) {
     searchFeatureFromId(permalink.featureId).then(function(data) {
       onRoofFound(map, marker, data.feature);
