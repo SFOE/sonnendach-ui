@@ -132,6 +132,7 @@ var initSearch = function(map, marker, onAddressFound) {
 	searchInputs.placeholder();
 	searchInputs.on('typeahead:selected', function(evt, location, suggName) {
 		onAddressFound(map, marker, location, true, 0.0);
+    //scroll to section one
     if (this.id == 'searchTypeahead1') {
       goTo('one');
       $(this).blur();

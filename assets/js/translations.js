@@ -1,7 +1,7 @@
 var sdTranslations = {
   pagetitle: {
-    de: 'Wie nutze ich die Sonne auf meinem Dach?',
-    fr: 'Wie nutze ich die Sonne auf meinem Dach? FR'
+    de: 'Mach Geld mit deinem Sonnendach!',
+    fr: 'Mach Geld mit deinem Sonnendach! FR'
   },
   bfe: {
     de: 'Bundesamt für Energie BFE',
@@ -40,7 +40,7 @@ var sdTranslations = {
     en: 'swisstopo'
   },
   mainTitle: {
-    de: 'Wie viel <strong>Strom</strong> und <strong>W&auml;rme</strong> aus Sonnenenergie kann mein Dach produzieren?',
+    de: 'Mach <strong>Geld</strong> mit deinem <strong>Sonnendach</strong>!',
     fr: 'Combien d\'<trong>energie</strong> je peux produire sur  mon toit'
   },
   subTitle: {
@@ -48,7 +48,7 @@ var sdTranslations = {
     fr: 'Decouvrez le cadastre solaire Suisse.'
   },
   locateMe: {
-    de: 'oder lokalisiere mich',
+    de: 'oder lokalisieren sie sich',
     fr: 'or localisez moi'
   },
   notLocalised: {

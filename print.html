@@ -1,0 +1,187 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title class="trn">pagetitle</title>
+		<meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, minimal-ui"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="application-name" content="sonnendach"/>
+    
+    <!--
+    <meta name="msapplication-TileImage" content="images/touch-icon-bund-144x144.png"/>
+    <meta name="msapplication-TileColor" content="#ffffff"/>
+    <meta name="msapplication-square70x70logo" content="images/touch-icon-bund-70x70.png"/>
+    <meta name="msapplication-square150x150logo" content="images/touch-icon-bund-150x150.png"/>
+    <meta name="msapplication-square310x310logo" content="images/touch-icon-bund-310x310.png"/>
+    <link rel="apple-touch-icon" sizes="76x76" href="images/touch-icon-bund-76x76.png"/>
+    <link rel="apple-touch-icon" sizes="120x120" href="images/touch-icon-bund-120x120.png"/>
+    <link rel="apple-touch-icon" sizes="152x152" href="images/touch-icon-bund-152x152.png"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+		
+		<link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/map.css"/>
+    -->
+
+     <link rel="stylesheet" type="text/css" href="assets/css/extended.min.css"/>
+
+	</head>
+
+	<body>
+
+  <div class="chsdi-htmlpopup-container">
+    <div class="htmlpopup-header">
+      <img src="images/logo.jpg">
+      <div class="amts">
+        <div class="amt trn">bfe</div>
+        <div class="amt trn">meteoschweiz</div>
+        <div class="amt trn">swisstopo</div>
+      </div>
+    </div>
+    <div class="htmlpopup-content">
+      <h3 class="trn">mainTitle</h3>
+      <table class="table-with-border kernkraftwerke-extended" cellpadding="5">
+        <tr>
+          <th class="cell-meta">
+            Adresse
+          </th>
+          <td>
+            <span id="addressOutput"></span>
+          </td>
+        </tr>
+        <tr>
+          <th class="cell-meta">
+            <span class="trn">eignungTitel</span>
+          </th>
+          <td>
+            <span id="eignung"></span>
+          </td>
+        </tr>
+        <tr>
+          <th class="cell-meta">
+            Solarstrom im Wert von
+          </th>
+          <td>
+            <span id="finanzertrag"></span> Franken
+          </td>
+        </tr>        
+      </table>
+      <div id="map" style="width: 100%; height: 300px;padding:1em 0 1em 0;"></div>
+      <h3 class="trn">Solarstrom</h3>
+      <table class="table-with-border kernkraftwerke-extended" cellpadding="5">
+        <tr>
+          <th class="cell-meta">
+            <span class="trn">eignungTitel</span>
+          </th>
+          <td>
+            <span id="eignung3"></span>
+          </td>
+        </tr>
+        <tr>
+          <th class="cell-meta">
+            Stromertrag
+          </th>
+          <td>
+            <span id="stromertrag"></span> kWh
+          </td>
+        </tr>
+        <tr>
+          <th class="cell-meta">
+            Zum Vergleich
+          </th>
+          <td>
+            <span class="trn">solarstromText</span>
+          </td>
+        </tr>        
+        <tr>
+          <th class="cell-meta">
+            Dies entspricht
+          </th>
+          <td>
+            <span id="finanzertrag2"></span> Franken
+          </td>
+        </tr>        
+      </table>
+      <h3 class="trn">Solarwärme</h3>
+      <table class="table-with-border kernkraftwerke-extended" cellpadding="5">
+        <tr>
+          <th class="cell-meta">
+            <span class="trn">Wärmeertrag</span>
+          </th>
+          <td>
+            <span id="heatTitle"></span>
+          </td>
+        </tr>
+        <tr>
+          <th class="cell-meta">
+            Duschgänge
+          </th>
+          <td>
+            <span id="heatText"></span>
+          </td>
+        </tr>     
+      </table>
+      <h3 class="trn">yourRoof</h3>
+      <table class="table-with-border kernkraftwerke-extended" cellpadding="5">
+        <tr>
+          <th class="cell-meta">
+            <span class="trn">roofInclination</span>
+          </th>
+          <td>
+            <span id="pitchOutput"></span>&deg;
+          </td>
+        </tr>
+        <tr>
+          <th class="cell-meta">
+            <span class="trn">roofOrientation</span>
+          </th>
+          <td>
+            <span id="headingOutput"></span>&deg;&nbsp;<span id="headingText"></span>
+          </td>
+        </tr>
+        <tr>
+          <th class="cell-meta">
+            <span class="trn">roofArea</span>
+          </th>
+          <td>
+            <span id="areaOutput"></span>&nbsp;m<sup>2</sup>
+          </td>
+        </tr>             
+      </table>      
+    </div>
+    <div class="htmlpopup-footer">
+      <a href="http://www.geo.admin.ch/internet/geoportal/de/home/geoadmin/contact.html#copyright" target="_blank">
+        Copyright &amp; Datenschutzerklärung
+      </a>
+      <div class="float-right">
+        <a href="javascript:window.print();">
+          Drucken
+        </a>
+      </div>
+    </div>
+	</div>
+
+    <script src="assets/js/jquery-2.1.4.min.js"></script>
+    <script src="assets/js/jquery.xdomainrequest.1.0.2.min.js"></script>
+    <script src="assets/js/jquery.placeholder.2.0.7.min.js"></script>
+    <script src="assets/js/typeahead.bundle.0.11.1.js"></script> 
+    <script src="assets/js/jquery.translate.0.9.1.js"></script>
+	  <script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/skel.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+    <script src="assets/js/ol.3.12.1.js"></script>
+    <script src="assets/js/proj4.2.2.1.js"></script>
+    <script src="assets/js/EPSG21781.js"></script>
+    <script src="assets/js/EPSG2056.js"></script>
+    <script src="assets/js/layers.js"></script>
+    <script src="assets/js/map.js"></script>
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/search.js"></script>
+    <script src="assets/js/location.js"></script>
+    <script src="assets/js/permalink.js"></script>
+    <script src="assets/js/translations.js"></script>
+    <script src="assets/js/init.js"></script>
+	</body>
+</html>
