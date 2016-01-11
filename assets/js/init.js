@@ -55,7 +55,7 @@ var updateRoofInfo = function(map, marker, roof) {
   //$('#duschgaenge').html(roof.attributes.duschgaenge);
 
   //symbol for suitability
-  if (document.contains(document.getElementById("eignungSymbol"))) {
+  if ($.contains(document.body, document.getElementById("eignungSymbol"))) {
     document.getElementById("eignungSymbol").src = 'images/' + roof.attributes.klasse + '.png';
   }
 
@@ -67,7 +67,7 @@ var updateRoofInfo = function(map, marker, roof) {
     $('#finanzertrag2').html(formatNumber(Math.round(roof.attributes.finanzertrag/100)*100));
   }
 
-  if (document.contains(document.getElementById("eignungbutton2"))) {
+  if ($.contains(document.body, document.getElementById("eignungbutton2"))) {
     document.getElementById("eignungbutton2").className = 'button2 scrolly button2suit' + roof.attributes.klasse;
   }
 
@@ -102,7 +102,7 @@ var updateRoofInfo = function(map, marker, roof) {
 
   $('#heatText').html(textHeat);
 
-  if (document.contains(document.getElementById('printLink'))) {
+  if ($.contains(document.body, document.getElementById("printLink"))) {
     document.getElementById('printLink').href = 'print.html?featureId=' + roof.featureId;
   }  
 
@@ -173,7 +173,7 @@ var init = function() {
   });
 
   //add locate-symbol
-  if (document.contains(document.getElementById("location"))) {
+  if ($.contains(document.body, document.getElementById("location"))) {
     document.getElementById("location").innerHTML = document.getElementById("location").innerHTML + ' <span class="icon fa-location-arrow"></span>';
   }
 
