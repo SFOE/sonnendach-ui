@@ -49,7 +49,6 @@ var updateRoofInfo = function(map, marker, roof) {
   $('#headingText').html(getOrientationText(roof.attributes.ausrichtung, window.translator));
   $('#areaOutput').html(formatNumber(Math.round(roof.attributes.flaeche)));
   $('#eignung').html(suitability.substr(0, 1).toUpperCase() + suitability.substr(1));
-  $('#eignung2').html(suitability);
   $('#eignung3').html(suitability.substr(0, 1).toUpperCase() + suitability.substr(1));
   $('#stromertrag').html(formatNumber(Math.round((roof.attributes.gstrahlung*0.17*0.8)/100)*100));
   //$('#duschgaenge').html(roof.attributes.duschgaenge);
@@ -58,6 +57,14 @@ var updateRoofInfo = function(map, marker, roof) {
   if ($.contains(document.body, document.getElementById("eignungSymbol"))) {
     document.getElementById("eignungSymbol").src = 'images/' + roof.attributes.klasse + '.png';
   }
+
+  //text for suitability
+  if (roof.attributes.klasse < 3) {
+    $('#eignungText').html(translator.get('eignungText1') + ' <strong>' + suitability + '</strong> ' + translator.get('eignungText2'));
+  } else {
+    $('#eignungText').html(translator.get('eignungText3') + translator.get('eignungText1') + ' <strong>' + suitability + '</strong> ' + translator.get('eignungText2'));
+  }
+
 
   if (roof.attributes.stromertrag < 1000) {
     $('#finanzertrag').html(formatNumber(Math.round(roof.attributes.finanzertrag/10)*10));

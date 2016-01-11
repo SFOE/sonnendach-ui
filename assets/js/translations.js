@@ -146,12 +146,16 @@ var sdTranslations = {
     fr: 'Bitte lokalisieren Sie sich oder suchen Sie eine Adresse. FR'
   },
   eignungText1: {
-    de: 'Gratulation! Ihre Dachfläche ist für die Nutzung von Solarenergie',
-    fr: 'Gratulation! Ihre Dachfläche ist für die Nutzung von Solarenergie FR'
+    de: 'Ihre Dachfläche ist für die Nutzung von Solarenergie',
+    fr: 'Ihre Dachfläche ist für die Nutzung von Solarenergie FR'
   },
   eignungText2: {
     de: 'geeignet. Die Eignung der Dachfläche wird durch die Sonneneinstrahlung, Ausrichtung, Neigung und Verschattung bestimmt.',
     fr: 'geeignet. Die Eignung der Dachfläche wird durch die Sonneneinstrahlung, Ausrichtung, Neigung und Verschattung bestimmt. FR'
+  },
+  eignungText3: {
+    de: 'Gratulation! ',
+    fr: 'Gratulation! FR'
   },
   solarstromTitelnR: {
     de: 'Solarstrom-Produktion noch unbekannt',
