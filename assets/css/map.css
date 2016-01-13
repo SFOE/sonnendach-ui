@@ -35,10 +35,10 @@ header {
 
 .tt-suggestion {
   padding: 2px 8px;
-  font-size: 20px;
-  line-height: 34px;
+  font-size: 16px;
+  line-height: 30px;
   text-align: left;
-  height: 40px;
+  height: 30px;
 }
 
 .tt-cursor, .tt-suggestion:hover{
