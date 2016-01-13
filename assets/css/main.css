@@ -2627,17 +2627,18 @@
 	}
 
 	.button2suit5 {
-		background-color: rgba(192, 0, 0, 0.8);
+		background-color: rgba(168, 0, 0, 1);
 		font-weight: 400;
+		color: rgb(255, 255, 255) !important;
 	}
 
 	.button2suit4 {
-		background-color: rgba(255, 0, 0, 1);
+		background-color: rgba(255, 85, 0, 1);
 		font-weight: 400;
 	}
 
 	.button2suit3 {
-		background-color: rgba(255, 192, 0, 1);
+		background-color: rgba(255, 170, 0, 1);
 	}
 
 	.button2suit2 {
@@ -2645,7 +2646,7 @@
 	}
 
 	.button2suit1 {
-		background-color: rgba(0, 176, 240, 1);
+		background-color: rgba(0, 197, 255, 1);
 	}			
 
 		input[type="submit"]:hover,
