@@ -282,5 +282,13 @@ var sdTranslations = {
  yourRoof: {
     de: 'Ihre Dachfläche',
     fr: 'Ihre Dachfläche FR'
+ },
+ documentationTitel: {
+    de: 'Wie wurde der Solarkataster Schweiz erstellt?',
+    fr: 'Wie wurde der Solarkataster Schweiz erstellt? FR'
+ },
+ documentationButton: {
+    de: 'lesen',
+    fr: 'lesen FR'  
  }
 };
