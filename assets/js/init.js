@@ -49,15 +49,22 @@ var updateRoofInfo = function(map, marker, roof) {
   $('#headingText').html(getOrientationText(roof.attributes.ausrichtung, window.translator));
   $('#areaOutput').html(formatNumber(Math.round(roof.attributes.flaeche)));
   $('#eignung').html(suitability.substr(0, 1).toUpperCase() + suitability.substr(1));
-  $('#eignung2').html(suitability);
   $('#eignung3').html(suitability.substr(0, 1).toUpperCase() + suitability.substr(1));
   $('#stromertrag').html(formatNumber(Math.round((roof.attributes.gstrahlung*0.17*0.8)/100)*100));
   //$('#duschgaenge').html(roof.attributes.duschgaenge);
 
   //symbol for suitability
-  if (document.contains(document.getElementById("eignungSymbol"))) {
+  if ($.contains(document.body, document.getElementById("eignungSymbol"))) {
     document.getElementById("eignungSymbol").src = 'images/' + roof.attributes.klasse + '.png';
   }
+
+  //text for suitability
+  if (roof.attributes.klasse < 3) {
+    $('#eignungText').html(translator.get('eignungText1') + ' <strong>' + suitability + '</strong> ' + translator.get('eignungText2'));
+  } else {
+    $('#eignungText').html(translator.get('eignungText3') + translator.get('eignungText1') + ' <strong>' + suitability + '</strong> ' + translator.get('eignungText2'));
+  }
+
 
   if (roof.attributes.stromertrag < 1000) {
     $('#finanzertrag').html(formatNumber(Math.round(roof.attributes.finanzertrag/10)*10));
@@ -67,7 +74,7 @@ var updateRoofInfo = function(map, marker, roof) {
     $('#finanzertrag2').html(formatNumber(Math.round(roof.attributes.finanzertrag/100)*100));
   }
 
-  if (document.contains(document.getElementById("eignungbutton2"))) {
+  if ($.contains(document.body, document.getElementById("eignungbutton2"))) {
     document.getElementById("eignungbutton2").className = 'button2 scrolly button2suit' + roof.attributes.klasse;
   }
 
@@ -102,7 +109,7 @@ var updateRoofInfo = function(map, marker, roof) {
 
   $('#heatText').html(textHeat);
 
-  if (document.contains(document.getElementById('printLink'))) {
+  if ($.contains(document.body, document.getElementById("printLink"))) {
     document.getElementById('printLink').href = 'print.html?featureId=' + roof.featureId;
   }  
 
@@ -160,10 +167,24 @@ var init = function() {
   window.API3_SEARCHURL = 'https://api3.geo.admin.ch';
   
   var langs = ['de', 'fr'];
+  var headers = ['0','1'];
   var body = $(document.body);
   var locationBt = $('#location');
   var markerElt = $('<div class="marker ga-crosshair"></div>');
   var permalink = addPermalink();
+
+  // Load Header
+  var header = (headers.indexOf(permalink.header) != -1) ? permalink.header : headers[0];
+
+  if (header == '1') {
+    //EnergieSchweiz Header
+    $('#ech').removeClass('hide');
+    $('#orange').removeClass('hide');
+  } else {
+    $('#eig').removeClass('hide');
+    $('#red').removeClass('hide');
+  }
+
 
   // Load the language
   var lang = (langs.indexOf(permalink.lang) != -1) ? permalink.lang : langs[0]; 
@@ -173,7 +194,7 @@ var init = function() {
   });
 
   //add locate-symbol
-  if (document.contains(document.getElementById("location"))) {
+  if ($.contains(document.body, document.getElementById("location"))) {
     document.getElementById("location").innerHTML = document.getElementById("location").innerHTML + ' <span class="icon fa-location-arrow"></span>';
   }
 

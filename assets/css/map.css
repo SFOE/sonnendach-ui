@@ -35,10 +35,10 @@ header {
 
 .tt-suggestion {
   padding: 2px 8px;
-  font-size: 20px;
-  line-height: 34px;
+  font-size: 16px;
+  line-height: 30px;
   text-align: left;
-  height: 40px;
+  height: 30px;
 }
 
 .tt-cursor, .tt-suggestion:hover{
@@ -140,6 +140,14 @@ ul.actions.uniform li > a.button > span {
   padding-right: 20px;
 }
 
+.logoech {
+  background: url('images/logoech.png') no-repeat center left;
+  width: 204px;
+  height: 88px;
+  padding-right: 20px;
+  padding-top: 100px;
+}
+
 .amts {
   position: absolute;
   left: 268px;
@@ -216,6 +224,14 @@ ul.actions.uniform li > a.button > span {
     background-size: 19px;
   }
 
+  .logoech {
+    width: 41px;
+    height: 42px;
+    padding: 0;
+    background: url('images/logoechsmall.png') no-repeat center center;
+    background-size: 19px;
+  }
+
   .amts {
     top: 14px;
     left: 31px;
@@ -228,7 +244,7 @@ ul.actions.uniform li > a.button > span {
   .amt-abbr {
     display: block;
   }
-}
+} /* End media screen */
 
 /* Openlayers elements css */
 .ol-scale-line {
@@ -399,5 +415,9 @@ ul.actions.uniform li > a.button > span {
   width: 30px;
   height: 40px;
   background-image: url('images/marker.png');
+}
+
+.hide {
+  display: none;
 }
                                                                                                      

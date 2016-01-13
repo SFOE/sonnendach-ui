@@ -47,7 +47,7 @@
     </div>
 
 	  <!-- eid -->
-    <section id="eig" class="main style1 special" style="padding: 0 !important">
+    <section id="eig" class="main style1 special hide" style="padding: 0 !important">
       <div class="container">
         <div class="100%">
           <div class="logo"></div>
@@ -69,14 +69,36 @@
     </section>	
 	
 	  <!-- red -->
-    <section id="red" style="background-color: red; height: 5px; line-height: 5px;">
+    <section id="red" class="hide" style="background-color: red; height: 5px; line-height: 5px;">
       <div class="container">
         <div class="row 150%">
           <div class="12u 12u$(medium)">
           </div>
         </div>
       </div>
-    </section>	
+    </section>
+
+    <!-- eCH Header -->
+    <section id="ech" class="main style1 special hide" style="padding: 0 !important">
+      <div class="container">
+        <div class="100%">
+            <a href="http://www.energieschweiz.ch" target="_blank"><div class="logoech"></div></a>
+          <div id="lang">
+            <a href="?lang=de" class="langde">DE</a>|<a href="?lang=fr" class="langfr">FR</a> 
+          </div>
+        </div>
+      </div>
+    </section>    
+
+    <!-- orange -->
+    <section id="orange" class="hide" style="background-color: rgb(245,82,10); height: 5px; line-height: 5px;">
+      <div class="container">
+        <div class="row 150%">
+          <div class="12u 12u$(medium)">
+          </div>
+        </div>
+      </div>
+    </section>  
 
 		<!-- Header -->
     <section id="header">
@@ -166,9 +188,7 @@
             <p class="hidden-localized"><span class="trn">bittelokal</span></p>
             <p class="show-no-roof"><span class="trn">bittelokal</span></p>
             <p class="show-roof">
-              <span class="trn">eignungText1</span>
-              <strong><span id="eignung2"></span></strong>
-              <span class="trn">eignungText2</span>
+              <span id="eignungText"></span>
             </p>
           </div>
         </div>
@@ -264,6 +284,26 @@
           <ul class="actions uniform">
             <li><a href="" class="button" id="printLink" target="_blank"><span class="trn">druckenButton</span></a></li>
           </ul>
+          <div class="12u$ 12u$(medium) important(medium) show-roof arrows">
+            <a href="#seven" class="scrolly icon major fa-angle-double-down"></a>
+          </div>          
+        </div>
+      </section>
+
+    <!-- Six: Dokumentation -->
+      <section id="seven" class="main style1 special show-roof">
+        <div class="container">
+          <header class="major">
+            <span class="icon major fa-book"></span>
+            <h2><span class="trn">documentationTitel</span></h2>
+          </header>
+          <p></p>
+          <ul class="actions uniform">
+            <li><a href="http://www.bfe.admin.ch/geoinformation" class="button" id="printLink" target="_blank"><span class="trn">documentationButton</span></a></li>
+          </ul>
+          <div class="12u$ 12u$(medium) important(medium) show-roof arrows">
+            <a href="#one" class="scrolly icon major fa-angle-double-up"></a>
+          </div>          
         </div>
       </section>
 
