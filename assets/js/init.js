@@ -167,10 +167,24 @@ var init = function() {
   window.API3_SEARCHURL = 'https://api3.geo.admin.ch';
   
   var langs = ['de', 'fr'];
+  var headers = ['0','1'];
   var body = $(document.body);
   var locationBt = $('#location');
   var markerElt = $('<div class="marker ga-crosshair"></div>');
   var permalink = addPermalink();
+
+  // Load Header
+  var header = (headers.indexOf(permalink.header) != -1) ? permalink.header : headers[0];
+
+  if (header == '1') {
+    //EnergieSchweiz Header
+    $('#ech').removeClass('hide');
+    $('#orange').removeClass('hide');
+  } else {
+    $('#eig').removeClass('hide');
+    $('#red').removeClass('hide');
+  }
+
 
   // Load the language
   var lang = (langs.indexOf(permalink.lang) != -1) ? permalink.lang : langs[0]; 
