@@ -44,6 +44,8 @@ var updateRoofInfo = function(map, marker, roof) {
   var suitability = getSuitabilityText(roof.attributes.klasse, window.translator);
 
   //fill content with attributes
+  $('#mstrahlungOutput').html(formatNumber(roof.attributes.mstrahlung));
+  $('#gstrahlungOutput').html(formatNumber(roof.attributes.gstrahlung));
   $('#pitchOutput').html(roof.attributes.neigung);
   $('#headingOutput').html(roof.attributes.ausrichtung + 180);
   $('#headingText').html(getOrientationText(roof.attributes.ausrichtung, window.translator));

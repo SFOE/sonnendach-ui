@@ -131,7 +131,6 @@
               <div class="address-loading"></div>
             </header>
             <header class="major">
-              <h2 class="show-no-roof trn">noMatch</h2>
               <h4 class="hidden-localized trn">bittelokal</h4>
               <h4 class="show-no-roof trn">noRoofFound</h4>
               <h4 class="show-roof">
@@ -266,15 +265,38 @@
               <h1><span id="areaOutput"></span>&nbsp;m<sup>2</sup></h1>
               <h3><span class="trn">roofArea</span></h3>
             </div>
-          </div>
+          </div>        
           <div class="12u$ 12u$(medium) important(medium) show-roof arrows">
             <a href="#six" class="scrolly icon major fa-angle-double-down"></a>
           </div>          
         </div>
       </section>
 
-    <!-- Six: Drucken -->
+    <!-- Six: Einstrahlung auf Ihre Dachflaeche -->
       <section id="six" class="main style2 special show-roof">
+        <div class="container">
+          <header class="major">
+            <span class="icon major fa-sun-o"></span>
+            <h2><span class="trn">yourRoofEinstrahlung</span></h2>
+          </header>
+          <div class="row 150%">
+            <div class="6u 12u$(medium)">
+              <h1><span id="mstrahlungOutput"></span> kWh/m<sup>2</sup>/Jahr</h1>
+              <h3><span class="trn">roofmstrahlung</span></h3>
+            </div>
+            <div class="6u 12u$(medium)">
+              <h1><span id="gstrahlungOutput"></span> kWh/Jahr</h1>
+              <h3><span class="trn">roofgstrahlung</span></h3>
+            </div>
+          </div>          
+          <div class="12u$ 12u$(medium) important(medium) show-roof arrows">
+            <a href="#seven" class="scrolly icon major fa-angle-double-down"></a>
+          </div>          
+        </div>
+      </section>
+
+    <!-- Seven: Drucken -->
+      <section id="seven" class="main style1 special show-roof">
         <div class="container">
           <header class="major">
             <span class="icon major fa-print"></span>
@@ -285,13 +307,31 @@
             <li><a href="" class="button" id="printLink" target="_blank"><span class="trn">druckenButton</span></a></li>
           </ul>
           <div class="12u$ 12u$(medium) important(medium) show-roof arrows">
-            <a href="#seven" class="scrolly icon major fa-angle-double-down"></a>
+            <a href="#aight" class="scrolly icon major fa-angle-double-down"></a>
           </div>          
         </div>
       </section>
 
-    <!-- Six: Dokumentation -->
-      <section id="seven" class="main style1 special show-roof">
+
+    <!-- Aight: EnergieSchweiz -->
+      <section id="aight" class="main style2 special show-roof">
+        <div class="container">
+          <header class="major">
+            <span class="icon major fa-question-circle"></span>
+            <h2><span class="trn">energieSchweizTitel</span></h2>
+          </header>
+          <p></p>
+          <ul class="actions uniform">
+            <li><a href="" class="button" id="printLink" target="_blank"><span class="trn">energieSchweizButton</span></a></li>
+          </ul>
+          <div class="12u$ 12u$(medium) important(medium) show-roof arrows">
+            <a href="#nine" class="scrolly icon major fa-angle-double-down"></a>
+          </div>          
+        </div>
+      </section>
+
+    <!-- Nine: Dokumentation -->
+      <section id="nine" class="main style1 special show-roof">
         <div class="container">
           <header class="major">
             <span class="icon major fa-book"></span>
@@ -300,6 +340,23 @@
           <p></p>
           <ul class="actions uniform">
             <li><a href="http://www.bfe.admin.ch/geoinformation" class="button" id="printLink" target="_blank"><span class="trn">documentationButton</span></a></li>
+          </ul>
+          <div class="12u$ 12u$(medium) important(medium) show-roof arrows">
+            <a href="#ten" class="scrolly icon major fa-angle-double-down"></a>
+          </div>          
+        </div>
+      </section>
+
+    <!-- Ten: Einbetten -->
+      <section id="ten" class="main style2 special show-roof">
+        <div class="container">
+          <header class="major">
+            <span class="icon major fa-share-square-o"></span>
+            <h2><span class="trn">einbettenTitel</span></h2>
+          </header>
+          <p></p>
+          <ul class="actions uniform">
+            <li><a href="http://www.bfe.admin.ch/geoinformation" class="button" id="printLink" target="_blank"><span class="trn">einbettenButton</span></a></li>
           </ul>
           <div class="12u$ 12u$(medium) important(medium) show-roof arrows">
             <a href="#one" class="scrolly icon major fa-angle-double-up"></a>
@@ -316,7 +373,10 @@
         <li><a href="#" class="icon alt fa-envelope"><span class="label">Email</span></a></li>
       </ul>
       <ul class="copyright">
-        <li>&copy; BFE, swisstopo, MeteoSchweiz</li><li>v 0.1</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        <li>&copy; BFE, swisstopo, MeteoSchweiz</li>
+        <li>v 0.1</li>
+        <li class="trn">impressumAnalyse</li>
+        <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
       </ul>
     </section>
 

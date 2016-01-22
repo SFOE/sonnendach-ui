@@ -1,7 +1,7 @@
 var sdTranslations = {
   pagetitle: {
-    de: 'Mach Geld mit deinem Sonnendach!',
-    fr: 'Mach Geld mit deinem Sonnendach! FR'
+    de: 'Wie viel Strom und Wärme kann mein Sonnendach produzieren?',
+    fr: 'Wie viel Strom und Wärme kann mein Sonnendach produzieren? FR'
   },
   bfe: {
     de: 'Bundesamt für Energie BFE',
@@ -40,8 +40,8 @@ var sdTranslations = {
     en: 'swisstopo'
   },
   mainTitle: {
-    de: 'Mach <strong>Geld</strong> mit deinem <strong>Sonnendach</strong>!',
-    fr: 'Combien d\'<trong>energie</strong> je peux produire sur  mon toit'
+    de: 'Wie viel <strong>Strom</strong> und <strong>Wärme</strong> kann mein <strong>Sonnendach</strong> produzieren?',
+    fr: 'Wie viel Strom und Wärme kann mein Dach produzieren?'
   },
   subTitle: {
     de: 'Finden Sie es heraus mit dem Solarkataster Schweiz.',
@@ -56,11 +56,11 @@ var sdTranslations = {
     fr: 'Noch nicht lokalisiert FR'
   },
   noMatch: {
-    de: 'Leider kein treffer',
+    de: 'An dieser Adresse konnte kein Dach gefunden werden.',
     fr: 'Leider kein treffer FR'
   },
   noRoofFound: {
-    de: 'Momentan decken wir einen Drittel der Schweiz ab. Wir f&uuml;gen halbj&auml;hrlich neue D&auml;cher hinzu. Anfang 2018 ist die ganze Schweiz abgedeckt.',
+    de: '<strong>An dieser Adresse konnte kein Dach gefunden werden.</strong> Momentan sind 50% des Gebäudebestandes erfasst; bis Anfang 2018 werden alle Hausdächer der Schweiz verfügbar sein.',
     fr: 'french no roof found'
   },
   newAddress: {
@@ -78,6 +78,14 @@ var sdTranslations = {
   roofArea: {
     de: 'Fläche',
     fr: 'FlächeFR'
+  },
+  roofmstrahlung: {
+    de: 'Mittlere Einstrahlung',
+    fr: 'Mittlere Einstrahlung FR'
+  },
+  roofgstrahlung: {
+    de: 'Gesamte Einstrahlung',
+    fr: 'Gesamte Einstrahlung FR'
   },
   north: {
     de: 'Nord',
@@ -142,8 +150,8 @@ var sdTranslations = {
     fr: 'EignungFR'
   },
   bittelokal: {
-    de: 'Bitte lokalisieren Sie sich oder suchen Sie eine Adresse.',
-    fr: 'Bitte lokalisieren Sie sich oder suchen Sie eine Adresse. FR'
+    de: 'Bitte lokalisieren Sie sich, suchen Sie eine Adresse oder klicken Sie in der Karte auf ein Dach.',
+    fr: 'Bitte lokalisieren Sie sich, oder suchen Sie eine Adresse. FR'
   },
   eignungText1: {
     de: 'Ihre Dachfläche ist für die Nutzung von Solarenergie',
@@ -170,8 +178,8 @@ var sdTranslations = {
     fr: 'Franken FR'
   },
   solarstromText: {
-    de: 'Typischer Vebrauch eines Vier-Personen-Haushalts: 3\'500 kWh',
-    fr: 'Typischer Vebrauch eines Vier-Personen-Haushalts: 3\'500 kWh FR'
+    de: 'Typischer Verbrauch eines Vier-Personen-Haushalts: 3\'500 kWh',
+    fr: 'Typischer Verbrauch eines Vier-Personen-Haushalts: 3\'500 kWh FR'
   },
   solarstromButton: {
     de: 'Was kostet meine Photovolatik-Anlage?',
@@ -283,12 +291,36 @@ var sdTranslations = {
     de: 'Ihre Dachfläche',
     fr: 'Ihre Dachfläche FR'
  },
+ yourRoofEinstrahlung: {
+    de: 'Einstrahlung auf Ihre Dachfläche',
+    fr: 'Einstrahlung auf Ihre Dachfläche FR'
+ },
  documentationTitel: {
-    de: 'Wie wurde der Solarkataster Schweiz erstellt?',
+    de: 'Wie wurden diese Zahlen berechnet?',
     fr: 'Wie wurde der Solarkataster Schweiz erstellt? FR'
  },
  documentationButton: {
-    de: 'lesen',
+    de: 'Dokumentation lesen',
     fr: 'lesen FR'  
+ },
+ energieSchweizTitel: {
+    de: 'Wie komme ich zur meiner Solaranlage?',
+    fr: 'Wie komme ich zur meiner Solaranlage? FR' 
+ },
+ energieSchweizButton: {
+    de: 'Schritt für Schritt Anleitung',
+    fr: 'EnergieSchweiz.ch FR' 
+ },
+ impressumAnalyse: {
+    de: 'Geoanalyse durchgeführt von <a href="http://www.meteotest.ch" target="_blank">Meteotest</a>',
+    fr: 'Geoanalyse durchgeführt von <a href="http://www.meteotest.ch" target="_blank">Meteotest</a> FR'
+ },
+ einbettenTitel: {
+    de: 'Möchten Sie diese Anwendung in Ihrere Webseite einbetten?',
+    fr: 'Möchten Sie diese Anwendung in Ihrere Webseite einbetten? FR'
+ },
+ einbettenButton: {
+    de: 'Mehr erfahren',
+    fr: 'Mehr erfahren FR'
  }
 };
