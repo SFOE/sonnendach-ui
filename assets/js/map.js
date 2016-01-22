@@ -3,7 +3,7 @@
  *
  * returns an openlayers map
  */
-var createMap = function(eltId, lang) {
+var createMap = function(eltId, lang, nointeraction) {
 	
   // Create the layers
   var layers = getLayersConfig(lang);
@@ -44,6 +44,20 @@ var createMap = function(eltId, lang) {
   var extent = [420000, 30000, 900000, 350000];
   var proj = ol.proj.get('EPSG:21781');
   proj.setExtent(extent);
+  var interactions = ol.interaction.defaults();
+  if (nointeraction) {
+    interactions = ol.interaction.defaults({
+      altShiftDragRotate: false,
+      doubleClickZoom: false,
+      dragPan: false,
+      pinchRotate: false,
+      pinchZoom: false,
+      keyboard: false,
+      mouseWheelZoom: false,
+      shiftDragZoom: false
+    });
+  }
+
   var map = new ol.Map({
     target: eltId,
     layers: [layer1, layer2, vector],
@@ -61,7 +75,8 @@ var createMap = function(eltId, lang) {
 		    collapsible: false
 		  })
     }),
-    logo: false
+    logo: false,
+    interactions: interactions
   });
   map.addControl(new ol.control.ScaleLine());
   

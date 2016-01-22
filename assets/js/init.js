@@ -163,7 +163,7 @@ var clearHighlight = function(map, marker) {
 /**
  * Initialize the element of the app: map, search box, localizaton
  */
-var init = function() {
+var init = function(nointeraction) {
   $.support.cors = true;
   window.API3_URL = 'https://mf-chsdi3.dev.bgdi.ch/ltfoa_solarenergie_daecher';
   window.API3_SEARCHURL = 'https://api3.geo.admin.ch';
@@ -201,7 +201,7 @@ var init = function() {
   }
 
   // Create map
-  var map = createMap('map', lang);
+  var map = createMap('map', lang, nointeraction);
   var marker = new ol.Overlay({
     positioning:'bottom-center',
     element: markerElt[0],
@@ -266,5 +266,3 @@ var init = function() {
 	body.removeClass('is-loading');
 }
 
-// Launch init function when document is ready
-$(document).ready(init);
