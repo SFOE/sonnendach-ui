@@ -1,6 +1,6 @@
 var sdTranslations = {
   pagetitle: {
-    de: 'Wie viel Strom und Wärme kann mein Sonnendach produzieren?',
+    de: 'Wie viel Strom und Wärme kann mein Dach produzieren?',
     fr: 'Wie viel Strom und Wärme kann mein Sonnendach produzieren? FR'
   },
   bfe: {
@@ -40,7 +40,7 @@ var sdTranslations = {
     en: 'swisstopo'
   },
   mainTitle: {
-    de: 'Wie viel <strong>Strom</strong> und <strong>Wärme</strong> kann mein <strong>Sonnendach</strong> produzieren?',
+    de: 'Wie viel <strong>Strom</strong> und <strong>Wärme</strong> kann mein <strong>Dach</strong> produzieren?',
     fr: 'Wie viel Strom und Wärme kann mein Dach produzieren?'
   },
   subTitle: {
@@ -48,7 +48,7 @@ var sdTranslations = {
     fr: 'Decouvrez le cadastre solaire Suisse.'
   },
   locateMe: {
-    de: 'oder lokalisieren sie sich',
+    de: '... oder lokalisieren sie sich',
     fr: 'or localisez moi'
   },
   notLocalised: {
@@ -80,11 +80,11 @@ var sdTranslations = {
     fr: 'FlächeFR'
   },
   roofmstrahlung: {
-    de: 'Mittlere Einstrahlung',
+    de: 'Mittlere Einstrahlung pro Jahr',
     fr: 'Mittlere Einstrahlung FR'
   },
   roofgstrahlung: {
-    de: 'Gesamte Einstrahlung',
+    de: 'Gesamte Einstrahlung pro Jahr',
     fr: 'Gesamte Einstrahlung FR'
   },
   north: {
@@ -178,7 +178,7 @@ var sdTranslations = {
     fr: 'Franken FR'
   },
   solarstromText: {
-    de: 'Typischer Verbrauch eines Vier-Personen-Haushalts: 3\'500 kWh',
+    de: 'Der typische Verbrauch eines Vier-Personen-Haushalts beträgt 3\'500 kWh',
     fr: 'Typischer Verbrauch eines Vier-Personen-Haushalts: 3\'500 kWh FR'
   },
   solarstromButton: {
@@ -198,7 +198,7 @@ var sdTranslations = {
     fr: '<strong>kWh Solarw&auml;rme</strong> um FR'
   },
   solarthermieTitel2: {
-    de: '% der Heizkosten zu sparen',
+    de: '<strong>% der Heizkosten</strong> zu sparen',
     fr: '% der Heizkosten zu sparen FR'
   },
   solarthermieText1: {
@@ -206,7 +206,7 @@ var sdTranslations = {
     fr: 'Dies entspricht FR'
   },
   solarthermieText2: {
-    de: '-mal Duschen pro Tag',
+    de: ' warmen Duschen pro Tag',
     fr: '-mal Duschen pro Tag FR'
   },
   solarthermieButton: {
@@ -214,7 +214,7 @@ var sdTranslations = {
     fr: 'Was kostet meine Solarthermie-Anlage? FR'
   },
   druckenTitel: {
-    de: 'Alle Informationen über das Dach <strong>drucken</strong>',
+    de: 'Alle Informationen über Ihr Solardach <strong>drucken</strong>',
     fr: 'Alle Informationen über das Dach <strong>drucken</strong> FR'
   },
   druckenButton: {
@@ -252,7 +252,7 @@ var sdTranslations = {
    en: 'excellent'
  },
  placeholder: {
-   de: 'Suchen Sie Ihre Adresse',
+   de: 'Suchen Sie Ihre Adresse...',
    fr: 'Chercher votre adresse',
    it: 'Suchen Sie Ihre Adresse IT',
    en: 'Suchen Sie Ihre Adresse EN'
@@ -316,8 +316,8 @@ var sdTranslations = {
     fr: 'Geoanalyse durchgeführt von <a href="http://www.meteotest.ch" target="_blank">Meteotest</a> FR'
  },
  einbettenTitel: {
-    de: 'Möchten Sie diese Anwendung in Ihrere Webseite einbetten?',
-    fr: 'Möchten Sie diese Anwendung in Ihrere Webseite einbetten? FR'
+    de: 'Möchten Sie diese Anwendung in Ihre Webseite einbetten?',
+    fr: 'Möchten Sie diese Anwendung in Ihre Webseite einbetten? FR'
  },
  einbettenButton: {
     de: 'Mehr erfahren',
