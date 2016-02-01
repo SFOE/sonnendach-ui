@@ -140,6 +140,11 @@ ul.actions.uniform li > a.button > span {
   padding-right: 20px;
 }
 
+#eignungSymbol {
+    width: 180px;
+    height: 195px;
+}
+
 .logoech {
   background: url('images/logoech.png') no-repeat center left;
   width: 204px;
@@ -223,6 +228,11 @@ ul.actions.uniform li > a.button > span {
     background: url('images/logo.ch.small.png') no-repeat center center;
     background-size: 19px;
   }
+
+  #eignungSymbol {
+    width: 75px;
+    height: 80px;    
+  } 
 
   .logoech {
     width: 41px;
@@ -420,4 +430,51 @@ ul.actions.uniform li > a.button > span {
 .hide {
   display: none;
 }
-                                                                                                     
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.bar {
+  fill: orange;
+}
+
+.bar:hover {
+  fill: orangered ;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}

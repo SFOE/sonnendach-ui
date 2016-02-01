@@ -175,17 +175,13 @@
       <div class="container">
         <div class="row 150%">
           <div class="6u 12u$(medium)">
-            <center><img src="images/1.png" id="eignungSymbol" style="width:149px;height:264px;"></center>
+            <center><img src="images/s1.png" id="eignungSymbol"></center>
           </div>
           <div class="6u$ 12u$(medium)">
             <header class="major">
-              <h2 class="hidden-localized trn">eignungTitelnR</h2>
-              <h2 class="show-no-roof trn">eignungTitelnR</h2>
               <h2 class="show-roof"><strong><span class="trn">eignungTitel</span>: 
                 <span id="eignung3"></span></strong></h2>
             </header>
-            <p class="hidden-localized"><span class="trn">bittelokal</span></p>
-            <p class="show-no-roof"><span class="trn">bittelokal</span></p>
             <p class="show-roof">
               <span id="eignungText"></span>
             </p>
@@ -202,8 +198,6 @@
       <div class="container">
         <header class="major">
           <span class="icon major fa-plug"></span>
-          <h2 class="hidden-localized trn">solarstromTitelnR</h2>
-          <h2 class="show-no-roof trn">solarstromTitelnR</h2>
           <h2 class="show-roof">
             <strong><span id="stromertrag"></span></strong>
             <span class="trn">solarstromTitel</span>
@@ -211,8 +205,6 @@
             <span class="trn">solarstromTitel2</span></strong>
           </h2>          
         </header>
-        <p class="hidden-localized"><span class="trn">bittelokal</span></p>
-        <p class="show-no-roof"><span class="trn">bittelokal</span></p>
         <p class="show-roof"><span class="trn">solarstromText</span></p>
         <ul class="actions uniform show-roof">
           <li><a href="#" class="button"><span class="trn">solarstromButton</span></a></li>
@@ -231,8 +223,6 @@
           <span class="icon major fa-tint"></span>
           <h2 id="heatTitle"></h2>
         </header>
-        <p class="hidden-localized"><span class="trn">bittelokal</span></p>
-        <p class="show-no-roof"><span class="trn">bittelokal</span></p>
         <p class="show-roof">
           <span id="heatText"></span>
         </p>
@@ -295,8 +285,23 @@
         </div>
       </section>
 
-    <!-- Seven: Drucken -->
+    <!-- Seven: Graph -->
       <section id="seven" class="main style1 special show-roof">
+        <div class="container">
+          <header class="major">
+            <span class="icon major fa-bar-chart"></span>
+            <h2><span class="trn">graphTitel</span></h2>
+          </header>
+          <p></p>
+            <div id="chart"></div>
+          <div class="12u$ 12u$(medium) important(medium) show-roof arrows">
+            <a href="#aight" class="scrolly icon major fa-angle-double-down"></a>
+          </div>          
+        </div>
+      </section>
+
+    <!-- Eight: Drucken -->
+      <section id="eight" class="main style2 special show-roof">
         <div class="container">
           <header class="major">
             <span class="icon major fa-print"></span>
@@ -307,14 +312,14 @@
             <li><a href="" class="button" id="printLink" target="_blank"><span class="trn">druckenButton</span></a></li>
           </ul>
           <div class="12u$ 12u$(medium) important(medium) show-roof arrows">
-            <a href="#aight" class="scrolly icon major fa-angle-double-down"></a>
+            <a href="#nine" class="scrolly icon major fa-angle-double-down"></a>
           </div>          
         </div>
       </section>
 
 
-    <!-- Aight: EnergieSchweiz -->
-      <section id="aight" class="main style2 special show-roof">
+    <!-- Nine: EnergieSchweiz -->
+      <section id="nine" class="main style1 special show-roof">
         <div class="container">
           <header class="major">
             <span class="icon major fa-question-circle"></span>
@@ -325,13 +330,13 @@
             <li><a href="" class="button" id="printLink" target="_blank"><span class="trn">energieSchweizButton</span></a></li>
           </ul>
           <div class="12u$ 12u$(medium) important(medium) show-roof arrows">
-            <a href="#nine" class="scrolly icon major fa-angle-double-down"></a>
+            <a href="#ten" class="scrolly icon major fa-angle-double-down"></a>
           </div>          
         </div>
       </section>
 
-    <!-- Nine: Dokumentation -->
-      <section id="nine" class="main style1 special show-roof">
+    <!-- Ten: Dokumentation -->
+      <section id="ten" class="main style2 special show-roof">
         <div class="container">
           <header class="major">
             <span class="icon major fa-book"></span>
@@ -342,13 +347,13 @@
             <li><a href="http://www.bfe.admin.ch/geoinformation" class="button" id="printLink" target="_blank"><span class="trn">documentationButton</span></a></li>
           </ul>
           <div class="12u$ 12u$(medium) important(medium) show-roof arrows">
-            <a href="#ten" class="scrolly icon major fa-angle-double-down"></a>
+            <a href="#eleven" class="scrolly icon major fa-angle-double-down"></a>
           </div>          
         </div>
       </section>
 
-    <!-- Ten: Einbetten -->
-      <section id="ten" class="main style2 special show-roof">
+    <!-- Eleven: Einbetten -->
+      <section id="eleven" class="main style1 special show-roof">
         <div class="container">
           <header class="major">
             <span class="icon major fa-share-square-o"></span>
@@ -386,6 +391,8 @@
     <script src="assets/js/jquery.placeholder.2.0.7.min.js"></script>
     <script src="assets/js/typeahead.bundle.0.11.1.js"></script> 
     <script src="assets/js/jquery.translate.0.9.1.js"></script>
+    <script src="assets/js/d3.min.js"></script>
+    <script src="assets/js/d3.tip.v0.6.3.js"></script>
 
 	  <script src="assets/js/jquery.scrolly.min.js"></script>
 		<script src="assets/js/skel.min.js"></script>
@@ -404,5 +411,12 @@
     <script src="assets/js/permalink.js"></script>
     <script src="assets/js/translations.js"></script>
     <script src="assets/js/init.js"></script>
+
+    <script>
+      $(document).ready(function() {
+        init(false);
+      });
+    </script>
+    
 	</body>
 </html>

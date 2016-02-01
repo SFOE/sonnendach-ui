@@ -322,5 +322,9 @@ var sdTranslations = {
  einbettenButton: {
     de: 'Mehr erfahren',
     fr: 'Mehr erfahren FR'
+ },
+ graphTitel: {
+    de: 'Stromproduktion der letzten zwölf Monate',
+    fr: 'Stromproduktion der letzten zwölf Monate FR'
  }
 };
