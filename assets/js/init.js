@@ -18,7 +18,10 @@ var onAddressFound = function(map, marker, address, autoSearchRoof, roofSearchTo
           .replace('</b>', '');
     }
     $('#addressOutput').html(label);
-    $(document.body).addClass('localized').removeClass('localized-error');
+    $(document.body).addClass('localized');
+    $(document.body).addClass('address-found');
+    $(document.body).removeClass('localized-error');
+    $(document.body).removeClass('no-address');
     
     // Search best roof at this address
     if (autoSearchRoof) {
@@ -33,6 +36,8 @@ var onAddressFound = function(map, marker, address, autoSearchRoof, roofSearchTo
     }
   } else {
     $(document.body).removeClass('localized');
+    $(document.body).removeClass('address-found');
+    $(document.body).addClass('no-address');
     if (autoSearchRoof) {
       $(document.body).removeClass('roof no-roof');
       clearHighlight(map, marker); 
