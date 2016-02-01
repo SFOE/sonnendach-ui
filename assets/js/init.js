@@ -57,7 +57,7 @@ var updateRoofInfo = function(map, marker, roof) {
 
   //symbol for suitability
   if ($.contains(document.body, document.getElementById("eignungSymbol"))) {
-    document.getElementById("eignungSymbol").src = 'images/' + roof.attributes.klasse + '.png';
+    document.getElementById("eignungSymbol").src = 'images/s' + roof.attributes.klasse + '.png';
   }
 
   //text for suitability
