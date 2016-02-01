@@ -126,6 +126,8 @@ var updateRoofInfo = function(map, marker, roof) {
   vectorLayer.getSource().addFeature(new ol.Feature(polygon));
   marker.setPosition(polygon.getInteriorPoint().getCoordinates());
   flyTo(map, marker.getPosition(), 0.25);
+
+  updateBarChart(roof);
 };
 
 /**
@@ -271,3 +273,156 @@ var init = function(nointeraction) {
 	body.removeClass('is-loading');
 }
 
+var updateBarChart = function(roof) {
+
+  //var data_ertrag = roof.attributes.monats_ertrag;
+  //var data_monat = roof.attributes.monate;
+  //console.log(data_ertrag);
+  //console.log(data_monat);
+
+  var data = roof.attributes;
+
+  var datanew = [[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]];
+  datanew[0][0] = data.monate[0];
+  datanew[0][1] = data.monats_ertrag[0];
+  datanew[1][0] = data.monate[1];
+  datanew[1][1] = data.monats_ertrag[1];
+  datanew[2][0] = data.monate[2];
+  datanew[2][1] = data.monats_ertrag[2];
+  datanew[3][0] = data.monate[3];
+  datanew[3][1] = data.monats_ertrag[3];
+  datanew[4][0] = data.monate[4];
+  datanew[4][1] = data.monats_ertrag[4];
+  datanew[5][0] = data.monate[5];
+  datanew[5][1] = data.monats_ertrag[5];
+  datanew[6][0] = data.monate[6];
+  datanew[6][1] = data.monats_ertrag[6];
+  datanew[7][0] = data.monate[7];
+  datanew[7][1] = data.monats_ertrag[7];
+  datanew[8][0] = data.monate[8];
+  datanew[8][1] = data.monats_ertrag[8];
+  datanew[9][0] = data.monate[9];
+  datanew[9][1] = data.monats_ertrag[9];
+  datanew[10][0] = data.monate[10];
+  datanew[10][1] = data.monats_ertrag[10];
+  datanew[11][0] = data.monate[11];
+  datanew[11][1] = data.monats_ertrag[11];
+
+
+  //console.log(datanew[0]);
+  //console.log(datanew);
+  //console.log(datanew[0][0]);
+
+  //var w = 500,
+  //    h = 100;
+
+  //var svg = d3.select("#chart")
+  //  .append("svg")
+  //  .attr("width", w)
+  //  .attr("height", h);  
+
+  //var max_ertrag = 0;
+  //for (var d in datanew) {
+  //  max_ertrag = Math.max(datanew[d][1], max_ertrag);
+  //}
+
+  //console.log(max_ertrag);
+  //console.log(datanew.length);
+
+  //var dx = w / max_ertrag;
+  //var dy = h / datanew.length;
+
+  // bars
+  //var bars = svg.selectAll(".bar")
+  //  .data(datanew)
+  //  .enter()
+  //  .append("rect")
+  //  .attr("class", function(d, i) {return "bar " + d[0];})
+  //  .attr("x", function(d, i) {return 0;})
+  //  .attr("y", function(d, i) {return dy*i;})
+  //  .attr("width", function(d, i) {return dx*d[1]})
+  //  .attr("height", dy);
+
+  // labels
+  //var text = svg.selectAll("text")
+  //  .data(data)
+  //  .enter()
+  //  .append("text")
+  //  .attr("class", function(d, i) {return "label " + d[0];})
+  //  .attr("x", 5)
+  //  .attr("y", function(d, i) {return dy*i + 15;})
+  //  .text( function(d, i) {return d[0] + " (" + d[1]  + ")";})
+  //  .attr("font-size", "15px")
+  //  .style("font-weight", "bold");  
+
+  var margin = {top: 40, right: 20, bottom: 30, left: 40},
+      width = 700 - margin.left - margin.right,
+      height = 300 - margin.top - margin.bottom;
+
+  //var formatPercent = d3.format(".0%");
+
+  var x = d3.scale.ordinal()
+      .rangeRoundBands([0, width], .1);
+
+  var y = d3.scale.linear()
+      .range([height, 0]);
+
+  var xAxis = d3.svg.axis()
+      .scale(x)
+      .orient("bottom");
+
+  var yAxis = d3.svg.axis()
+      .scale(y)
+      .orient("left");
+      //.tickFormat(formatPercent);
+
+  var tip = d3.tip()
+    .attr('class', 'd3-tip')
+    .offset([-10, 0])
+    .html(function(d) {
+      return "<strong>Ertrag:</strong> <span style='color:red'>" + Math.round(d[1]); + " kWh</span>";
+    })
+
+  var svg = d3.select("#chart").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+  svg.call(tip);
+
+  x.domain(datanew.map(function(d) { return d[0]; }));
+  y.domain([0, d3.max(datanew, function(d) { return d[1]; })]);
+
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
+
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Stromproduktion in kWh");
+
+  svg.selectAll(".bar")
+      .data(datanew)
+    .enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", function(d) { return x(d[0]); })
+      .attr("width", x.rangeBand())
+      .attr("y", function(d) { return y(d[1]); })
+      .attr("height", function(d) { return height - y(d[1]); })
+      .on('mouseover', tip.show)
+      .on('mouseout', tip.hide);
+
+  function type(d) {
+    d[1] = +d[1];
+    return d;
+  }
+
+}
