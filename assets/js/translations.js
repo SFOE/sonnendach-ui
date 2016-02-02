@@ -326,5 +326,325 @@ var sdTranslations = {
  graphTitel: {
     de: 'Stromproduktion der letzten zwölf Monate',
     fr: 'Stromproduktion der letzten zwölf Monate FR'
- }
+ },
+ 
+  yourSolarRadiation: {
+   de: 'Sonneneinstrahlung',
+   fr: 'Sonneneinstrahlung FR',
+   it: 'Sonneneinstrahlung IT',
+   en: 'Sonneneinstrahlung EN'
+ },
+   totalRadiation: {
+   de: 'Gesamte Einstrahlung',
+   fr: 'Gesamte Einstrahlung FR',
+   it: 'Gesamte Einstrahlung IT',
+   en: 'Gesamte Einstrahlung EN'
+ },
+    totalRadiationText: {
+   de: 'Jährliche Einstrahlung unter Berücksichtigung der Verschattung. Dies entspricht der mittleren Einstrahlung multipliziert mit der Dachfläche.',
+   fr: 'Jährliche Einstrahlung unter Berücksichtigung der Verschattung FR',
+   it: 'Jährliche Einstrahlung unter Berücksichtigung der Verschattung IT',
+   en: 'Jährliche Einstrahlung unter Berücksichtigung der Verschattung EN'
+ },
+   meanRadiation: {
+   de: 'Mittlere Einstrahlung',
+   fr: 'Mittlere Einstrahlung FR',
+   it: 'Mittlere Einstrahlung IT',
+   en: 'Mittlere Einstrahlung EN'
+ },
+    meanRadiationText: {
+   de: 'Mittlere jährliche Einstrahlung (Globalstrahlung) pro Quadratmeter unter Berücksichtigung der Verschattung',
+   fr: 'Mittlere jährliche Einstrahlung (Globalstrahlung) pro Quadratmeter unter Berücksichtigung der Verschattung. FR',
+   it: 'Mittlere jährliche Einstrahlung (Globalstrahlung) pro Quadratmeter unter Berücksichtigung der Verschattung. IT',
+   en: 'Mittlere jährliche Einstrahlung (Globalstrahlung) pro Quadratmeter unter Berücksichtigung der Verschattung. EN'
+ },
+ address: {
+    de: 'Adresse',
+    fr: 'Adresse',
+  it: 'Indirizzo',
+  en: 'Address'
+ },
+  hint: {
+    de: 'Hinweis: ',
+    fr: 'Hinweis: FR',
+  it: 'Hinweis: IT',
+  en: 'Hinweis: EN'
+ },
+    hintRadiation: {
+    de: 'Zur Berechnung der Strahlungsdaten werden die Referenzjahre 2004-2014 verwendet.',
+    fr: 'Zur Berechnung der Strahlungsdaten werden die Referenzjahre 2004-2014 verwendet. FR',
+  it: 'Zur Berechnung der Strahlungsdaten werden die Referenzjahre 2004-2014 verwendet. IT',
+  en: 'Zur Berechnung der Strahlungsdaten werden die Referenzjahre 2004-2014 verwendet. EN'
+ },
+   hintUsability: {
+    de: '* Gering&nbsp;<&nbsp;800&nbsp;kWh/m<sup>2</sup>/Jahr&nbsp;| Mittel&nbsp;≥&nbsp;800&nbsp;und&nbsp;<&nbsp;1000&nbsp;kWh/m<sup>2</sup>/Jahr&nbsp;| Gut&nbsp;≥&nbsp;1000&nbsp;und&nbsp;<&nbsp;1200&nbsp;kWh/m<sup>2</sup>/Jahr&nbsp;| Sehr&nbsp;gut&nbsp;≥&nbsp;1200&nbsp;und&nbsp;<1400&nbsp;kWh/m<sup>2</sup>/Jahr&nbsp;| Hervorragend&nbsp;≥&nbsp;1400&nbsp;kWh/m<sup>2</sup>/Jahr',
+    fr: '* Gering&nbsp;<&nbsp;800&nbsp;kWh/m<sup>2</sup>/Jahr&nbsp;| Mittel&nbsp;≥&nbsp;800&nbsp;und&nbsp;<&nbsp;1000&nbsp;kWh/m<sup>2</sup>/Jahr&nbsp;| Gut&nbsp;≥&nbsp;1000&nbsp;und&nbsp;<&nbsp;1200&nbsp;kWh/m<sup>2</sup>/Jahr&nbsp;| Sehr&nbsp;gut&nbsp;≥&nbsp;1200&nbsp;und&nbsp;<1400&nbsp;kWh/m<sup>2</sup>/Jahr&nbsp;| Hervorragend&nbsp;≥&nbsp;1400&nbsp;kWh/m<sup>2</sup>/JahrFR',
+  it: '* Gering&nbsp;<&nbsp;800&nbsp;kWh/m<sup>2</sup>/Jahr&nbsp;| Mittel&nbsp;≥&nbsp;800&nbsp;und&nbsp;<&nbsp;1000&nbsp;kWh/m<sup>2</sup>/Jahr&nbsp;| Gut&nbsp;≥&nbsp;1000&nbsp;und&nbsp;<&nbsp;1200&nbsp;kWh/m<sup>2</sup>/Jahr&nbsp;| Sehr&nbsp;gut&nbsp;≥&nbsp;1200&nbsp;und&nbsp;<1400&nbsp;kWh/m<sup>2</sup>/Jahr&nbsp;| Hervorragend&nbsp;≥&nbsp;1400&nbsp;kWh/m<sup>2</sup>/Jahr IT',
+  en: '* Gering&nbsp;<&nbsp;800&nbsp;kWh/m<sup>2</sup>/Jahr&nbsp;| Mittel&nbsp;≥&nbsp;800&nbsp;und&nbsp;<&nbsp;1000&nbsp;kWh/m<sup>2</sup>/Jahr&nbsp;| Gut&nbsp;≥&nbsp;1000&nbsp;und&nbsp;<&nbsp;1200&nbsp;kWh/m<sup>2</sup>/Jahr&nbsp;| Sehr&nbsp;gut&nbsp;≥&nbsp;1200&nbsp;und&nbsp;<1400&nbsp;kWh/m<sup>2</sup>/Jahr&nbsp;| Hervorragend&nbsp;≥&nbsp;1400&nbsp;kWh/m<sup>2</sup>/Jahr EN'
+ },
+    hintPowerProduction: {
+    de: '** Der elektrische Ertrag (Stromertrag) einer Photovoltaikanlage ist abhängig von der Fläche, der Einstrahlung, dem Wirkungsgrad der eingesetzten Module und der Preformance Ratio.',
+    fr: '** Der elektrische Ertrag (Stromertrag) einer Photovoltaikanlage ist abhängig von der Fläche, der Einstrahlung, dem Wirkungsgrad der eingesetzten Module und der Preformance Ratio. FR',
+  it: '** Der elektrische Ertrag (Stromertrag) einer Photovoltaikanlage ist abhängig von der Fläche, der Einstrahlung, dem Wirkungsgrad der eingesetzten Module und der Preformance Ratio. IT',
+  en: '** Der elektrische Ertrag (Stromertrag) einer Photovoltaikanlage ist abhängig von der Fläche, der Einstrahlung, dem Wirkungsgrad der eingesetzten Module und der Preformance Ratio. EN'
+ },
+   hintReservoirArea: {
+    de: '** Das Speichervolumen und die Kollektorfläche sind im Allgemeinen nicht als Empfehlung für die Dimensionierung zu verwenden, sondern dienen einzig der Nachvollziehbarkeit der Berechnung des Wärmeertrags.',
+    fr: '** Das Speichervolumen und die Kollektorfläche sind im Allgemeinen nicht als Empfehlung für die Dimensionierung zu verwenden, sondern dienen einzig der Nachvollziehbarkeit der Berechnung des Wärmeertrags. FR',
+  it: '** Das Speichervolumen und die Kollektorfläche sind im Allgemeinen nicht als Empfehlung für die Dimensionierung zu verwenden, sondern dienen einzig der Nachvollziehbarkeit der Berechnung des Wärmeertrags. IT',
+  en: '** Das Speichervolumen und die Kollektorfläche sind im Allgemeinen nicht als Empfehlung für die Dimensionierung zu verwenden, sondern dienen einzig der Nachvollziehbarkeit der Berechnung des Wärmeertrags. EN'
+ },
+   hintGWR: {
+    de: '* Der Heizwärme- und Warmwasserbedarf wird anhand der Daten aus dem Gebäude- und Wohnungsregister (GWR) berechnet.',
+    fr: '* Der Heizwärme- und Warmwasserbedarf wird anhand der Daten aus dem Gebäude- und Wohnungsregister (GWR) berechnet. FR',
+  it: '* Der Heizwärme- und Warmwasserbedarf wird anhand der Daten aus dem Gebäude- und Wohnungsregister (GWR) berechnet. IT',
+  en: '* Der Heizwärme- und Warmwasserbedarf wird anhand der Daten aus dem Gebäude- und Wohnungsregister (GWR) berechnet. EN'
+ },
+    hintHeatingDaysMonth: {
+    de: '* Heizgradtage werden verwendet, um den jährlichen Heizwärmebedarf auf die Kalendermonate zu verteilen. Die Heizgradtage für einen Monat berechnen sich aus der Differenz zwischen der Raumtemperatur (20°C) und der Tagesmitteltemperatur an Tagen mit einer Tagesmitteltemperatur tiefer als die Heizgrenze (< 12°C).',
+    fr: 'Heizgradtage werden verwendet, um den jährlichen Heizwärmebedarf auf die Kalendermonate zu verteilen. Die Heizgradtage für einen Monat berechnen sich aus der Differenz zwischen der Raumtemperatur (20°C) und der Tagesmitteltemperatur an Tagen mit einer Tagesmitteltemperatur tiefer als die Heizgrenze (< 12°C). FR',
+  it: 'Heizgradtage werden verwendet, um den jährlichen Heizwärmebedarf auf die Kalendermonate zu verteilen. Die Heizgradtage für einen Monat berechnen sich aus der Differenz zwischen der Raumtemperatur (20°C) und der Tagesmitteltemperatur an Tagen mit einer Tagesmitteltemperatur tiefer als die Heizgrenze (< 12°C). IT',
+  en: 'Heizgradtage werden verwendet, um den jährlichen Heizwärmebedarf auf die Kalendermonate zu verteilen. Die Heizgradtage für einen Monat berechnen sich aus der Differenz zwischen der Raumtemperatur (20°C) und der Tagesmitteltemperatur an Tagen mit einer Tagesmitteltemperatur tiefer als die Heizgrenze (< 12°C). EN'
+ },
+  month: {
+    de: 'Monat',
+    fr: 'Mois',
+  it: 'Mese',
+  en: 'Month'
+ },
+   powerProductionMonth: {
+    de: 'Stromertrag [kWh/Monat]',
+    fr: 'Stromertrag [kWh/Monat] FR',
+  it: 'Stromertrag [kWh/Monat] IT',
+  en: 'Stromertrag [kWh/Monat] EN'
+ },
+   heatingDaysMonth: {
+    de: 'Heizgradtage [Tage]',
+    fr: 'Heizgradtage [Tage] FR',
+  it: 'Heizgradtage [Tage] IT',
+  en: 'Heizgradtage [Tage] EN'
+ },
+  january: {
+    de: 'Januar',
+    fr: 'Janvier',
+  it: 'Gennaio',
+  en: 'January'
+ },
+   february: {
+    de: 'Februar',
+    fr: 'Février',
+  it: 'Febbraio',
+  en: 'February'
+ },
+    march: {
+    de: 'März',
+    fr: 'Mars',
+  it: 'Febbraio',
+  en: 'Mazro'
+ },
+    april: {
+    de: 'April',
+    fr: 'Avril',
+  it: 'Aprile',
+  en: 'April'
+ },
+    may: {
+    de: 'Mai',
+    fr: 'Mai',
+  it: 'Maggio',
+  en: 'May'
+ },
+    june: {
+    de: 'Jumi',
+    fr: 'Juin',
+  it: 'Giugno',
+  en: 'June'
+ },
+    july: {
+    de: 'Juli',
+    fr: 'Juillet',
+  it: 'Iuglio',
+  en: 'July'
+ },
+    august: {
+    de: 'August',
+    fr: 'Août',
+  it: 'Agosto',
+  en: 'August'
+ },
+    september: {
+    de: 'September',
+    fr: 'Septembre',
+  it: 'Settembre',
+  en: 'September'
+ },
+    october: {
+    de: 'Oktober',
+    fr: 'Octobre',
+  it: 'Ottobre',
+  en: 'October'
+ },
+     november: {
+    de: 'November',
+    fr: 'Novembre',
+  it: 'Novembre',
+  en: 'Novomber'
+ },
+     december: {
+    de: 'Dezember',
+    fr: 'Décembre',
+  it: 'Dicembre',
+  en: 'December'
+ },
+ amountYear: {
+    de: 'Franken pro Jahr',
+    fr: 'Franken pro Jahr FR',
+  it: 'Franken pro Jahr IT',
+  en: 'Franken pro Jahr EN'
+  }, 
+   solarPowerValue: {
+    de: 'Solarstrom im Wert von',
+    fr: 'Solarstrom im Wert von FR',
+  it: 'Solarstrom im Wert von IT',
+  en: 'Solarstrom im Wert von EN'
+  },
+    powerProduction: {
+    de: 'Stromertrag',
+    fr: 'Stromertrag FR',
+  it: 'Stromertrag IT',
+  en: 'Stromertrag EN'
+  },  
+    solarPowerYear: {
+    de: 'kWh Solarstrom pro Jahr',
+    fr: 'kWh Solarstrom pro Jahr FR',
+  it: 'kWh Solarstrom pro Jahr IT',
+  en: 'kWh Solarstrom pro Jahr EN'
+  },
+    solarHeatYear: {
+    de: 'kWh Solarwärme pro Jahr',
+    fr: 'kWh Solarwärme pro Jahr FR',
+  it: 'kWh Solarwärme pro Jahr IT',
+  en: 'kWh Solarwärme pro Jahr EN'
+  },
+   kWh: {
+    de: 'kWh pro Jahr',
+    fr: 'kWh pro Jahr FR',
+  it: 'kWh pro Jahr IT',
+  en: 'kWh pro Jahr EN'
+  },
+    kWhMonth: {
+    de: 'kWh',
+    fr: 'kWh FR',
+  it: 'kWh IT',
+  en: 'kWh EN'
+  },
+  
+   kWhM2: {
+    de: 'kWh/m<sup>2</sup> pro Jahr',
+    fr: 'kWh/m<sup>2</sup> pro Jahr FR',
+  it: 'kWh/m<sup>2</sup> pro Jahr IT',
+  en: 'kWh/m<sup>2</sup> pro Jahr EN'
+  },
+    savingSolarheat: {
+    de: 'Solarwärme im Wert von',
+    fr: 'Ersparte Heizkosten FR',
+  it: 'Ersparte Heizkosten IT',
+  en: 'Ersparte Heizkosten EN'
+  }, 
+    savingSolarheatYear: {
+    de: '% der jährlichen Heizkosten',
+    fr: '% der jährlichen Heizkosten FR',
+  it: '% der jährlichen Heizkosten IT',
+  en: '% der jährlichen Heizkosten EN'
+  }, 
+  moduleEfficiency: {
+    de: 'Modul-Wirkungsgrad: 17 %',
+    fr: 'Modul-Wirkungsgrad: 17 % FR',
+  it: 'Modul-Wirkungsgrad: 17 % IT',
+  en: 'Modul-Wirkungsgrad: 17 % EN'
+  }, 
+    performanceRatio: {
+    de: 'Performance Ratio: 80 %',
+    fr: 'Performance Ratio: 80 % FR',
+  it: 'Performance Ratio: 80 % IT',
+  en: 'Performance Ratio: 80 % EN'
+  }, 
+   shower: {
+    de: 'Duschgänge',
+    fr: 'Duschgänge FR',
+  it: 'Duschgänge IT',
+  en: 'Duschgänge EN'
+  }, 
+     heatDemand: {
+    de: 'Solarer Deckungsgrad für den gesamten Wärmebedarf',
+    fr: 'Solarer Deckungsgrad für den gesamten Wärmebedarf FR',
+  it: 'Solarer Deckungsgrad für den gesamten Wärmebedarf IT',
+  en: 'Solarer Deckungsgrad für den gesamten Wärmebedarf EN'
+  }, 
+     percent: {
+    de: '%',
+    fr: '%',
+  it: '%',
+  en: '%'
+  }, 
+   heatingDemand: {
+    de: 'Heizwärmebedarf *',
+    fr: 'Heizwärmebedarf * FR',
+  it: 'Heizwärmebedarf * IT',
+  en: 'Heizwärmebedarf * EN'
+  }, 
+    heatingDemandText: {
+    de: 'Abgeschätzter Bedarf an Heizwärme',
+    fr: 'Abgeschätzter Bedarf an Heizwärme FR',
+  it: 'Abgeschätzter Bedarf an Heizwärme IT',
+  en: 'Abgeschätzter Bedarf an Heizwärme EN'
+  },  
+   warmWaterDemand: {
+    de: 'Warmwasserbedarf *',
+    fr: 'Warmwasserbedarf * FR',
+  it: 'Warmwasserbedarf *IT',
+  en: 'Warmwasserbedarf * EN'
+  }, 
+    warmWaterDemandText: {
+    de: 'Abgeschätzter Bedarf an Brauchwarmwasser',
+    fr: 'Abgeschätzter Bedarf an Brauchwarmwasser FR',
+  it: 'Abgeschätzter Bedarf an Brauchwarmwasser IT',
+  en: 'Abgeschätzter Bedarf an Brauchwarmwasser EN'
+  }, 
+    reservoir: {
+    de: 'Speichervolumen **',
+    fr: 'Speichervolumen ** FR',
+  it: 'Speichervolumen ** IT',
+  en: 'Speichervolumen ** EN'
+  }, 
+    reservoirText: {
+    de: 'Für die Berechnung verwendetes Speichervolumen, angepasst an den Bedarf der Solarthermieanlage.',
+    fr: 'Für die Berechnung verwendetes Speichervolumen, angepasst an den Bedarf der Solarthermieanlage. FR',
+  it: 'Für die Berechnung verwendetes Speichervolumen, angepasst an den Bedarf der Solarthermieanlage. IT',
+  en: 'Für die Berechnung verwendetes Speichervolumen, angepasst an den Bedarf der Solarthermieanlage. EN'
+  }, 
+    liter: {
+    de: 'Liter',
+    fr: 'Liter FR',
+  it: 'Liter IT',
+  en: 'Liter EN'
+  }, 
+    collectorSurface: {
+    de: 'Kollektorfläche **',
+    fr: 'Kollektorfläche ** FR',
+  it: 'Kollektorfläche ** IT',
+  en: 'Kollektorfläche ** EN'
+  }, 
+    collectorSurfaceText: {
+    de: 'Für die Berechnung verwendete Kollektorfläche, angepasst an den Bedarf der Solarthermieanlage.',
+    fr: 'Für die Berechnung verwendete Kollektorfläche, angepasst an den Bedarf der Solarthermieanlage. FR',
+  it: 'Für die Berechnung verwendete Kollektorfläche, angepasst an den Bedarf der Solarthermieanlage. IT',
+  en: 'Für die Berechnung verwendete Kollektorfläche, angepasst an den Bedarf der Solarthermieanlage. EN'
+  },
+    m2: {
+    de: 'm<sup>2</sup>',
+    fr: 'm<sup>2</sup> FR',
+  it: 'm<sup>2</sup> IT',
+  en: 'm<sup>2</sup> EN'
+  }
 };

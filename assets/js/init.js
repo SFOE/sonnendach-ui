@@ -60,6 +60,74 @@ var updateRoofInfo = function(map, marker, roof) {
   $('#stromertrag').html(formatNumber(Math.round((roof.attributes.gstrahlung*0.17*0.8)/100)*100));
   //$('#duschgaenge').html(roof.attributes.duschgaenge);
 
+  //**** NEW
+
+  var heatingDemand = '';
+  if (roof.attributes.bedarf_heizung > 0) {
+    heatingDemand += ' ' + formatNumber(Math.round(roof.attributes.bedarf_heizung))
+            + ' ' + translator.get('kWh');
+  } else {
+    heatingDemand = '-';
+  } 
+  if (document.contains(document.getElementById("heatingDemand"))) {
+  document.getElementById("heatingDemand").innerhtml =  $('#heatingDemand').html(heatingDemand);
+  }
+
+  var warmWaterDemand = '';
+  if (roof.attributes.bedarf_warmwasser > 0) {
+    warmWaterDemand += ' ' + formatNumber(roof.attributes.bedarf_warmwasser)
+            + ' ' + translator.get('kWh');
+  } else {
+    warmWaterDemand = '-';
+  } 
+  if (document.contains(document.getElementById("warmWaterDemand"))) {
+  document.getElementById("warmWaterDemand").innerhtml =  $('#warmWaterDemand').html(warmWaterDemand);
+  }
+    
+
+  var reservoir = '';
+  if (roof.attributes.volumen_speicher > 0) {
+    reservoir += ' ' + formatNumber(roof.attributes.volumen_speicher)
+            + ' ' + translator.get('liter');
+  } else {
+    reservoir = '-';
+  } 
+  if (document.contains(document.getElementById("reservoir"))) {
+  document.getElementById("reservoir").innerhtml =  $('#reservoir').html(reservoir);
+  } 
+  
+  
+  var collectorSurface = '';
+  if (roof.attributes.flaeche_kollektoren > 0) {
+    collectorSurface += ' ' + formatNumber(Math.round(roof.attributes.flaeche_kollektoren))
+            + ' ' + translator.get('m2');
+  } else {
+    collectorSurface = '-';
+  } 
+  if (document.contains(document.getElementById("collectorSurface"))) {
+  document.getElementById("collectorSurface").innerhtml = $('#collectorSurface').html(collectorSurface);
+  } 
+
+
+  if (document.contains(document.getElementById("meanRadiation"))) {
+    document.getElementById("meanRadiation").innerhtml = $('#meanRadiation').html(formatNumber(roof.attributes.mstrahlung));
+  }
+
+  if (document.contains(document.getElementById("totalRadiation"))) {
+    document.getElementById("totalRadiation").innerhtml = $('#totalRadiation').html(formatNumber(roof.attributes.gstrahlung));
+  }
+
+  var heatDemand = '';
+  if (roof.attributes.dg_waermebedarf > 0) {
+    heatDemand += ' ' + formatNumber(Math.round(roof.attributes.dg_waermebedarf))
+            + ' ' + translator.get('percent');
+  } else {
+    heatDemand = '-';
+  } 
+  if (document.contains(document.getElementById("heatDemand"))) {
+  document.getElementById("heatDemand").innerhtml = $('#heatDemand').html(heatDemand);
+  }
+
   //symbol for suitability
   if ($.contains(document.body, document.getElementById("eignungSymbol"))) {
     document.getElementById("eignungSymbol").src = 'images/s' + roof.attributes.klasse + '.png';
@@ -120,6 +188,97 @@ var updateRoofInfo = function(map, marker, roof) {
     document.getElementById('printLink').href = 'print.html?featureId=' + roof.featureId;
   }  
 
+  //***** NEW heat output value
+  var solarHeat = '';
+  
+  if (roof.attributes.waermeertrag > 0) {
+    solarHeat += ' ' + formatNumber(Math.round(roof.attributes.waermeertrag/100)*100)
+            + ' ' + translator.get('solarHeatYear');
+  } else {
+    solarHeat = translator.get('solarthermieTitelnoHeat');
+  }
+
+  if (document.contains(document.getElementById("solarHeat"))) {
+    document.getElementById("solarHeat").innerhtml = $('#solarHeat').html(solarHeat);
+  } 
+
+  
+  //***** NEW saved heating costs
+  var solarHeatCost = '';
+  if (roof.attributes.dg_heizung > 0) {
+    solarHeatCost += ' ' + roof.attributes.dg_heizung
+            + ' ' + translator.get('savingSolarheatYear');
+  } else {
+    solarHeatCost = translator.get('solarthermieTitelnoHeat');
+  }
+  
+  if (document.contains(document.getElementById("solarHeatCost"))) {
+    document.getElementById("solarHeatCost").innerhtml = $('#solarHeatCost').html(solarHeatCost);
+  }  
+
+
+//***** NEW Get Month and Year
+    var month = new Array();
+    month[1] = "january";
+    month[2] = "february";
+    month[3] = "march";
+    month[4] = "april";
+    month[5] = "may";
+    month[6] = "june";
+    month[7] = "july";
+    month[8] = "august";
+    month[9] = "september";
+    month[10] = "october";
+    month[11] = "november";
+    month[12] = "december";
+  
+
+   var i;
+   var Y = 0;
+   var provDate = roof.attributes.gs_serie_start.substring(0,10);
+   var date = new Date(provDate);
+   date = new Date(date.setMonth(date.getMonth()))
+   var text1 = '';
+   var text2 = '';
+   var year = '';
+   var X = roof.attributes.monate;
+    for (i = 0; i < 12; i++) {
+      Y = '' + i;
+      date.setMonth(date.getMonth()-1);
+      year = date.getFullYear(date);
+      text1 = translator.get(month[roof.attributes.monate[i]]);
+      text2 = text1 + '&nbsp;' + year;
+      if (document.contains(document.getElementById("month" + Y))) {
+        document.getElementById("month" + Y).innerhtml = $('#month' + Y).html(text2);
+      }
+    }  
+
+
+//***** NEW Get monats_ertrag
+  var j;
+  var YY = '';
+  var XX = roof.attributes.monats_ertrag;
+  for (j = 0; j < 12; j++) {
+    YY = '' + j;
+    if (document.contains(document.getElementById("powerProductionMonth"+ YY))) {
+      document.getElementById("powerProductionMonth"+ YY).innerhtml = $('#powerProductionMonth' + YY).html(formatNumber(Math.round(roof.attributes.monats_ertrag[j])));
+    }
+  } 
+
+//***** NEW Get heizgradtage
+  var k;
+  var YYY = '';
+  var XXX = roof.attributes.heizgradtage;
+  for (k = 0; k < 12; k++) {
+    YYY = '' + k;
+    if (document.contains(document.getElementById("powerProductionMonth" + YYY))) {
+      document.getElementById("powerProductionMonth" + YYY).innerhtml = $('#heatingDaysMonth' + YYY).html(formatNumber(Math.round(roof.attributes.heizgradtage[k]))); 
+    }
+  } 
+   
+//************
+
+
   // Clear the highlighted roof the add the new one
   var polygon = new ol.geom.Polygon(roof.geometry.rings); 
   var vectorLayer = clearHighlight(map, marker);
@@ -127,7 +286,7 @@ var updateRoofInfo = function(map, marker, roof) {
   marker.setPosition(polygon.getInteriorPoint().getCoordinates());
   flyTo(map, marker.getPosition(), 0.25);
 
-  updateBarChart(roof);
+  updateBarChart(roof, roof.attributes.klasse);
 };
 
 /**
@@ -273,7 +432,7 @@ var init = function(nointeraction) {
 	body.removeClass('is-loading');
 }
 
-var updateBarChart = function(roof) {
+var updateBarChart = function(roof, eignung) {
 
   d3.select("#chart").select("svg").remove();
 
@@ -356,7 +515,20 @@ var updateBarChart = function(roof) {
       .attr("y", function(d) { return y(d[1]); })
       .attr("height", function(d) { return height - y(d[1]); })
       .on('mouseover', tip.show)
-      .on('mouseout', tip.hide);
+      .on('mouseout', tip.hide)
+      .style("fill", function(d) { 
+        if (eignung == 1) {
+          return "rgb(0, 197, 255)";
+        } else if (eignung == 2) {
+          return "rgb(255, 255, 0)";
+        } else if (eignung == 3) {
+          return "rgb(255, 170, 0)";
+        } else if (eignung == 4) {
+          return "rgb(255, 85, 0)";
+        } else {
+          return "rgb(168, 0, 0)";
+        }
+        });
 
   svg.append("g")
       .attr("class", "y axis")

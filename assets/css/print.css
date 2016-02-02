@@ -1,0 +1,12 @@
+.marker.ga-crosshair {
+  width: 30px;
+  height: 40px;
+  background-image: url('images/marker.png');
+}
+
+.hint {
+	font-family:Arial;
+	color:black;
+	font-weight:normal !important;
+	font-size:95%;
+}
