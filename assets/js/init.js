@@ -286,7 +286,7 @@ var updateRoofInfo = function(map, marker, roof) {
   marker.setPosition(polygon.getInteriorPoint().getCoordinates());
   flyTo(map, marker.getPosition(), 0.25);
 
-  updateBarChart(roof);
+  updateBarChart(roof, roof.attributes.klasse);
 };
 
 /**
@@ -432,7 +432,7 @@ var init = function(nointeraction) {
 	body.removeClass('is-loading');
 }
 
-var updateBarChart = function(roof) {
+var updateBarChart = function(roof, eignung) {
 
   d3.select("#chart").select("svg").remove();
 
@@ -515,7 +515,20 @@ var updateBarChart = function(roof) {
       .attr("y", function(d) { return y(d[1]); })
       .attr("height", function(d) { return height - y(d[1]); })
       .on('mouseover', tip.show)
-      .on('mouseout', tip.hide);
+      .on('mouseout', tip.hide)
+      .style("fill", function(d) { 
+        if (eignung == 1) {
+          return "rgb(0, 197, 255)";
+        } else if (eignung == 2) {
+          return "rgb(255, 255, 0)";
+        } else if (eignung == 3) {
+          return "rgb(255, 170, 0)";
+        } else if (eignung == 4) {
+          return "rgb(255, 85, 0)";
+        } else {
+          return "rgb(168, 0, 0)";
+        }
+        });
 
   svg.append("g")
       .attr("class", "y axis")
