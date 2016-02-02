@@ -341,7 +341,7 @@ var sdTranslations = {
    en: 'Gesamte Einstrahlung EN'
  },
     totalRadiationText: {
-   de: 'Jährliche Einstrahlung unter Berücksichtigung der Verschattung',
+   de: 'Jährliche Einstrahlung unter Berücksichtigung der Verschattung. Dies entspricht der mittleren Einstrahlung multipliziert mit der Dachfläche.',
    fr: 'Jährliche Einstrahlung unter Berücksichtigung der Verschattung FR',
    it: 'Jährliche Einstrahlung unter Berücksichtigung der Verschattung IT',
    en: 'Jährliche Einstrahlung unter Berücksichtigung der Verschattung EN'
@@ -353,7 +353,7 @@ var sdTranslations = {
    en: 'Mittlere Einstrahlung EN'
  },
     meanRadiationText: {
-   de: 'Mittlere jährliche Einstrahlung (Globalstrahlung) pro Quadratmeter unter Berücksichtigung der Verschattung.',
+   de: 'Mittlere jährliche Einstrahlung (Globalstrahlung) pro Quadratmeter unter Berücksichtigung der Verschattung',
    fr: 'Mittlere jährliche Einstrahlung (Globalstrahlung) pro Quadratmeter unter Berücksichtigung der Verschattung. FR',
    it: 'Mittlere jährliche Einstrahlung (Globalstrahlung) pro Quadratmeter unter Berücksichtigung der Verschattung. IT',
    en: 'Mittlere jährliche Einstrahlung (Globalstrahlung) pro Quadratmeter unter Berücksichtigung der Verschattung. EN'
@@ -401,7 +401,7 @@ var sdTranslations = {
   en: '* Der Heizwärme- und Warmwasserbedarf wird anhand der Daten aus dem Gebäude- und Wohnungsregister (GWR) berechnet. EN'
  },
     hintHeatingDaysMonth: {
-    de: 'Heizgradtage werden verwendet, um den jährlichen Heizwärmebedarf auf die Kalendermonate zu verteilen. Die Heizgradtage für einen Monat berechnen sich aus der Differenz zwischen der Raumtemperatur (20°C) und der Tagesmitteltemperatur an Tagen mit einer Tagesmitteltemperatur tiefer als die Heizgrenze (< 12°C).',
+    de: '* Heizgradtage werden verwendet, um den jährlichen Heizwärmebedarf auf die Kalendermonate zu verteilen. Die Heizgradtage für einen Monat berechnen sich aus der Differenz zwischen der Raumtemperatur (20°C) und der Tagesmitteltemperatur an Tagen mit einer Tagesmitteltemperatur tiefer als die Heizgrenze (< 12°C).',
     fr: 'Heizgradtage werden verwendet, um den jährlichen Heizwärmebedarf auf die Kalendermonate zu verteilen. Die Heizgradtage für einen Monat berechnen sich aus der Differenz zwischen der Raumtemperatur (20°C) und der Tagesmitteltemperatur an Tagen mit einer Tagesmitteltemperatur tiefer als die Heizgrenze (< 12°C). FR',
   it: 'Heizgradtage werden verwendet, um den jährlichen Heizwärmebedarf auf die Kalendermonate zu verteilen. Die Heizgradtage für einen Monat berechnen sich aus der Differenz zwischen der Raumtemperatur (20°C) und der Tagesmitteltemperatur an Tagen mit einer Tagesmitteltemperatur tiefer als die Heizgrenze (< 12°C). IT',
   en: 'Heizgradtage werden verwendet, um den jährlichen Heizwärmebedarf auf die Kalendermonate zu verteilen. Die Heizgradtage für einen Monat berechnen sich aus der Differenz zwischen der Raumtemperatur (20°C) und der Tagesmitteltemperatur an Tagen mit einer Tagesmitteltemperatur tiefer als die Heizgrenze (< 12°C). EN'
@@ -545,14 +545,8 @@ var sdTranslations = {
   it: 'kWh/m<sup>2</sup> pro Jahr IT',
   en: 'kWh/m<sup>2</sup> pro Jahr EN'
   },
-    savingElectricity: {
-    de: 'Ersparte Stromkosten',
-    fr: 'Ersparte Stromkosten FR',
-  it: 'Ersparte Stromkosten IT',
-  en: 'Ersparte Stromkosten EN'
-  },  
     savingSolarheat: {
-    de: 'Ersparte Heizkosten',
+    de: 'Solarwärme im Wert von',
     fr: 'Ersparte Heizkosten FR',
   it: 'Ersparte Heizkosten IT',
   en: 'Ersparte Heizkosten EN'

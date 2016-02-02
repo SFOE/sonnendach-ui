@@ -65,11 +65,14 @@
           </th>
           <td>
             <span id="finanzertrag"></span> 
-			      <span class="trn">solarstromTitel2</span>
+			      <span class="trn">amountYear</span>
           </td>
         </tr>        
       </table>
       <div id="map" style="width: 100%; height: 300px;padding:1em 0 1em 0;"></div>
+
+
+      <!-- SOLARSTROM -->
       <h3 class="trn">Solarstrom</h3>
       <table class="table-with-border kernkraftwerke-extended" cellpadding="5">
         <tr>
@@ -94,7 +97,7 @@
         </tr>        
         <tr>
           <th class="cell-meta">
-            <span class="trn">savingElectricity</span>
+            <span class="trn">solarPowerValue</span>
           </th>
           <td>
             <span id="finanzertrag2"></span> 
@@ -109,6 +112,8 @@
         	</td>
         </tr> 		
       </table>
+
+      <!-- SOLARWAERME -->
       <h3 class="trn">Solarwärme</h3>
       <table class="table-with-border kernkraftwerke-extended" cellpadding="5">
         <tr>
@@ -124,17 +129,11 @@
             <span class="trn">savingSolarheat</span>
           </th>
           <td>
-            <span id="solarHeatCost"></span>
+            <span id="solarHeatCost"></span><br>
+            <span class="hint" id="heatText"></span>
           </td>
         </tr>
-        <tr>
-          <th class="cell-meta">
-			<span class="trn">shower</span>
-          </th>
-          <td>
-            <span id="heatText"></span>
-          </td>
-        </tr>
+
 		<tr>
           <th class="cell-meta">
 			<span class="trn">heatDemand</span>
@@ -187,6 +186,8 @@
 		  </td>
         </tr> 		
       </table>
+
+      <!-- IHRE DAECHFLAECHE -->
       <h3 class="trn">yourRoof</h3>
       <table class="table-with-border kernkraftwerke-extended" cellpadding="5">
         <tr>
@@ -213,9 +214,21 @@
             <span id="areaOutput"></span>&nbsp;<span class="trn">m2</span>
           </td>
         </tr>             
-      </table>   
+      </table>
+
+      <!-- STRAHLUNG -->
       <h3 class="trn">yourSolarRadiation</h3>
       <table class="table-with-border kernkraftwerke-extended" cellpadding="5">
+        <tr>
+          <th class="cell-meta" style="vertical-align:top">
+            <span class="trn">meanRadiation</span><br>
+      <span class="hint trn">meanRadiationText</span>
+          </th>
+          <td>
+            <span id="meanRadiation"></span>
+      <span class="trn">kWhM2</span>
+          </td>
+        </tr>        
         <tr>
           <th class="cell-meta" style="vertical-align:top">
             <span class="trn">totalRadiation</span><br>
@@ -226,23 +239,15 @@
 			<span class="trn">kWh</span>
           </td>
         </tr>
-        <tr>
-          <th class="cell-meta" style="vertical-align:top">
-            <span class="trn">meanRadiation</span><br>
-			<span class="hint trn">meanRadiationText</span>
-          </th>
-          <td>
-            <span id="meanRadiation"></span>
-			<span class="trn">kWhM2</span>
-          </td>
-        </tr>
        <tr>
           <td colspan ="2">
           <span class="hint trn">hint</span>
 		  <span class="hint trn">hintRadiation</span>
 		  </td>
         </tr>  		
-      </table> 		
+      </table>
+
+      <!-- MONATE -->
       <h3 class="trn">graphTitel</h3>
       <table class="table-with-border kernkraftwerke-extended" cellpadding="5">
         <tr>
@@ -253,7 +258,7 @@
             <span class="trn">powerProductionMonth</span>
           </th>
 		  <th class="cell-meta" style="vertical-align:top">
-            <span class="trn">heatingDaysMonth</span>
+            <span class="trn">heatingDaysMonth</span> *
           </th>
         </tr>
         <tr>
