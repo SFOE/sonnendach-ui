@@ -218,8 +218,8 @@ var sdTranslations = {
     fr: 'Alle Informationen über das Dach <strong>drucken</strong> FR'
   },
   druckenButton: {
-    de: 'drucken',
-    fr: 'drucken FR'
+    de: 'Drucken',
+    fr: 'Drucken FR'
   },
   low: {
    de: 'gering',
@@ -312,7 +312,7 @@ var sdTranslations = {
     fr: 'EnergieSchweiz.ch FR' 
  },
  impressumAnalyse: {
-    de: 'Geoanalyse durchgeführt von <a href="http://www.meteotest.ch" target="_blank">Meteotest</a>',
+    de: 'Solarpotentialanalyse durchgeführt von <a href="http://www.meteotest.ch" target="_blank">Meteotest</a>',
     fr: 'Geoanalyse durchgeführt von <a href="http://www.meteotest.ch" target="_blank">Meteotest</a> FR'
  },
  einbettenTitel: {
@@ -327,7 +327,6 @@ var sdTranslations = {
     de: 'Stromproduktion der letzten zwölf Monate',
     fr: 'Stromproduktion der letzten zwölf Monate FR'
  },
- 
   yourSolarRadiation: {
    de: 'Sonneneinstrahlung',
    fr: 'Sonneneinstrahlung FR',
@@ -357,19 +356,19 @@ var sdTranslations = {
    fr: 'Mittlere jährliche Einstrahlung (Globalstrahlung) pro Quadratmeter unter Berücksichtigung der Verschattung. FR',
    it: 'Mittlere jährliche Einstrahlung (Globalstrahlung) pro Quadratmeter unter Berücksichtigung der Verschattung. IT',
    en: 'Mittlere jährliche Einstrahlung (Globalstrahlung) pro Quadratmeter unter Berücksichtigung der Verschattung. EN'
- },
- address: {
+  },
+  address: {
     de: 'Adresse',
     fr: 'Adresse',
-  it: 'Indirizzo',
-  en: 'Address'
- },
+    it: 'Indirizzo',
+    en: 'Address'
+  },
   hint: {
     de: 'Hinweis: ',
     fr: 'Hinweis: FR',
-  it: 'Hinweis: IT',
-  en: 'Hinweis: EN'
- },
+    it: 'Hinweis: IT',
+    en: 'Hinweis: EN'
+  },
     hintRadiation: {
     de: 'Zur Berechnung der Strahlungsdaten werden die Referenzjahre 2004-2014 verwendet.',
     fr: 'Zur Berechnung der Strahlungsdaten werden die Referenzjahre 2004-2014 verwendet. FR',
@@ -411,18 +410,24 @@ var sdTranslations = {
     fr: 'Mois',
   it: 'Mese',
   en: 'Month'
- },
-   powerProductionMonth: {
-    de: 'Stromertrag [kWh/Monat]',
+  },
+  powerProductionMonth: {
+    de: 'Stromertrag<br>[kWh/Monat]',
     fr: 'Stromertrag [kWh/Monat] FR',
-  it: 'Stromertrag [kWh/Monat] IT',
-  en: 'Stromertrag [kWh/Monat] EN'
- },
-   heatingDaysMonth: {
-    de: 'Heizgradtage [Tage]',
+    it: 'Stromertrag [kWh/Monat] IT',
+    en: 'Stromertrag [kWh/Monat] EN'
+  },
+  FinanceMonth: {
+    de: 'Finanzertrag<br>[Franken]',
+    fr: 'Stromertrag [kWh/Monat] FR',
+    it: 'Stromertrag [kWh/Monat] IT',
+    en: 'Stromertrag [kWh/Monat] EN'
+  },
+  heatingDaysMonth: {
+    de: 'Heizgradtage<br>[Anz. Tage]',
     fr: 'Heizgradtage [Tage] FR',
-  it: 'Heizgradtage [Tage] IT',
-  en: 'Heizgradtage [Tage] EN'
+    it: 'Heizgradtage [Tage] IT',
+    en: 'Heizgradtage [Tage] EN'
  },
   january: {
     de: 'Januar',
@@ -646,5 +651,113 @@ var sdTranslations = {
     fr: 'm<sup>2</sup> FR',
   it: 'm<sup>2</sup> IT',
   en: 'm<sup>2</sup> EN'
+  },
+  monthshort1: {
+    de: 'Jan',
+    fr: 'Jan',
+    it: 'Jan',
+    en: 'Jan'
+  },
+  monthshort2: {
+    de: 'Feb',
+    fr: 'Jan',
+    it: 'Jan',
+    en: 'Jan'
+  },
+  monthshort3: {
+    de: 'Mrz',
+    fr: 'Jan',
+    it: 'Jan',
+    en: 'Jan'
+  },
+  monthshort4: {
+    de: 'Apr',
+    fr: 'Jan',
+    it: 'Jan',
+    en: 'Jan'
+  },
+  monthshort5: {
+    de: 'Mai',
+    fr: 'Jan',
+    it: 'Jan',
+    en: 'Jan'
+  },
+  monthshort6: {
+    de: 'Jun',
+    fr: 'Jan',
+    it: 'Jan',
+    en: 'Jan'
+  },
+  monthshort7: {
+    de: 'Jul',
+    fr: 'Jan',
+    it: 'Jan',
+    en: 'Jan'
+  },
+  monthshort8: {
+    de: 'Aug',
+    fr: 'Jan',
+    it: 'Jan',
+    en: 'Jan'
+  },
+  monthshort9: {
+    de: 'Sep',
+    fr: 'Jan',
+    it: 'Jan',
+    en: 'Jan'
+  },
+  monthshort10: {
+    de: 'Okt',
+    fr: 'Jan',
+    it: 'Jan',
+    en: 'Jan'
+  },
+  monthshort11: {
+    de: 'Nov',
+    fr: 'Jan',
+    it: 'Jan',
+    en: 'Jan'
+  },
+  monthshort12: {
+    de: 'Dez',
+    fr: 'Jan',
+    it: 'Jan',
+    en: 'Jan'
+  },
+  chartXAxis: {
+    de: 'Stromproduktion in Franken',
+    fr: '',
+    it: '',
+    en: ''
+  },
+  EnergieSchweiz: {
+    de: 'EnergieSchweiz',
+    fr: 'SuisseEnergie',
+    it: 'SvizzeraEnergia',
+    en: 'EnergieSchweiz'
+  },
+  printSolarstromTitel: {
+    de: 'Solarstrom',
+    fr: '',
+    it: '',
+    en: ''
+  },
+  printSolarwaermeTitel: {
+    de: 'Solarwärme',
+    fr: '',
+    it: '',
+    en: ''
+  },
+  copyright: {
+    de: 'Copyright &amp; Datenschutzerklärung',
+    fr: 'Conditions d\'utilisation',
+    it: 'Copyright e dichiarazione della protezione dei diritti d\'autore',
+    en: 'Copyright &amp; data protection'
+  },
+  copyrightMain: {
+    de: '&copy; <a href="http://www.bfe.admin.ch/" target="_blank">BFE</a>, <a href="http://www.swisstopo.admin.ch" target="_blank">swisstopo</a>, <a href="http://www.meteoschweiz.admin.ch" target="_blank">MeteoSchweiz</a>',
+    fr: '&copy; BFE, swisstopo, MeteoSchweiz',
+    it: '&copy; BFE, swisstopo, MeteoSchweiz',
+    en: '&copy; BFE, swisstopo, MeteoSchweiz'
   }
 };

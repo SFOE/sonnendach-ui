@@ -26,13 +26,16 @@
 
      <link rel="stylesheet" type="text/css" href="assets/css/extended.min.css"/>
      <link rel="stylesheet" type="text/css" href="assets/css/print.css"/>
+     <link rel="stylesheet" type="text/css" href="assets/css/barchart.css"/>
 
 	</head>
 
 	<body>
 
   <div class="chsdi-htmlpopup-container">
-    <div class="htmlpopup-header">
+
+    <!-- HEADER EIDG -->
+    <div class="htmlpopup-header hide" id="eig">
       <img src="images/logo.jpg">
       <div class="amts">
         <div class="amt trn">bfe</div>
@@ -40,8 +43,18 @@
         <div class="amt trn">swisstopo</div>
       </div>
     </div>
+
+    <!-- HEADER ECH -->
+    <div class="htmlpopup-header hide" id="ech">
+      <img src="assets/css/images/logoech.png">
+    </div>
+    
     <div class="htmlpopup-content">
+
+      <!-- TITEL -->
       <h3 class="trn">mainTitle</h3>
+
+      <!-- ALLG INFOS -->
       <table class="table-with-border kernkraftwerke-extended" cellpadding="5">
         <tr>
           <th class="cell-meta">
@@ -69,11 +82,12 @@
           </td>
         </tr>        
       </table>
+
+      <!-- KARTE -->
       <div id="map" style="width: 100%; height: 300px;padding:1em 0 1em 0;"></div>
 
-
       <!-- SOLARSTROM -->
-      <h3 class="trn">Solarstrom</h3>
+      <h3 class="trn">printSolarstromTitel</h3>
       <table class="table-with-border kernkraftwerke-extended" cellpadding="5">
         <tr>
           <th class="cell-meta">
@@ -114,7 +128,7 @@
       </table>
 
       <!-- SOLARWAERME -->
-      <h3 class="trn">Solarwärme</h3>
+      <h3 class="trn">printSolarwaermeTitel</h3>
       <table class="table-with-border kernkraftwerke-extended" cellpadding="5">
         <tr>
           <th class="cell-meta" style="vertical-align:top">
@@ -124,7 +138,7 @@
             <span id="solarHeat"></span>
           </td>
         </tr>
-		<tr>
+		    <tr>
           <th class="cell-meta" style="vertical-align:top">
             <span class="trn">savingSolarheat</span>
           </th>
@@ -133,10 +147,9 @@
             <span class="hint" id="heatText"></span>
           </td>
         </tr>
-
-		<tr>
+        <tr>
           <th class="cell-meta">
-			<span class="trn">heatDemand</span>
+            <span class="trn">heatDemand</span>
           </th>
           <td>
             <span id="heatDemand"></span>
@@ -144,8 +157,8 @@
         </tr>
         <tr>
           <th class="cell-meta">
-			<span class="trn">heatingDemand</span><br>
-			<span class="hint trn">heatingDemandText</span>
+      			<span class="trn">heatingDemand</span><br>
+      			<span class="hint trn">heatingDemandText</span>
           </th>
           <td>
             <span id="heatingDemand"></span>
@@ -153,8 +166,8 @@
         </tr>  
         <tr>
           <th class="cell-meta">
-			<span class="trn">warmWaterDemand</span><br>
-			<span class="hint trn">warmWaterDemandText</span>
+      			<span class="trn">warmWaterDemand</span><br>
+      			<span class="hint trn">warmWaterDemandText</span>
           </th>
           <td>
             <span id="warmWaterDemand"></span>
@@ -162,8 +175,8 @@
         </tr>
         <tr>
           <th class="cell-meta">
-			<span class="trn">reservoir</span><br>
-			<span class="hint trn">reservoirText</span>
+      			<span class="trn">reservoir</span><br>
+      			<span class="hint trn">reservoirText</span>
           </th>
           <td>
             <span id="reservoir"></span>
@@ -171,19 +184,19 @@
         </tr> 	
         <tr>
           <th class="cell-meta">
-			<span class="trn">collectorSurface</span><br>
-			<span class="hint trn">collectorSurfaceText</span>
+      			<span class="trn">collectorSurface</span><br>
+      			<span class="hint trn">collectorSurfaceText</span>
           </th>
           <td>
             <span id="collectorSurface"></span>&nbsp;
           </td>
         </tr>
-       <tr>
+        <tr>
           <td colspan ="2">
-          <span class="hint trn">hint</span><br>
-		    <span class="hint trn">hintGWR</span><br>
-		    <span class="hint trn">hintReservoirArea</span><br>
-		  </td>
+            <span class="hint trn">hint</span><br>
+    		    <span class="hint trn">hintGWR</span><br>
+    		    <span class="hint trn">hintReservoirArea</span><br>
+    		  </td>
         </tr> 		
       </table>
 
@@ -222,28 +235,28 @@
         <tr>
           <th class="cell-meta" style="vertical-align:top">
             <span class="trn">meanRadiation</span><br>
-      <span class="hint trn">meanRadiationText</span>
+            <span class="hint trn">meanRadiationText</span>
           </th>
           <td>
             <span id="meanRadiation"></span>
-      <span class="trn">kWhM2</span>
+            <span class="trn">kWhM2</span>
           </td>
         </tr>        
         <tr>
           <th class="cell-meta" style="vertical-align:top">
             <span class="trn">totalRadiation</span><br>
-			<span class="hint trn">totalRadiationText</span>	
+            <span class="hint trn">totalRadiationText</span>	
           </th>
           <td>
             <span id="totalRadiation"></span>
-			<span class="trn">kWh</span>
+            <span class="trn">kWh</span>
           </td>
         </tr>
-       <tr>
+        <tr>
           <td colspan ="2">
-          <span class="hint trn">hint</span>
-		  <span class="hint trn">hintRadiation</span>
-		  </td>
+            <span class="hint trn">hint</span>
+		        <span class="hint trn">hintRadiation</span>
+		      </td>
         </tr>  		
       </table>
 
@@ -257,161 +270,208 @@
           <th class="cell-meta" style="vertical-align:top">
             <span class="trn">powerProductionMonth</span>
           </th>
-		  <th class="cell-meta" style="vertical-align:top">
+          <th class="cell-meta" style="vertical-align:top">
+            <span class="trn">FinanceMonth</span>
+          </th>          
+		      <th class="cell-meta" style="vertical-align:top">
             <span class="trn">heatingDaysMonth</span> *
           </th>
         </tr>
         <tr>
           <th class="cell-meta" style="vertical-align:top">
-			<span id="month0"></span>
+            <span id="month0"></span>
           </th>
           <td>
-			<span id="powerProductionMonth0"></span>
+            <span id="powerProductionMonth0"></span>
           </td>
           <td>
-			<span id="heatingDaysMonth0"></span>
+            <span id="financeMonth0"></span>
+          </td>
+          <td>
+            <span id="heatingDaysMonth0"></span>
           </td>
         </tr>
-		<tr>
+		    <tr>
           <th class="cell-meta" style="vertical-align:top">
-			<span id="month1"></span>
+            <span id="month1"></span>
           </th>
           <td>
-			<span id="powerProductionMonth1"></span>
+            <span id="powerProductionMonth1"></span>
           </td>
           <td>
-			<span id="heatingDaysMonth1"></span>
+            <span id="financeMonth1"></span>
+          </td>
+          <td>
+            <span id="heatingDaysMonth1"></span>
           </td>
         </tr>
-		<tr>
+		    <tr>
           <th class="cell-meta" style="vertical-align:top">
-			<span id="month2"></span>
+            <span id="month2"></span>
           </th>
           <td>
-			<span id="powerProductionMonth2"></span>
+            <span id="powerProductionMonth2"></span>
           </td>
           <td>
-			<span id="heatingDaysMonth2"></span>
+            <span id="financeMonth2"></span>
+          </td>
+          <td>
+            <span id="heatingDaysMonth2"></span>
           </td>
         </tr>
-		<tr>
+		    <tr>
           <th class="cell-meta" style="vertical-align:top">
-			<span id="month3"></span>
+            <span id="month3"></span>
           </th>
           <td>
-			<span id="powerProductionMonth3"></span>
+            <span id="powerProductionMonth3"></span>
           </td>
           <td>
-			<span id="heatingDaysMonth3"></span>
+            <span id="financeMonth3"></span>
+          </td>
+          <td>
+            <span id="heatingDaysMonth3"></span>
           </td>
         </tr>
-		<tr>
+		    <tr>
           <th class="cell-meta" style="vertical-align:top">
-			<span id="month4"></span>
+            <span id="month4"></span>
           </th>
           <td>
-			<span id="powerProductionMonth4"></span>
+            <span id="powerProductionMonth4"></span>
           </td>
           <td>
-			<span id="heatingDaysMonth4"></span>
+            <span id="financeMonth4"></span>
+          </td>
+          <td>
+            <span id="heatingDaysMonth4"></span>
           </td>
         </tr>
-		<tr>
+        <tr>
           <th class="cell-meta" style="vertical-align:top">
-			<span id="month5"></span>
+            <span id="month5"></span>
           </th>
           <td>
-			<span id="powerProductionMonth5"></span>
+            <span id="powerProductionMonth5"></span>
           </td>
           <td>
-			<span id="heatingDaysMonth5"></span>
+            <span id="financeMonth5"></span>
+          </td>
+          <td>
+            <span id="heatingDaysMonth5"></span>
           </td>
         </tr>
-		<tr>
+		    <tr>
           <th class="cell-meta" style="vertical-align:top">
-			<span id="month6"></span>
+            <span id="month6"></span>
           </th>
           <td>
-			<span id="powerProductionMonth6"></span>
+            <span id="powerProductionMonth6"></span>
           </td>
           <td>
-			<span id="heatingDaysMonth6"></span>
+            <span id="financeMonth6"></span>
+          </td>
+          <td>
+            <span id="heatingDaysMonth6"></span>
           </td>
         </tr>
-		<tr>
+		    <tr>
           <th class="cell-meta" style="vertical-align:top">
-			<span id="month7"></span>
+            <span id="month7"></span>
           </th>
           <td>
-			<span id="powerProductionMonth7"></span>
+            <span id="powerProductionMonth7"></span>
           </td>
           <td>
-			<span id="heatingDaysMonth7"></span>
+            <span id="financeMonth7"></span>
+          </td>
+          <td>
+            <span id="heatingDaysMonth7"></span>
           </td>
         </tr>
-		<tr>
+		    <tr>
           <th class="cell-meta" style="vertical-align:top">
-			<span id="month8"></span>
+            <span id="month8"></span>
           </th>
           <td>
-			<span id="powerProductionMonth8"></span>
+            <span id="powerProductionMonth8"></span>
           </td>
           <td>
-			<span id="heatingDaysMonth8"></span>
+            <span id="financeMonth8"></span>
+          </td>
+          <td>
+            <span id="heatingDaysMonth8"></span>
           </td>
         </tr>
-		<tr>
+		    <tr>
           <th class="cell-meta" style="vertical-align:top">
-			<span id="month9"></span>
+            <span id="month9"></span>
           </th>
           <td>
-			<span id="powerProductionMonth9"></span>
+            <span id="powerProductionMonth9"></span>
           </td>
           <td>
-			<span id="heatingDaysMonth9"></span>
+            <span id="financeMonth9"></span>
+          </td>
+          <td>
+            <span id="heatingDaysMonth9"></span>
           </td>
         </tr>
-		<tr>
+		    <tr>
           <th class="cell-meta" style="vertical-align:top">
-			<span id="month10"></span>
+            <span id="month10"></span>
           </th>
           <td>
-			<span id="powerProductionMonth10"></span>
+            <span id="powerProductionMonth10"></span>
           </td>
           <td>
-			<span id="heatingDaysMonth10"></span>
+            <span id="financeMonth10"></span>
+          </td>
+          <td>
+            <span id="heatingDaysMonth10"></span>
           </td>
         </tr>
-		<tr>
+		    <tr>
           <th class="cell-meta" style="vertical-align:top">
-			<span id="month11"></span>
+            <span id="month11"></span>
           </th>
           <td>
-			<span id="powerProductionMonth11"></span>
+            <span id="powerProductionMonth11"></span>
           </td>
           <td>
-			<span id="heatingDaysMonth11"></span>
+            <span id="financeMonth11"></span>
+          </td>
+          <td>
+            <span id="heatingDaysMonth11"></span>
           </td>
         </tr>
-       <tr>
-          <td colspan ="3">
-			<span class="hint trn">hint</span><br>
-			<span class="hint trn">hintHeatingDaysMonth</span><br>
-		  </td>
+        <tr>
+          <td colspan="4">
+      			<span class="hint trn">hint</span><br>
+      			<span class="hint trn">hintHeatingDaysMonth</span><br>
+    		  </td>
         </tr>		
-      </table>  	  
+      </table>
+
+    <!-- BARCHART -->
+    <div id="chart"></div>
+
     </div>
+
+    <!-- FOOTER -->
     <div class="htmlpopup-footer">
       <a href="http://www.geo.admin.ch/internet/geoportal/de/home/geoadmin/contact.html#copyright" target="_blank">
-        Copyright &amp; Datenschutzerklärung
+        <span class="trn">copyright</span>
       </a>
       <div class="float-right">
         <a href="javascript:window.print();">
-          Drucken
+          <span class="trn">druckenButton</span>
         </a>
       </div>
     </div>
 	</div>
+
+  <span id="thisIsPrint"></span>
 
     <script src="assets/js/jquery-2.1.4.min.js"></script>
     <script src="assets/js/jquery.xdomainrequest.1.0.2.min.js"></script>
@@ -430,6 +490,7 @@
     <script src="assets/js/EPSG2056.js"></script>
     <script src="assets/js/layers.js"></script>
     <script src="assets/js/map.js"></script>
+    <script src="assets/js/barchart.js"></script>
     <script src="assets/js/utils.js"></script>
     <script src="assets/js/search.js"></script>
     <script src="assets/js/location.js"></script>

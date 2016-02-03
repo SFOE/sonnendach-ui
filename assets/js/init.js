@@ -46,6 +46,14 @@ var onAddressFound = function(map, marker, address, autoSearchRoof, roofSearchTo
 };
 
 var updateRoofInfo = function(map, marker, roof) {
+
+  var langs = ['de', 'fr'];
+  var headers = ['0','1'];
+  var permalink = addPermalink();
+
+  var header = (headers.indexOf(permalink.header) != -1) ? permalink.header : headers[0];
+  var lang = (langs.indexOf(permalink.lang) != -1) ? permalink.lang : langs[0]; 
+
   var suitability = getSuitabilityText(roof.attributes.klasse, window.translator);
 
   //fill content with attributes
@@ -185,7 +193,11 @@ var updateRoofInfo = function(map, marker, roof) {
   $('#heatText').html(textHeat);
 
   if ($.contains(document.body, document.getElementById("printLink"))) {
-    document.getElementById('printLink').href = 'print.html?featureId=' + roof.featureId;
+
+    document.getElementById('printLink').href = 
+      'print.html?featureId=' + roof.featureId +
+      '&header=' + header +
+      '&lang=' + lang;
   }  
 
   //***** NEW heat output value
@@ -261,7 +273,8 @@ var updateRoofInfo = function(map, marker, roof) {
   for (j = 0; j < 12; j++) {
     YY = '' + j;
     if (document.contains(document.getElementById("powerProductionMonth"+ YY))) {
-      document.getElementById("powerProductionMonth"+ YY).innerhtml = $('#powerProductionMonth' + YY).html(formatNumber(Math.round(roof.attributes.monats_ertrag[j])));
+      document.getElementById("powerProductionMonth"+ YY).innerhtml = $('#powerProductionMonth' + YY).html(formatNumber(Math.round(roof.attributes.monats_ertrag[j] * roof.attributes.flaeche)));
+      document.getElementById("financeMonth"+ YY).innerhtml = $('#financeMonth' + YY).html(formatNumber(Math.round(roof.attributes.monats_ertrag[j] * roof.attributes.flaeche * 0.1)));
     }
   } 
 
@@ -286,7 +299,13 @@ var updateRoofInfo = function(map, marker, roof) {
   marker.setPosition(polygon.getInteriorPoint().getCoordinates());
   flyTo(map, marker.getPosition(), 0.25);
 
-  updateBarChart(roof, roof.attributes.klasse);
+  if (document.contains(document.getElementById("thisIsPrint"))) {
+    updateBarChart(roof, roof.attributes.klasse, roof.attributes.flaeche, 1);  
+  } else {
+    updateBarChart(roof, roof.attributes.klasse, roof.attributes.flaeche, 0);
+  }
+
+  
 };
 
 /**
@@ -352,7 +371,6 @@ var init = function(nointeraction) {
     $('#eig').removeClass('hide');
     $('#red').removeClass('hide');
   }
-
 
   // Load the language
   var lang = (langs.indexOf(permalink.lang) != -1) ? permalink.lang : langs[0]; 
@@ -430,119 +448,4 @@ var init = function(nointeraction) {
 
   // Remove the loading css class 
 	body.removeClass('is-loading');
-}
-
-var updateBarChart = function(roof, eignung) {
-
-  d3.select("#chart").select("svg").remove();
-
-  var data = roof.attributes;
-
-  var datanew = [[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]];
-  datanew[0][0] = data.monate[11];
-  datanew[0][1] = data.monats_ertrag[11];
-  datanew[1][0] = data.monate[10];
-  datanew[1][1] = data.monats_ertrag[10];
-  datanew[2][0] = data.monate[9];
-  datanew[2][1] = data.monats_ertrag[9];
-  datanew[3][0] = data.monate[8];
-  datanew[3][1] = data.monats_ertrag[8];
-  datanew[4][0] = data.monate[7];
-  datanew[4][1] = data.monats_ertrag[7];
-  datanew[5][0] = data.monate[6];
-  datanew[5][1] = data.monats_ertrag[6];
-  datanew[6][0] = data.monate[5];
-  datanew[6][1] = data.monats_ertrag[5];
-  datanew[7][0] = data.monate[4];
-  datanew[7][1] = data.monats_ertrag[4];
-  datanew[8][0] = data.monate[3];
-  datanew[8][1] = data.monats_ertrag[3];
-  datanew[9][0] = data.monate[2];
-  datanew[9][1] = data.monats_ertrag[2];
-  datanew[10][0] = data.monate[1];
-  datanew[10][1] = data.monats_ertrag[1];
-  datanew[11][0] = data.monate[0];
-  datanew[11][1] = data.monats_ertrag[0];
-
-  var margin = {top: 40, right: 20, bottom: 30, left: 40},
-      width = 700 - margin.left - margin.right,
-      height = 300 - margin.top - margin.bottom;
-
-  var x = d3.scale.ordinal()
-      .rangeRoundBands([20, width], .1);
-
-  var y = d3.scale.linear()
-      .range([height, 0]);
-
-  var xAxis = d3.svg.axis()
-      .scale(x)
-      .orient("bottom");
-
-  var yAxis = d3.svg.axis()
-      .scale(y)
-      .orient("left")
-      .ticks(5);
-
-  var tip = d3.tip()
-    .attr('class', 'd3-tip')
-    .offset([-10, 0])
-    .html(function(d) {
-      return "<span style='color:red'>" + Math.round(d[1]); + "</span>";
-    })
-
-  var svg = d3.select("#chart").append("svg")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-  svg.call(tip);
-
-  x.domain(datanew.map(function(d) { return d[0]; }));
-  y.domain([0, d3.max(datanew, function(d) { return d[1]; })]);
-
-  svg.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis);
-
-  svg.selectAll(".bar")
-      .data(datanew)
-    .enter().append("rect")
-      .attr("class", "bar")
-      .attr("x", function(d) { return x(d[0]); })
-      .attr("width", x.rangeBand())
-      .attr("y", function(d) { return y(d[1]); })
-      .attr("height", function(d) { return height - y(d[1]); })
-      .on('mouseover', tip.show)
-      .on('mouseout', tip.hide)
-      .style("fill", function(d) { 
-        if (eignung == 1) {
-          return "rgb(0, 197, 255)";
-        } else if (eignung == 2) {
-          return "rgb(255, 255, 0)";
-        } else if (eignung == 3) {
-          return "rgb(255, 170, 0)";
-        } else if (eignung == 4) {
-          return "rgb(255, 85, 0)";
-        } else {
-          return "rgb(168, 0, 0)";
-        }
-        });
-
-  svg.append("g")
-      .attr("class", "y axis")
-      .call(yAxis)
-    .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end")
-      .text("Stromproduktion in kWh");
-
-  function type(d) {
-    d[1] = +d[1];
-    return d;
-  }
-
 }
