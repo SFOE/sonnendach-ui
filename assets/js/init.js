@@ -286,7 +286,7 @@ var updateRoofInfo = function(map, marker, roof) {
   marker.setPosition(polygon.getInteriorPoint().getCoordinates());
   flyTo(map, marker.getPosition(), 0.25);
 
-  updateBarChart(roof, roof.attributes.klasse);
+  updateBarChart(roof, roof.attributes.klasse, roof.attributes.flaeche);
 };
 
 /**
@@ -432,39 +432,41 @@ var init = function(nointeraction) {
 	body.removeClass('is-loading');
 }
 
-var updateBarChart = function(roof, eignung) {
+var updateBarChart = function(roof, eignung, area) {
 
   d3.select("#chart").select("svg").remove();
 
   var data = roof.attributes;
 
+  var frankenFactor = 0.1;
+
   var datanew = [[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]];
   datanew[0][0] = data.monate[11];
-  datanew[0][1] = data.monats_ertrag[11];
+  datanew[0][1] = data.monats_ertrag[11] * area * frankenFactor;
   datanew[1][0] = data.monate[10];
-  datanew[1][1] = data.monats_ertrag[10];
+  datanew[1][1] = data.monats_ertrag[10]  * area * frankenFactor;
   datanew[2][0] = data.monate[9];
-  datanew[2][1] = data.monats_ertrag[9];
+  datanew[2][1] = data.monats_ertrag[9] * area * frankenFactor;
   datanew[3][0] = data.monate[8];
-  datanew[3][1] = data.monats_ertrag[8];
+  datanew[3][1] = data.monats_ertrag[8] * area * frankenFactor;
   datanew[4][0] = data.monate[7];
-  datanew[4][1] = data.monats_ertrag[7];
+  datanew[4][1] = data.monats_ertrag[7] * area * frankenFactor;
   datanew[5][0] = data.monate[6];
-  datanew[5][1] = data.monats_ertrag[6];
+  datanew[5][1] = data.monats_ertrag[6] * area * frankenFactor;
   datanew[6][0] = data.monate[5];
-  datanew[6][1] = data.monats_ertrag[5];
+  datanew[6][1] = data.monats_ertrag[5] * area * frankenFactor;
   datanew[7][0] = data.monate[4];
-  datanew[7][1] = data.monats_ertrag[4];
+  datanew[7][1] = data.monats_ertrag[4] * area * frankenFactor;
   datanew[8][0] = data.monate[3];
-  datanew[8][1] = data.monats_ertrag[3];
+  datanew[8][1] = data.monats_ertrag[3] * area * frankenFactor;
   datanew[9][0] = data.monate[2];
-  datanew[9][1] = data.monats_ertrag[2];
+  datanew[9][1] = data.monats_ertrag[2] * area * frankenFactor;
   datanew[10][0] = data.monate[1];
-  datanew[10][1] = data.monats_ertrag[1];
+  datanew[10][1] = data.monats_ertrag[1] * area * frankenFactor;
   datanew[11][0] = data.monate[0];
-  datanew[11][1] = data.monats_ertrag[0];
+  datanew[11][1] = data.monats_ertrag[0] * area * frankenFactor;
 
-  var margin = {top: 40, right: 20, bottom: 30, left: 40},
+  var margin = {top: 40, right: 20, bottom: 30, left: 70},
       width = 700 - margin.left - margin.right,
       height = 300 - margin.top - margin.bottom;
 
@@ -477,6 +479,7 @@ var updateBarChart = function(roof, eignung) {
   var xAxis = d3.svg.axis()
       .scale(x)
       .orient("bottom");
+      //.tickFormat(function(d) { return monthToText(d[0]); });
 
   var yAxis = d3.svg.axis()
       .scale(y)
@@ -487,7 +490,7 @@ var updateBarChart = function(roof, eignung) {
     .attr('class', 'd3-tip')
     .offset([-10, 0])
     .html(function(d) {
-      return "<span style='color:red'>" + Math.round(d[1]); + "</span>";
+      return "<span style='color:red'>" + formatNumber(Math.round(d[1])); + "</span>";
     })
 
   var svg = d3.select("#chart").append("svg")
@@ -538,9 +541,10 @@ var updateBarChart = function(roof, eignung) {
       .attr("y", 6)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("Stromproduktion in kWh");
+      .text(translator.get('chartXAxis'));
 
   function type(d) {
+    d[0] = +d[0];
     d[1] = +d[1];
     return d;
   }

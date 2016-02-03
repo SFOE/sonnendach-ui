@@ -217,3 +217,37 @@ var getToleranceInPixels = function(toleranceMeters, mapExtent, display) {
 var goTo = function(id) {
   $('#goTo' + (id.charAt(0).toUpperCase() + id.slice(1))).click();
 }
+
+var monthToText = function(month) {
+
+  var monthText = '';
+
+  if (month === "1") {
+    monthText = translator.get('monthshort1');
+  } else if (month == 2) {
+    monthText = translator.get('monthshort2');
+  } else if (month == 3) {
+    monthText = translator.get('monthshort3');
+  } else if (month == 4) {
+    monthText = translator.get('monthshort4');
+  } else if (month == 5) {
+    monthText = translator.get('monthshort5');
+  } else if (month == 6) {
+    monthText = translator.get('monthshort6');
+  } else if (month == 7) {
+    monthText = translator.get('monthshort7');
+  } else if (month == 8) {
+    monthText = translator.get('monthshort8');
+  } else if (month == 9) {
+    monthText = translator.get('monthshort9');
+  } else if (month == 10) {
+    monthText = translator.get('monthshort10');
+  } else if (month == 11) {
+    monthText = translator.get('monthshort11');
+  } else if (month == 12) {
+    monthText = translator.get('monthshort12');
+  }
+
+  return monthText;
+
+};

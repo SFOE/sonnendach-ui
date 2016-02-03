@@ -646,5 +646,83 @@ var sdTranslations = {
     fr: 'm<sup>2</sup> FR',
   it: 'm<sup>2</sup> IT',
   en: 'm<sup>2</sup> EN'
+  },
+  monthshort1: {
+    de: 'Jan',
+    fr: 'Jan',
+    it: 'Jan',
+    en: 'Jan'
+  },
+  monthshort2: {
+    de: 'Feb',
+    fr: 'Jan',
+    it: 'Jan',
+    en: 'Jan'
+  },
+  monthshort3: {
+    de: 'Mrz',
+    fr: 'Jan',
+    it: 'Jan',
+    en: 'Jan'
+  },
+  monthshort4: {
+    de: 'Apr',
+    fr: 'Jan',
+    it: 'Jan',
+    en: 'Jan'
+  },
+  monthshort5: {
+    de: 'Mai',
+    fr: 'Jan',
+    it: 'Jan',
+    en: 'Jan'
+  },
+  monthshort6: {
+    de: 'Jun',
+    fr: 'Jan',
+    it: 'Jan',
+    en: 'Jan'
+  },
+  monthshort7: {
+    de: 'Jul',
+    fr: 'Jan',
+    it: 'Jan',
+    en: 'Jan'
+  },
+  monthshort8: {
+    de: 'Aug',
+    fr: 'Jan',
+    it: 'Jan',
+    en: 'Jan'
+  },
+  monthshort9: {
+    de: 'Sep',
+    fr: 'Jan',
+    it: 'Jan',
+    en: 'Jan'
+  },
+  monthshort10: {
+    de: 'Okt',
+    fr: 'Jan',
+    it: 'Jan',
+    en: 'Jan'
+  },
+  monthshort11: {
+    de: 'Nov',
+    fr: 'Jan',
+    it: 'Jan',
+    en: 'Jan'
+  },
+  monthshort12: {
+    de: 'Dez',
+    fr: 'Jan',
+    it: 'Jan',
+    en: 'Jan'
+  },
+  chartXAxis: {
+    de: 'Stromproduktion in Franken',
+    fr: '',
+    it: '',
+    en: ''
   }
 };
