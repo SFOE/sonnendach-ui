@@ -218,8 +218,8 @@ var sdTranslations = {
     fr: 'Alle Informationen über das Dach <strong>drucken</strong> FR'
   },
   druckenButton: {
-    de: 'drucken',
-    fr: 'drucken FR'
+    de: 'Drucken',
+    fr: 'Drucken FR'
   },
   low: {
    de: 'gering',
@@ -357,19 +357,19 @@ var sdTranslations = {
    fr: 'Mittlere jährliche Einstrahlung (Globalstrahlung) pro Quadratmeter unter Berücksichtigung der Verschattung. FR',
    it: 'Mittlere jährliche Einstrahlung (Globalstrahlung) pro Quadratmeter unter Berücksichtigung der Verschattung. IT',
    en: 'Mittlere jährliche Einstrahlung (Globalstrahlung) pro Quadratmeter unter Berücksichtigung der Verschattung. EN'
- },
- address: {
+  },
+  address: {
     de: 'Adresse',
     fr: 'Adresse',
-  it: 'Indirizzo',
-  en: 'Address'
- },
+    it: 'Indirizzo',
+    en: 'Address'
+  },
   hint: {
     de: 'Hinweis: ',
     fr: 'Hinweis: FR',
-  it: 'Hinweis: IT',
-  en: 'Hinweis: EN'
- },
+    it: 'Hinweis: IT',
+    en: 'Hinweis: EN'
+  },
     hintRadiation: {
     de: 'Zur Berechnung der Strahlungsdaten werden die Referenzjahre 2004-2014 verwendet.',
     fr: 'Zur Berechnung der Strahlungsdaten werden die Referenzjahre 2004-2014 verwendet. FR',
@@ -730,5 +730,23 @@ var sdTranslations = {
     fr: 'SuisseEnergie',
     it: 'SvizzeraEnergia',
     en: 'EnergieSchweiz'
+  },
+  printSolarstromTitel: {
+    de: 'Solarstrom',
+    fr: '',
+    it: '',
+    en: ''
+  },
+  printSolarwaermeTitel: {
+    de: 'Solarwärme',
+    fr: '',
+    it: '',
+    en: ''
+  },
+  copyright: {
+    de: 'Copyright &amp; Datenschutzerklärung',
+    fr: 'Conditions d\'utilisation',
+    it: 'Copyright e dichiarazione della protezione dei diritti d\'autore',
+    en: 'Copyright &amp; data protection'
   }
 };
