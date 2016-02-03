@@ -274,6 +274,7 @@ var updateRoofInfo = function(map, marker, roof) {
     YY = '' + j;
     if (document.contains(document.getElementById("powerProductionMonth"+ YY))) {
       document.getElementById("powerProductionMonth"+ YY).innerhtml = $('#powerProductionMonth' + YY).html(formatNumber(Math.round(roof.attributes.monats_ertrag[j] * roof.attributes.flaeche)));
+      document.getElementById("financeMonth"+ YY).innerhtml = $('#financeMonth' + YY).html(formatNumber(Math.round(roof.attributes.monats_ertrag[j] * roof.attributes.flaeche * 0.1)));
     }
   } 
 

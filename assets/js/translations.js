@@ -411,18 +411,24 @@ var sdTranslations = {
     fr: 'Mois',
   it: 'Mese',
   en: 'Month'
- },
-   powerProductionMonth: {
-    de: 'Stromertrag [kWh/Monat]',
+  },
+  powerProductionMonth: {
+    de: 'Stromertrag<br>[kWh/Monat]',
     fr: 'Stromertrag [kWh/Monat] FR',
-  it: 'Stromertrag [kWh/Monat] IT',
-  en: 'Stromertrag [kWh/Monat] EN'
- },
-   heatingDaysMonth: {
-    de: 'Heizgradtage [Tage]',
+    it: 'Stromertrag [kWh/Monat] IT',
+    en: 'Stromertrag [kWh/Monat] EN'
+  },
+  FinanceMonth: {
+    de: 'Finanzertrag<br>[Franken]',
+    fr: 'Stromertrag [kWh/Monat] FR',
+    it: 'Stromertrag [kWh/Monat] IT',
+    en: 'Stromertrag [kWh/Monat] EN'
+  },
+  heatingDaysMonth: {
+    de: 'Heizgradtage<br>[Anz. Tage]',
     fr: 'Heizgradtage [Tage] FR',
-  it: 'Heizgradtage [Tage] IT',
-  en: 'Heizgradtage [Tage] EN'
+    it: 'Heizgradtage [Tage] IT',
+    en: 'Heizgradtage [Tage] EN'
  },
   january: {
     de: 'Januar',
