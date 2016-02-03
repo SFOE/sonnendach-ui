@@ -312,7 +312,7 @@ var sdTranslations = {
     fr: 'EnergieSchweiz.ch FR' 
  },
  impressumAnalyse: {
-    de: 'Geoanalyse durchgeführt von <a href="http://www.meteotest.ch" target="_blank">Meteotest</a>',
+    de: 'Solarpotentialanalyse durchgeführt von <a href="http://www.meteotest.ch" target="_blank">Meteotest</a>',
     fr: 'Geoanalyse durchgeführt von <a href="http://www.meteotest.ch" target="_blank">Meteotest</a> FR'
  },
  einbettenTitel: {
@@ -327,7 +327,6 @@ var sdTranslations = {
     de: 'Stromproduktion der letzten zwölf Monate',
     fr: 'Stromproduktion der letzten zwölf Monate FR'
  },
- 
   yourSolarRadiation: {
    de: 'Sonneneinstrahlung',
    fr: 'Sonneneinstrahlung FR',
@@ -754,5 +753,11 @@ var sdTranslations = {
     fr: 'Conditions d\'utilisation',
     it: 'Copyright e dichiarazione della protezione dei diritti d\'autore',
     en: 'Copyright &amp; data protection'
+  },
+  copyrightMain: {
+    de: '&copy; <a href="http://www.bfe.admin.ch/" target="_blank">BFE</a>, <a href="http://www.swisstopo.admin.ch" target="_blank">swisstopo</a>, <a href="http://www.meteoschweiz.admin.ch" target="_blank">MeteoSchweiz</a>',
+    fr: '&copy; BFE, swisstopo, MeteoSchweiz',
+    it: '&copy; BFE, swisstopo, MeteoSchweiz',
+    en: '&copy; BFE, swisstopo, MeteoSchweiz'
   }
 };
