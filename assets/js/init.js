@@ -46,6 +46,14 @@ var onAddressFound = function(map, marker, address, autoSearchRoof, roofSearchTo
 };
 
 var updateRoofInfo = function(map, marker, roof) {
+
+  var langs = ['de', 'fr'];
+  var headers = ['0','1'];
+  var permalink = addPermalink();
+
+  var header = (headers.indexOf(permalink.header) != -1) ? permalink.header : headers[0];
+  var lang = (langs.indexOf(permalink.lang) != -1) ? permalink.lang : langs[0]; 
+
   var suitability = getSuitabilityText(roof.attributes.klasse, window.translator);
 
   //fill content with attributes
@@ -185,7 +193,11 @@ var updateRoofInfo = function(map, marker, roof) {
   $('#heatText').html(textHeat);
 
   if ($.contains(document.body, document.getElementById("printLink"))) {
-    document.getElementById('printLink').href = 'print.html?featureId=' + roof.featureId;
+
+    document.getElementById('printLink').href = 
+      'print.html?featureId=' + roof.featureId +
+      '&header=' + header +
+      '&lang=' + lang;
   }  
 
   //***** NEW heat output value
@@ -352,7 +364,6 @@ var init = function(nointeraction) {
     $('#eig').removeClass('hide');
     $('#red').removeClass('hide');
   }
-
 
   // Load the language
   var lang = (langs.indexOf(permalink.lang) != -1) ? permalink.lang : langs[0]; 

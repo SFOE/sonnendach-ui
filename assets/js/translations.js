@@ -724,5 +724,11 @@ var sdTranslations = {
     fr: '',
     it: '',
     en: ''
+  },
+  EnergieSchweiz: {
+    de: 'EnergieSchweiz',
+    fr: 'SuisseEnergie',
+    it: 'SvizzeraEnergia',
+    en: 'EnergieSchweiz'
   }
 };
