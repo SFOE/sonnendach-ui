@@ -77,7 +77,7 @@ var updateRoofInfo = function(map, marker, roof) {
   } else {
     heatingDemand = '-';
   } 
-  if (document.contains(document.getElementById("heatingDemand"))) {
+  if ($.contains(document.body, document.getElementById("heatingDemand"))) {
   document.getElementById("heatingDemand").innerhtml =  $('#heatingDemand').html(heatingDemand);
   }
 
@@ -88,7 +88,7 @@ var updateRoofInfo = function(map, marker, roof) {
   } else {
     warmWaterDemand = '-';
   } 
-  if (document.contains(document.getElementById("warmWaterDemand"))) {
+  if ($.contains(document.body, document.getElementById("warmWaterDemand"))) {
   document.getElementById("warmWaterDemand").innerhtml =  $('#warmWaterDemand').html(warmWaterDemand);
   }
     
@@ -100,7 +100,7 @@ var updateRoofInfo = function(map, marker, roof) {
   } else {
     reservoir = '-';
   } 
-  if (document.contains(document.getElementById("reservoir"))) {
+  if ($.contains(document.body, document.getElementById("reservoir"))) {
   document.getElementById("reservoir").innerhtml =  $('#reservoir').html(reservoir);
   } 
   
@@ -112,16 +112,16 @@ var updateRoofInfo = function(map, marker, roof) {
   } else {
     collectorSurface = '-';
   } 
-  if (document.contains(document.getElementById("collectorSurface"))) {
+  if ($.contains(document.body, document.getElementById("collectorSurface"))) {
   document.getElementById("collectorSurface").innerhtml = $('#collectorSurface').html(collectorSurface);
   } 
 
 
-  if (document.contains(document.getElementById("meanRadiation"))) {
+  if ($.contains(document.body, document.getElementById("meanRadiation"))) {
     document.getElementById("meanRadiation").innerhtml = $('#meanRadiation').html(formatNumber(roof.attributes.mstrahlung));
   }
 
-  if (document.contains(document.getElementById("totalRadiation"))) {
+  if ($.contains(document.body, document.getElementById("totalRadiation"))) {
     document.getElementById("totalRadiation").innerhtml = $('#totalRadiation').html(formatNumber(roof.attributes.gstrahlung));
   }
 
@@ -132,7 +132,7 @@ var updateRoofInfo = function(map, marker, roof) {
   } else {
     heatDemand = '-';
   } 
-  if (document.contains(document.getElementById("heatDemand"))) {
+  if ($.contains(document.body, document.getElementById("heatDemand"))) {
   document.getElementById("heatDemand").innerhtml = $('#heatDemand').html(heatDemand);
   }
 
@@ -210,7 +210,7 @@ var updateRoofInfo = function(map, marker, roof) {
     solarHeat = translator.get('solarthermieTitelnoHeat');
   }
 
-  if (document.contains(document.getElementById("solarHeat"))) {
+  if ($.contains(document.body, document.getElementById("solarHeat"))) {
     document.getElementById("solarHeat").innerhtml = $('#solarHeat').html(solarHeat);
   } 
 
@@ -224,7 +224,7 @@ var updateRoofInfo = function(map, marker, roof) {
     solarHeatCost = translator.get('solarthermieTitelnoHeat');
   }
   
-  if (document.contains(document.getElementById("solarHeatCost"))) {
+  if ($.contains(document.body, document.getElementById("solarHeatCost"))) {
     document.getElementById("solarHeatCost").innerhtml = $('#solarHeatCost').html(solarHeatCost);
   }  
 
@@ -260,7 +260,7 @@ var updateRoofInfo = function(map, marker, roof) {
       year = date.getFullYear(date);
       text1 = translator.get(month[roof.attributes.monate[i]]);
       text2 = text1 + '&nbsp;' + year;
-      if (document.contains(document.getElementById("month" + Y))) {
+      if ($.contains(document.body, document.getElementById("month" + Y))) {
         document.getElementById("month" + Y).innerhtml = $('#month' + Y).html(text2);
       }
     }  
@@ -272,7 +272,7 @@ var updateRoofInfo = function(map, marker, roof) {
   var XX = roof.attributes.monats_ertrag;
   for (j = 0; j < 12; j++) {
     YY = '' + j;
-    if (document.contains(document.getElementById("powerProductionMonth"+ YY))) {
+    if ($.contains(document.body, document.getElementById("powerProductionMonth"+ YY))) {
       document.getElementById("powerProductionMonth"+ YY).innerhtml = $('#powerProductionMonth' + YY).html(formatNumber(Math.round(roof.attributes.monats_ertrag[j] * roof.attributes.flaeche)));
       document.getElementById("financeMonth"+ YY).innerhtml = $('#financeMonth' + YY).html(formatNumber(Math.round(roof.attributes.monats_ertrag[j] * roof.attributes.flaeche * 0.1)));
     }
@@ -284,7 +284,7 @@ var updateRoofInfo = function(map, marker, roof) {
   var XXX = roof.attributes.heizgradtage;
   for (k = 0; k < 12; k++) {
     YYY = '' + k;
-    if (document.contains(document.getElementById("powerProductionMonth" + YYY))) {
+    if ($.contains(document.body, document.getElementById("powerProductionMonth" + YYY))) {
       document.getElementById("powerProductionMonth" + YYY).innerhtml = $('#heatingDaysMonth' + YYY).html(formatNumber(Math.round(roof.attributes.heizgradtage[k]))); 
     }
   } 
@@ -299,7 +299,7 @@ var updateRoofInfo = function(map, marker, roof) {
   marker.setPosition(polygon.getInteriorPoint().getCoordinates());
   flyTo(map, marker.getPosition(), 0.25);
 
-  if (document.contains(document.getElementById("thisIsPrint"))) {
+  if ($.contains(document.body, document.getElementById("thisIsPrint"))) {
     updateBarChart(roof, roof.attributes.klasse, roof.attributes.flaeche, 1);  
   } else {
     updateBarChart(roof, roof.attributes.klasse, roof.attributes.flaeche, 0);
