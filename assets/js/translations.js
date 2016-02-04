@@ -320,11 +320,11 @@ var sdTranslations = {
     fr: 'Geoanalyse durchgeführt von <a href="http://www.meteotest.ch" target="_blank">Meteotest</a> FR'
  },
  einbettenTitel: {
-    de: 'Möchten Sie diese Anwendung in Ihre Webseite einbetten?',
+    de: 'Möchten Sie Sonnendach.ch in Ihre Webseite einbetten?',
     fr: 'Möchten Sie diese Anwendung in Ihre Webseite einbetten? FR'
  },
  einbettenButton: {
-    de: 'Mehr erfahren',
+    de: 'Anleitung',
     fr: 'Mehr erfahren FR'
  },
  graphTitel: {
@@ -763,5 +763,53 @@ var sdTranslations = {
     fr: '&copy; BFE, swisstopo, MeteoSchweiz',
     it: '&copy; BFE, swisstopo, MeteoSchweiz',
     en: '&copy; BFE, swisstopo, MeteoSchweiz'
+  },
+  embedTitle: {
+    de: 'Anleitung für die Einbettung von Sonnendach.ch auf Ihrer Webseite',
+    fr: '',
+    it: '',
+    en: ''
+  },
+  embedStep1: {
+    de: '1. Geben Sie an, wie wie viel Platz zur Verfügug steht.',
+    fr: '',
+    it: '',
+    en: ''
+  },
+  embedStep2: {
+    de: '2. Wählen Sie den gewünschten Ausschnitt durch zoomen und schieben.',
+    fr: '',
+    it: '',
+    en: ''
+  },
+  embedStep3: {
+    de: '3. Betrachten Sie die Vorschau.',
+    fr: '',
+    it: '',
+    en: ''
+  },
+  embedStep4: {
+    de: '4. Kopieren Sie folgenden HTML-Quellcode in Ihre Webseite.',
+    fr: '',
+    it: '',
+    en: ''
+  },
+  embedBreite: {
+    de: 'Breite (min. 600 Pixel)',
+    fr: '',
+    it: '',
+    en: ''
+  },
+  embedHoehe: {
+    de: 'Höhe (min. 450 Pixel)',
+    fr: '',
+    it: '',
+    en: ''
+  },
+  embedVorschau: {
+    de: 'Vorschau',
+    fr: '',
+    it: '',
+    en: ''
   }
 };

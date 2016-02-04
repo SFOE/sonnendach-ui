@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<link rel="stylesheet" href="assets/css/embed.css"/>
+
+</head>
+<body>
+
+<table border="0">
+  <tr>
+    <td>
+      <div class="logo"></div>
+    </td>
+    <td>
+      <div class="amt trn">bfe</div>
+      <div class="amt trn">meteoschweiz</div>
+      <div class="amt trn">swisstopo</div>
+    </td>
+  </tr>
+</table>
+
+<h2><span class="trn">embedTitle</span></h2>
+
+<span class="trn"></span>
+
+<p><b><span class="trn">embedStep1</span></b></p>
+
+<span class="trn">embedBreite</span>: <input type="number" name="breite" id="breite" min="600" max="1500" value="650" onchange="changeSize();"><br>
+
+<span class="trn">embedHoehe</span>: <input type="number" name="hoehe" id="hoehe" min="450" max="1500" value="450" onchange="changeSize();"><br><br>
+
+<p><b><span class="trn">embedStep2</span></b></b></p>
+
+<div id="map" style="width: 650px; height: 370px" onmouseleave="changeSize();"></div><br>
+
+<p><b><span class="trn">embedStep3</span></b></p>
+
+<button onclick="vorschau();"><span class="trn">embedVorschau</span></button><br><br>
+
+<p><b><span class="trn">embedStep4</span></b></p>
+
+<textarea rows="6" cols="75" id="myTextarea"></textarea>
+
+<script src="http://api3.geo.admin.ch/loader.js?lang=en" type="text/javascript"></script>
+<script src="assets/js/jquery-2.1.4.min.js"></script>
+<script src="assets/js/jquery.translate.0.9.1.js"></script>
+<script src="assets/js/permalink.js"></script>
+<script src="assets/js/translations.js"></script>
+<script src="assets/js/embed.js"></script>
+
+<script>
+
+initembed();
+
+//Karte initialisieren
+var layer1 = ga.layer.create('ch.swisstopo.pixelkarte-grau');
+var layer2 = ga.layer.create('ch.swisstopo.swissboundaries3d-kanton-flaeche.fill');
+var layer3 = ga.layer.create('ch.swisstopo.swissboundaries3d-gemeinde-flaeche.fill');
+var map = new ga.Map({
+  target: 'map',
+  layers: [layer1,layer3],
+  view: new ol.View({
+    resolution: 500
+  })
+});
+
+function changeSize() {
+
+  if(document.getElementById("breite").value < 600) {
+    document.getElementById("breite").value = 600;
+  }
+
+  if(document.getElementById("hoehe").value < 450) {
+    document.getElementById("hoehe").value = 450;
+  }
+  //Aendere Groesse des div
+  document.getElementById("map").style = "width: " + document.getElementById("breite").value + "px; height: " + (document.getElementById("hoehe").value - 50 - 30) + "px";  
+  //Karte neu rendern sonst verzogen
+  map.updateSize();
+  updateTextarea();
+}
+
+function updateTextarea() {
+
+  var langs = ['de', 'fr'];
+  var permalink = addPermalink();
+  var lang = (langs.indexOf(permalink.lang) != -1) ? permalink.lang : langs[0]; 
+  var center = map.getView().getCenter();
+  var coordY = Math.round(center[0]);
+  var coordX = Math.round(center[1]);
+  //Textarea aktualisieren
+  document.getElementById("myTextarea").value = 
+    "<iframe id='sonnendachCH' width='" + document.getElementById("breite").value + "' height='" + 
+    document.getElementById("hoehe").value + "' src='http://www.bfe-gis.admin.ch/sonnendach/loader.html?X=" + coordX + "&Y=" + coordY + "&zoom=" + map.getView().getZoom() + "&lang=" + lang + "' style='outline: none; border: 0;' frameborder='0'></iframe>";
+}
+
+function vorschau() {
+
+  var langs = ['de', 'fr'];
+  var permalink = addPermalink();
+  var lang = (langs.indexOf(permalink.lang) != -1) ? permalink.lang : langs[0]; 
+  var center = map.getView().getCenter();
+  var coordY = Math.round(center[0]);
+  var coordX = Math.round(center[1]);
+  window.open("vorschau.php?width=" + document.getElementById("breite").value + "&height=" + document.getElementById("hoehe").value + "&X=" + coordX + "&Y=" + coordY + "&zoom=" + map.getView().getZoom()) + "&lang=" + "de";
+}
+
+//Textfeld initialisieren
+updateTextarea();
+
+</script>
+
+</body>
+</html>
