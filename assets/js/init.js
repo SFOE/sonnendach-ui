@@ -39,7 +39,7 @@ var onAddressFound = function(map, marker, address, autoSearchRoof, roofSearchTo
     $(document.body).removeClass('address-found');
     $(document.body).addClass('no-address');
     if (autoSearchRoof) {
-      $(document.body).removeClass('roof no-roof');
+      $(document.body).removeClass('roof no-roof no-roof-outside-perimeter');
       clearHighlight(map, marker); 
     }
   }
@@ -162,7 +162,7 @@ var updateRoofInfo = function(map, marker, roof) {
   }
 
   //add css-class
-  $(document.body).removeClass('no-roof').addClass('roof');
+  $(document.body).removeClass('no-roof').removeClass('no-roof-outside-perimeter').addClass('roof');
   
   // check if no waermeertrag and if no dg_heizung
   var titleHeat = '';
@@ -312,7 +312,8 @@ var updateRoofInfo = function(map, marker, roof) {
  * Display the data of the roof selected
  */
 var onRoofFound = function(map, marker, roof, findBestRoof) {
-  if (roof) {
+  if (roof && roof.perimeter === undefined) {
+
     // Find best roof for given building
     if (findBestRoof) {
       searchBestRoofFromBuildingId(roof.attributes.building_id).then(function(roof) {
@@ -324,7 +325,11 @@ var onRoofFound = function(map, marker, roof, findBestRoof) {
   } else {
     // Clear the highlighted roof
     clearHighlight(map, marker);
-    $(document.body).removeClass('roof').addClass('no-roof');
+    if (!roof || roof.perimeter) {
+      $(document.body).removeClass('roof').removeClass('no-roof-outside-perimeter').addClass('no-roof');
+    } else {
+      $(document.body).removeClass('roof no-roof').removeClass('no-roof').addClass('no-roof-outside-perimeter');
+    }
   }
 }
 

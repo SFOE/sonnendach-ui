@@ -19,7 +19,36 @@ var searchFeaturesFromCoord = function(map, coord, tolerance) {
   $(document.body).addClass('ajax-roof');
   return $.getJSON(url).then(function(data) {
     $(document.body).removeClass('ajax-roof');
-    return data;
+
+    if (!data.results[0]) {
+      var perimeterURL = API3_URL + '/rest/services/api/MapServer/identify?' + //url
+        'geometryType=esriGeometryPoint' +
+        '&returnGeometry=true' +
+        '&layers=all:ch.bfe.solarenergie-eignung-daecher' +
+        '&geometry=' + coord +
+        '&mapExtent=411600,55800,891600,330550' +
+        '&imageDisplay=1920,1099,96' +
+        '&tolerance=10' +
+        '&order=distance' +
+        '&lang=de';
+      return $.getJSON(perimeterURL).then(function(perimeterData) {
+        if (perimeterData.results[0]) {
+          return {results: [{
+            perimeter: true
+          }]};
+        } else {
+          return {results: [{
+            perimeter: false
+          }]}
+        }
+      });
+    } else if (data.results[0].featureId == -999) {
+      return {results: [{
+        perimeter: true
+      }]};
+    } else {
+      return data;
+    }
   });
 };
 

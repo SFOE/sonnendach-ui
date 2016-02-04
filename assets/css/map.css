@@ -95,6 +95,7 @@ header {
 .show-localized-error,
 .show-roof,
 .show-no-roof,
+.show-no-roof-outside-perimeter,
 .show-heat,
 .show-heat-dg,
 .is-loading .trn {
@@ -110,6 +111,11 @@ header {
 .no-roof .show-no-roof {
   display: block;
 }
+
+.no-roof-outside-perimeter .show-no-roof-outside-perimeter {
+  display: block;
+}
+
 
 
 /* Correction template */
