@@ -355,7 +355,7 @@ var clearHighlight = function(map, marker) {
  */
 var init = function(nointeraction) {
   $.support.cors = true;
-  window.API3_URL = 'https://mf-chsdi3.dev.bgdi.ch/ltfoa_solarenergie_daecher';
+  window.API3_URL = 'https://mf-chsdi3.dev.bgdi.ch';
   window.API3_SEARCHURL = 'https://api3.geo.admin.ch';
   
   var langs = ['de', 'fr'];
