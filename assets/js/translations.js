@@ -60,7 +60,7 @@ var sdTranslations = {
     fr: 'Leider kein treffer FR'
   },
   noRoofFound: {
-    de: '<strong>An dieser Adresse konnte kein Dach gefunden werden.</strong> Momentan sind 50% des Gebäudebestandes erfasst; bis Anfang 2018 werden alle Hausdächer der Schweiz verfügbar sein.',
+    de: 'Klicken Sie auf eine Dachfläche.',
     fr: 'french no roof found'
   },
   noRoofFoundOutsidePerimeter: {
