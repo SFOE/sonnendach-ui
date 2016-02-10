@@ -10,12 +10,11 @@ var onAddressFound = function(map, marker, address, autoSearchRoof, roofSearchTo
       coord = [address.geometry.x, address.geometry.y];
       var attr = address.attributes;
       label = attr.strname1 + ' ' + (attr.deinr || '') +
-          ' <br>' + attr.plz4 + ' ' + attr.gdename;
+          ' <br>' + attr.plz4 + ' ' + attr.plzname;
     } else { // Address comes from search box
       // WARNING! Coordinates are inverted here.
       coord = [address.attrs.y, address.attrs.x];
-      label = address.attrs.label.replace('<b>', '<br>')
-          .replace('</b>', '');
+      label = address.attrs.label.replace('<b>', '<br>').replace('</b>', '');
     }
     $('#addressOutput').html(label);
     $(document.body).addClass('localized');
@@ -164,14 +163,14 @@ var updateRoofInfo = function(map, marker, roof) {
   //add css-class
   $(document.body).removeClass('no-roof').removeClass('no-roof-outside-perimeter').addClass('roof');
   
-  // check if no waermeertrag and if no dg_heizung
+  // check if no waermeertrag and if no dg_waermebedarf
   var titleHeat = '';
   if (roof.attributes.waermeertrag > 0) {
     titleHeat += '<strong>' + formatNumber(Math.round(roof.attributes.waermeertrag/100)*100)
                 + '</strong> ' + translator.get('solarthermieTitel1');
 
-    if (roof.attributes.dg_heizung > 0) {
-      titleHeat += ' ' + roof.attributes.dg_heizung + '&nbsp;'
+    if (roof.attributes.dg_waermebedarf > 0) {
+      titleHeat += ' ' + roof.attributes.dg_waermebedarf + '&nbsp;'
                    + translator.get('solarthermieTitel2');
     }
 
@@ -229,7 +228,7 @@ var updateRoofInfo = function(map, marker, roof) {
   }  
 
 
-//***** NEW Get Month and Year
+//Get Month and Year
     var month = new Array();
     month[1] = "january";
     month[2] = "february";
@@ -243,21 +242,20 @@ var updateRoofInfo = function(map, marker, roof) {
     month[10] = "october";
     month[11] = "november";
     month[12] = "december";
-  
 
    var i;
    var Y = 0;
-   var provDate = roof.attributes.gs_serie_start.substring(0,10);
-   var date = new Date(provDate);
-   date = new Date(date.setMonth(date.getMonth()))
+   var latestDate = new Date(roof.attributes.gs_serie_start.substring(0,10));
    var text1 = '';
    var text2 = '';
    var year = '';
-   var X = roof.attributes.monate;
+
     for (i = 0; i < 12; i++) {
       Y = '' + i;
-      date.setMonth(date.getMonth()-1);
-      year = date.getFullYear(date);
+      if (i > 0) {
+        latestDate.setMonth(latestDate.getMonth()-1);  
+      }
+      year = latestDate.getFullYear(latestDate);
       text1 = translator.get(month[roof.attributes.monate[i]]);
       text2 = text1 + '&nbsp;' + year;
       if ($.contains(document.body, document.getElementById("month" + Y))) {
@@ -266,7 +264,7 @@ var updateRoofInfo = function(map, marker, roof) {
     }  
 
 
-//***** NEW Get monats_ertrag
+//Get monats_ertrag
   var j;
   var YY = '';
   var XX = roof.attributes.monats_ertrag;
@@ -291,7 +289,6 @@ var updateRoofInfo = function(map, marker, roof) {
    
 //************
 
-
   // Clear the highlighted roof the add the new one
   var polygon = new ol.geom.Polygon(roof.geometry.rings); 
   var vectorLayer = clearHighlight(map, marker);
@@ -305,6 +302,29 @@ var updateRoofInfo = function(map, marker, roof) {
     updateBarChart(roof, roof.attributes.klasse, roof.attributes.flaeche, 0);
   }
 
+  var fullAddress = document.getElementById("addressOutput").innerHTML;
+  var start = fullAddress.search("<br>") + 4;
+  var end = start + 4;
+
+  if ($.contains(document.body, document.getElementById("buttonSolRPV"))) {
+    document.getElementById("buttonSolRPV").href = 
+      'http://www.energieschweiz.ch/de-ch/erneuerbare-energien/meine-solaranlage/solarrechner.aspx' +
+      '?TECHNOLOGIE=1' +
+      '&NEIGUNG=' + roof.attributes.neigung + 
+      '&AUSRICHTUNG=' + roof.attributes.ausrichtung + 
+      '&BEDARF_WARMWASSER=' + roof.attributes.bedarf_warmwasser +
+      '&POSTLEITZAHL=' + fullAddress.substring(start, end);
+  }
+
+  if ($.contains(document.body, document.getElementById("buttonSolRThermie"))) {
+    document.getElementById("buttonSolRThermie").href = 
+      'http://www.energieschweiz.ch/de-ch/erneuerbare-energien/meine-solaranlage/solarrechner.aspx' +
+      '?TECHNOLOGIE=2' +
+      '&NEIGUNG=' + roof.attributes.neigung + 
+      '&AUSRICHTUNG=' + roof.attributes.ausrichtung + 
+      '&BEDARF_WARMWASSER=' + roof.attributes.bedarf_warmwasser +
+      '&POSTLEITZAHL=' + fullAddress.substring(start, end);
+  }
   
 };
 
@@ -405,7 +425,7 @@ var init = function(nointeraction) {
    
     //Do roof search explicitely
     searchFeaturesFromCoord(map, coord, 0.0).then(function(data) {
-      onRoofFound(map, marker, data.results[0], false);
+      onRoofFound(map, marker, data.results[0], false); //???????
       // We call the geocode function here to get the
       // address information for the clicked point using
       // the GWR layer.
@@ -435,7 +455,7 @@ var init = function(nointeraction) {
   // Display the feature from permalink
   if (permalink.featureId) {
     searchFeatureFromId(permalink.featureId).then(function(data) {
-      onRoofFound(map, marker, data.feature);
+
       var coord = ol.extent.getCenter(data.feature.bbox);
       geocode(map, coord).then(function(data) {
         // We assume the first of the list is the closest
@@ -448,6 +468,9 @@ var init = function(nointeraction) {
       $('#lang a').attr('href', function(index, attr) {
         this.href = attr + '&featureId=' + permalink.featureId;
       });
+
+      onRoofFound(map, marker, data.feature); //??????
+
     });
   }
 
