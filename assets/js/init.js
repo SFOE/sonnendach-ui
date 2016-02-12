@@ -153,12 +153,13 @@ var updateRoofInfo = function(map, marker, roof) {
     $('#eignungText').html(translator.get('eignungText3') + translator.get('eignungText1') + ' <strong>' + suitability + '</strong> ' + translator.get('eignungText2'));
   }
 
+  var finanzertrag;
 
-  if (roof.attributes.stromertrag < 1000) {
-    $('#finanzertrag').html(formatNumber(Math.round(roof.attributes.finanzertrag/10)*10));
+  if (roof.attributes.finanzertrag < 1000) {
+    finanzertrag = formatNumber(Math.round(roof.attributes.finanzertrag/10)*10);
     $('#finanzertrag2').html(formatNumber(Math.round(roof.attributes.finanzertrag/10)*10));
   } else {
-    $('#finanzertrag').html(formatNumber(Math.round(roof.attributes.finanzertrag/100)*100));
+    finanzertrag = formatNumber(Math.round(roof.attributes.finanzertrag/100)*100);
     $('#finanzertrag2').html(formatNumber(Math.round(roof.attributes.finanzertrag/100)*100));
   }
 
@@ -199,6 +200,16 @@ var updateRoofInfo = function(map, marker, roof) {
 
   $('#heatText').html(textHeat);
 
+  if ($.contains(document.body, document.getElementById("PVbuttonText"))) {
+    document.getElementById("PVbuttonText").innerHTML = 
+    translator.get('PVbuttonText1') + " " + finanzertrag + " " + translator.get('solarstromTitel2');
+  }
+
+  if ($.contains(document.body, document.getElementById("thermiebuttonText"))) {
+    document.getElementById("thermiebuttonText").innerHTML = 
+    translator.get('thermiebuttonText1') + " " + roof.attributes.dg_waermebedarf + " % " + translator.get('thermiebuttonText2');
+  }
+
   if ($.contains(document.body, document.getElementById("printLink"))) {
 
     document.getElementById('printLink').href = 
@@ -207,7 +218,7 @@ var updateRoofInfo = function(map, marker, roof) {
       '&lang=' + lang;
   }  
 
-  //***** NEW heat output value
+  //heat output value
   var solarHeat = '';
   
   if (roof.attributes.waermeertrag > 0) {
@@ -503,6 +514,21 @@ var init = function(nointeraction) {
       onRoofFound(map, marker, data.feature); //??????
 
     });
+  }
+
+  if ($.contains(document.body, document.getElementById("socialTwitter"))) {
+    document.getElementById("socialTwitter").href = 
+    'https://twitter.com/intent/tweet?text=' + translator.get('pagetitle') + '&url=' + translator.get('domain') + '&related=mhertach,BFEenergeia,EnergieSchweiz&hashtags=solar&via=EnergieSchweiz';
+  }
+
+  if ($.contains(document.body, document.getElementById("socialFB"))) {
+    document.getElementById("socialFB").href = 
+    'http://www.facebook.com/sharer.php?u=' + translator.get('domain');
+  }
+
+  if ($.contains(document.body, document.getElementById("socialMail"))) {
+    document.getElementById("socialMail").href = 
+    'mailto:?subject=' + translator.get('pagetitle') + ' ' + translator.get('domain');
   }
 
   // Remove the loading css class 
