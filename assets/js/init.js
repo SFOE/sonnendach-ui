@@ -16,6 +16,14 @@ var onAddressFound = function(map, marker, address, autoSearchRoof, roofSearchTo
       coord = [address.attrs.y, address.attrs.x];
       label = address.attrs.label.replace('<b>', '<br>').replace('</b>', '');
     }
+
+    var start = label.search("<br>") + 4;
+    var end = start + 4;
+
+    console.log(label.substring(start, end));
+
+    updateSolarrechnerLinks(false, label.substring(start, end));
+
     $('#addressOutput').html(label);
     $(document.body).addClass('localized');
     $(document.body).addClass('address-found');
@@ -46,7 +54,7 @@ var onAddressFound = function(map, marker, address, autoSearchRoof, roofSearchTo
 
 var updateRoofInfo = function(map, marker, roof) {
 
-  var langs = ['de', 'fr'];
+  var langs = ['de', 'fr', 'it', 'en'];
   var headers = ['0','1'];
   var permalink = addPermalink();
 
@@ -302,31 +310,75 @@ var updateRoofInfo = function(map, marker, roof) {
     updateBarChart(roof, roof.attributes.klasse, roof.attributes.flaeche, 0);
   }
 
-  var fullAddress = document.getElementById("addressOutput").innerHTML;
-  var start = fullAddress.search("<br>") + 4;
-  var end = start + 4;
+  updateSolarrechnerLinks(roof, false);
+  
+};
+
+
+/**
+ * Adds Parameters to Link to Solarrechner
+ */
+var updateSolarrechnerLinks = function (roof, plz) {
+
+  //var fullAddress = document.getElementById("addressOutput").innerHTML;
+  //var start = fullAddress.search("<br>") + 4;
+  //var end = start + 4;
+  //console.log("out" + fullAddress);
 
   if ($.contains(document.body, document.getElementById("buttonSolRPV"))) {
     document.getElementById("buttonSolRPV").href = 
-      'http://www.energieschweiz.ch/de-ch/erneuerbare-energien/meine-solaranlage/solarrechner.aspx' +
-      '?TECHNOLOGIE=1' +
-      '&NEIGUNG=' + roof.attributes.neigung + 
-      '&AUSRICHTUNG=' + roof.attributes.ausrichtung + 
-      '&BEDARF_WARMWASSER=' + roof.attributes.bedarf_warmwasser +
-      '&POSTLEITZAHL=' + fullAddress.substring(start, end);
+      'http://www.energieschweiz.ch/de-ch/erneuerbare-energien/meine-solaranlage/solarrechner.aspx?TECHNOLOGIE=1';
   }
 
   if ($.contains(document.body, document.getElementById("buttonSolRThermie"))) {
     document.getElementById("buttonSolRThermie").href = 
-      'http://www.energieschweiz.ch/de-ch/erneuerbare-energien/meine-solaranlage/solarrechner.aspx' +
-      '?TECHNOLOGIE=2' +
-      '&NEIGUNG=' + roof.attributes.neigung + 
-      '&AUSRICHTUNG=' + roof.attributes.ausrichtung + 
-      '&BEDARF_WARMWASSER=' + roof.attributes.bedarf_warmwasser +
-      '&POSTLEITZAHL=' + fullAddress.substring(start, end);
+      'http://www.energieschweiz.ch/de-ch/erneuerbare-energien/meine-solaranlage/solarrechner.aspx?TECHNOLOGIE=2';
   }
-  
-};
+
+  //console.log(document.getElementById("buttonSolRPV").href);
+
+  if (plz) {
+
+    if ($.contains(document.body, document.getElementById("buttonSolRPV"))) {
+      document.getElementById("buttonSolRPV").href = 
+        document.getElementById("buttonSolRPV").href + 
+        '&POSTLEITZAHL=' + plz;
+    }
+
+    if ($.contains(document.body, document.getElementById("buttonSolRThermie"))) {
+      document.getElementById("buttonSolRThermie").href = 
+        document.getElementById("buttonSolRThermie").href
+        '&POSTLEITZAHL=' + plz;
+    }
+
+  }
+
+  //console.log("plz" + document.getElementById("buttonSolRPV").href);
+
+  if (roof) {
+
+    if ($.contains(document.body, document.getElementById("buttonSolRPV"))) {
+      document.getElementById("buttonSolRPV").href = 
+        document.getElementById("buttonSolRPV").href +
+        '&NEIGUNG=' + roof.attributes.neigung + 
+        '&AUSRICHTUNG=' + roof.attributes.ausrichtung + 
+        '&BEDARF_WARMWASSER=' + roof.attributes.bedarf_warmwasser;
+    }
+
+    if ($.contains(document.body, document.getElementById("buttonSolRThermie"))) {
+      document.getElementById("buttonSolRThermie").href = 
+        document.getElementById("buttonSolRThermie").href
+        '&NEIGUNG=' + roof.attributes.neigung + 
+        '&AUSRICHTUNG=' + roof.attributes.ausrichtung + 
+        '&BEDARF_WARMWASSER=' + roof.attributes.bedarf_warmwasser;
+    }
+
+  }
+
+  //console.log("roof" + document.getElementById("buttonSolRPV").href);
+
+}
+
 
 /**
  * Display the data of the roof selected
@@ -342,7 +394,9 @@ var onRoofFound = function(map, marker, roof, findBestRoof) {
     } else {
       updateRoofInfo(map, marker, roof);
     }
+
   } else {
+
     // Clear the highlighted roof
     clearHighlight(map, marker);
     if (!roof || roof.perimeter) {
@@ -351,6 +405,7 @@ var onRoofFound = function(map, marker, roof, findBestRoof) {
       $(document.body).removeClass('roof no-roof').removeClass('no-roof').addClass('no-roof-outside-perimeter');
     }
   }
+
 }
 
 // Remove the highlighted roof from the map
@@ -378,7 +433,7 @@ var init = function(nointeraction) {
   window.API3_URL = 'https://mf-chsdi3.dev.bgdi.ch';
   window.API3_SEARCHURL = 'https://api3.geo.admin.ch';
   
-  var langs = ['de', 'fr'];
+  var langs = ['de', 'fr', 'it', 'en'];
   var headers = ['0','1'];
   var body = $(document.body);
   var locationBt = $('#location');
