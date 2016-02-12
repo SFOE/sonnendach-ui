@@ -52,6 +52,7 @@ var searchFeaturesFromCoord = function(map, coord, tolerance) {
   });
 };
 
+
 /**
  * Launch the search of a feature defined by its id.
  * Returns a promise.
@@ -75,7 +76,8 @@ var searchBestRoofFromBuildingId = function(buildingId) {
   var url = API3_URL + '/rest/services/api/MapServer/find?' +
       'layer=ch.bfe.solarenergie-eignung-daecher&' +
       'searchField=building_id&' +
-      'searchText=' + buildingId;
+      'searchText=' + buildingId +
+      '&contains=false';
   $(document.body).addClass('ajax-roof');
   return $.getJSON(url).then(function(data) {
     var bestRoof = data.results[0];

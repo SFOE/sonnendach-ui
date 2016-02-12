@@ -14,6 +14,7 @@ var geocode = function(map, coords) {
      '&tolerance=' + pixelTolerance +
      '&order=distance' +
      '&layers=all:ch.bfs.gebaeude_wohnungs_register&returnGeometry=true';
+
   $(document.body).addClass('ajax-address');
   return $.getJSON(url).then(function(data) {
     $(document.body).removeClass('ajax-address');

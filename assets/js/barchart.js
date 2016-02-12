@@ -1,4 +1,4 @@
-var updateBarChart = function(){
+var updateBarChart = function() {
   var roof, eignung, area, print;
 
   var update = function(r, e, a, p) {
@@ -43,20 +43,31 @@ var updateBarChart = function(){
     datanew[11][0] = data.monate[0];
     datanew[11][1] = data.monats_ertrag[0] * area * frankenFactor;
 
+    var w = window.innerWidth;
     var widthStart = 0;
     var heightStart = 0;
 
-    console.log(print);
-
-    if (print === 0) {
-      widthStart = 700;
-      heightStart = 300;
+    if (print != 0) {
+      //print-view
+      widthStart = 550;
+      heightStart = 250;
     } else {
-      widthStart = 600;
-      heightStart = 250;    
+      if (w >= 736) {
+        //normal size
+        widthStart = 700;
+        heightStart = 300;
+      } else if (w < 736 && w >= 480) {
+        //normale-view small
+        widthStart = 500;
+        heightStart = 250;
+      } else {
+        //normale-view small
+        widthStart = 300;
+        heightStart = 250;        
+      }
     }
 
-    var margin = {top: 40, right: 20, bottom: 30, left: 70},
+    var margin = {top: 40, right: 20, bottom: 30, left: 60},
         width = widthStart - margin.left - margin.right,
         height = heightStart - margin.top - margin.bottom;
 

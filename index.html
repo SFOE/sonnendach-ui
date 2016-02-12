@@ -138,10 +138,11 @@
               <div class="address-loading"></div>
             </header>
             <header class="major">
+              <!-- Keine Adresse gefunden -->
               <h4 class="hidden-localized trn">bittelokal</h4>
-              <h4 class="show-no-roof-outside-perimeter trn">noRoofFoundOutsidePerimeter</h4>
-              <h4 class="show-no-roof trn">noRoofFound</h4>
-              <h4 class="show-roof">
+              <h4 class="show-no-roof trn">noRoofFound</h4> <!-- Keine Adresse, Kein Dach, in Abdeckung -->
+              <h4 class="show-no-roof-outside-perimeter trn">noRoofFoundOutsidePerimeter</h4> <!-- Adresse, Ausserhalb Abdeckung -->
+              <h4 class="show-roof"> <!-- Dach gefunden, Adresse gefunden -->
                 <ul class="actions uniform show-roof">
                   <li>
                     <a href="#two" id="eignungbutton2" class="button2 scrolly button2suit5">
@@ -215,7 +216,7 @@
         </header>
         <p class="show-roof"><span class="trn">solarstromText</span></p>
         <ul class="actions uniform show-roof">
-          <li><a href="http://www.energieschweiz.ch/de-ch/erneuerbare-energien/meine-solaranlage/solarrechner.aspx" class="button" target="_blank"><span class="trn">solarstromButton</span></a></li>
+          <li><a href="http://www.energieschweiz.ch/de-ch/erneuerbare-energien/meine-solaranlage/solarrechner.aspx" class="button" id="buttonSolRPV" target="_blank"><span class="trn">solarstromButton</span></a></li>
         </ul>
         <div class="12u$ 12u$(medium) important(medium) show-roof arrows">
           <a href="#four" class="scrolly icon major fa-angle-double-down"></a>
@@ -235,7 +236,7 @@
           <span id="heatText"></span>
         </p>
         <ul class="actions uniform show-roof">
-          <li><a href="http://www.energieschweiz.ch/de-ch/erneuerbare-energien/meine-solaranlage/solarrechner.aspx" class="button" target="_blank"><span class="trn">solarthermieButton</span></a></li>
+          <li><a href="http://www.energieschweiz.ch/de-ch/erneuerbare-energien/meine-solaranlage/solarrechner.aspx" class="button" id="buttonSolRThermie" target="_blank"><span class="trn">solarthermieButton</span></a></li>
         </ul>      
         <div class="12u$ 12u$(medium) important(medium) show-roof arrows">
           <a href="#five" class="scrolly icon major fa-angle-double-down"></a>
