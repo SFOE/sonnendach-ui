@@ -89,6 +89,14 @@ header {
   border: 1px grey solid;
 }
 
+.localized-error .show-localized-error,
+.localized .show-localized,
+.roof .show-roof,
+.roof .show-thermie {
+  display: block;
+}
+
+
 .localized .hidden-localized,
 .localized-error .hidden-localized-error,
 .show-localized,
@@ -98,14 +106,9 @@ header {
 .show-no-roof-outside-perimeter,
 .show-heat,
 .show-heat-dg,
-.is-loading .trn {
+.is-loading .trn,
+.roof .hide-thermie {
   display: none;
-}
-
-.localized-error .show-localized-error,
-.localized .show-localized,
-.roof .show-roof{
-  display: block;
 }
 
 .no-roof .show-no-roof {
