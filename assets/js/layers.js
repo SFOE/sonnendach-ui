@@ -67,29 +67,28 @@ var getLayersConfig = function(lang) {
       "queryable": false
     },
     "ch.bfe.solarenergie-eignung-daecher": {
-      "wmsUrl": "//wms-bod.dev.bgdi.ch/?REQUEST=GetCapabilities&SERVICE=WMS&VERSION=1.0.0",
-      "wmsLayers": "ch.bfe.solarenergie-eignung-daecher",
-      "gutter": 10,
-      "attribution": "OFEN",
-      "background": false,
-      "searchable": false,
-      "format": "png",
+      "queryableAttributes": ["building_id","df_uid"],
+      "attribution": "BFE",
+      "background":false,
+      "searchable":false,
+      "format":"png",
+      "hasLegend":true,
       "serverLayerName": "ch.bfe.solarenergie-eignung-daecher",
-      "selectbyrectangle": true,
-      "attributionUrl": "http://www.bfe.admin.ch/index.html?lang=" + lang,
-      "timeBehaviour": "last",
-      "tooltip": true,
-      "label": "ch.bfe.solarenergie-eignung-daecher",
-      "singleTile": false,
-      "highlightable": true,
-      "chargeable": false,
-      "topics": "api,dev,ech,inspire,swissmaponline,wms-bgdi_prod",
-      "hasLegend": false,
-      "type": "wms",
-      "timeEnabled": false,
-      "queryable": true
+      "selectbyrectangle":true,
+      "attributionUrl":"http://www.bfe.admin.ch/index.html?lang=de",
+      "timeBehaviour":"last",
+      "tooltip":true,
+      "label":"Solarenergie: Eignung D\u00e4cher",
+      "highlightable":true,
+      "chargeable":false,
+      "timestamps":["20160218"],
+      "topics":"api,dev,ech,energie,inspire,swissmaponline,wms-bgdi_prod",
+      "resolutions": [4000,3750,3500,3250,3000,2750,2500,2250,2000,1750,1500,1250,1000,750,650,500,250,100,50,20,10,5,2.5,2,1.5,1,0.5],
+      "type":"wmts",
+      "timeEnabled":false,
+      "queryable":true
     }
-	};
+  };
 };
 
 /**
@@ -134,30 +133,3 @@ var getWmts = function(layer, options) {
     }));
 };
 
-
-/**
- * Create a tiled WMS source given a bod layer id
- * 
- * @method
- * @param {string} layer layer id.
- * @param {Object} options source options.
- * @return {ol.source.TileWMS}
- */
-var getWms = function(layer, options) {
-  return new ol.source.TileWMS({
-    crossOrigin: 'anonymous',
-    wrapX: false,
-    gutter: options['gutter'] || 0,
-    attributions: [
-      new ol.Attribution({html: '<a href="' +
-        options['attributionUrl'] +
-        '" target="new">' +
-        options['attribution'] + '</a>'})
-    ],
-    params: {
-      'LAYERS': options['wmsLayers'] || layer,
-      'TIME': options['timestamp']
-    },
-    url: options['wmsUrl'].split('?')[0].replace('http:',location.protocol)
-  });
-};

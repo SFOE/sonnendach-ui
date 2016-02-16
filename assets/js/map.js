@@ -22,7 +22,7 @@ var createMap = function(eltId, lang, nointeraction) {
     minResolution: layer2Config.minResolution,
     maxResolution: layer2Config.maxResolution,
     opacity: layer2Config.opacity,
-    source: getWms(layer2Id, layer2Config),
+    source: getWmts(layer2Id, layer2Config),
     useInterimTilesOnError: false
   })
 
