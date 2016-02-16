@@ -518,12 +518,12 @@ var init = function(nointeraction) {
 
   if ($.contains(document.body, document.getElementById("socialTwitter"))) {
     document.getElementById("socialTwitter").href = 
-    'https://twitter.com/intent/tweet?text=' + translator.get('pagetitle') + '&url=' + translator.get('domain') + '&related=mhertach,BFEenergeia,EnergieSchweiz&hashtags=solar&via=EnergieSchweiz';
+    'https://twitter.com/intent/tweet?text=' + translator.get('pagetitle').replace(" ","%20") + '&url=' + translator.get('domain') + '&related=mhertach,BFEenergeia,EnergieSchweiz&hashtags=solar&via=EnergieSchweiz';
   }
 
   if ($.contains(document.body, document.getElementById("socialFB"))) {
     document.getElementById("socialFB").href = 
-    'http://www.facebook.com/sharer.php?u=' + translator.get('domain');
+    'http://www.facebook.com/sharer.php?u=' + translator.get('domain').replace(" ","%20");
   }
 
   if ($.contains(document.body, document.getElementById("socialMail"))) {
