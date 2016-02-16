@@ -484,6 +484,10 @@ var init = function(nointeraction) {
     searchFeatureFromId(permalink.featureId).then(function(data) {
 
       var coord = ol.extent.getCenter(data.feature.bbox);
+      // Assure to be around resulting point with correct zoom level
+      map.getView().setCenter(coord);
+      map.getView().setResolution(0.25);
+
       geocode(map, coord).then(function(data) {
         // We assume the first of the list is the closest
         onAddressFound(map, marker, data.results[0], false, 50.0);
