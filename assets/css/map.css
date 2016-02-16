@@ -14,7 +14,7 @@ header {
   width: 784px;
   height: 24px;
   font-size: 18px;
-  margin: 10px 0px 0px;
+  margin: 0;
   padding-left: 0.5em;
   border: 1px solid #C1C1C1;
   font-family: "Source Sans Pro", Helvetica, sans-serif;
@@ -52,8 +52,9 @@ header {
   font-weight: bold;
 }
 
-#header .twitter-typeahead {
-  margin: 0 0 60px 0;
+.twitter-typeahead {
+  margin: 0;
+  width: 100%; 
 }
 
 .twitter-typeahead input {
@@ -64,17 +65,28 @@ header {
   color: rgb(102, 102, 102) !important;
 }
 
-.search-container, .search-container input, .twitter-typeahead {
+.search-container {
+  display: inline-block;
+  height: 59.52px;
+}
+
+.search-container, .search-container input{
   position: relative;
   width: 100%;
 }
 
 .search-container i {
   position: absolute;
-  top: -3px;
-  left: 13px;
+  left: 0px;
+  top: 0px;
+  margin: 8px;
   font-size: 1.5em;
   color: darkgray;
+}
+
+a#location {
+  display: inline-block; 
+  position: relative;
 }
 
 #map {
