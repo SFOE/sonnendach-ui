@@ -1,6 +1,6 @@
 var initembed = function() {
   
-	var langs = ['de', 'fr'];
+	var langs = ['de', 'fr', 'it', 'en'];
 	var permalink = addPermalink();
 
 	// Load the language

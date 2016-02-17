@@ -222,7 +222,23 @@ var updateRoofInfo = function(map, marker, roof) {
       'print.html?featureId=' + roof.featureId +
       '&header=' + header +
       '&lang=' + lang;
-  }  
+  }
+
+  if ($.contains(document.body, document.getElementById("documentationLink"))) {
+
+    document.getElementById('documentationLink').href = translator.get('documentationLink');
+  }
+
+  if ($.contains(document.body, document.getElementById("stepbystepLink"))) {
+
+    document.getElementById('stepbystepLink').href = translator.get('stepbystepLink');
+  }
+
+  if ($.contains(document.body, document.getElementById("einbettenLink"))) {
+
+    document.getElementById('einbettenLink').href = 
+      'einbetten.html?lang=' + lang;
+  }
 
   //heat output value
   var solarHeat = '';

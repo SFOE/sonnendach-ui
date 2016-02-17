@@ -131,7 +131,15 @@ a#location {
   display: block;
 }
 
+#PVbuttonText {
+  white-space: normal;
+  height: auto;
+}
 
+#thermiebuttonText {
+  white-space: normal;
+  height: auto;
+}
 
 /* Correction template */
 #eig .container {
