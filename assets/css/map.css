@@ -276,6 +276,7 @@ ul.actions.uniform li > a.button > span {
   
   .amt-abbr {
     display: block;
+    font-size: 11px;
   }
 } /* End media screen */
 
