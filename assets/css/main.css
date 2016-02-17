@@ -3379,6 +3379,13 @@
 						margin: 0 !important;
 						width: 100%;
 					}
+                        ul.actions li a#PVbuttonText {
+                            white-space: normal;
+                            text-align: center;
+                            line-height: 1.5;
+                            height: auto;
+                        }
+                        
 
 						ul.actions li > *.icon:before {
 							margin-left: -2em;
