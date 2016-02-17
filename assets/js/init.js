@@ -157,10 +157,16 @@ var updateRoofInfo = function(map, marker, roof) {
 
   if (roof.attributes.finanzertrag < 1000) {
     finanzertrag = formatNumber(Math.round(roof.attributes.finanzertrag/10)*10);
-    $('#finanzertrag2').html(formatNumber(Math.round(roof.attributes.finanzertrag/10)*10));
   } else {
     finanzertrag = formatNumber(Math.round(roof.attributes.finanzertrag/100)*100);
-    $('#finanzertrag2').html(formatNumber(Math.round(roof.attributes.finanzertrag/100)*100));
+  }
+
+  if ($.contains(document.body, document.getElementById("finanzertrag"))) {
+    document.getElementById("finanzertrag").innerHTML = finanzertrag;
+  }
+
+  if ($.contains(document.body, document.getElementById("finanzertrag2"))) {
+    document.getElementById("finanzertrag2").innerHTML = finanzertrag;
   }
 
   if ($.contains(document.body, document.getElementById("eignungbutton2"))) {
