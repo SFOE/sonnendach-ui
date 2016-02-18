@@ -30,11 +30,11 @@ var createMap = function(eltId, lang, nointeraction) {
   var vector = new ol.layer.Vector({
     source: new ol.source.Vector(),
     style: new ol.style.Style({
-      fill: new ol.style.Fill({
-        color: [255, 255, 255, 0.4]
-      }),
+      //fill: new ol.style.Fill({
+      //  color: [255, 255, 255, 0.4]
+      //}),
       stroke: new ol.style.Stroke({
-        color: [128, 128, 128, 0.8],
+        color: [0, 0, 0, 0.7],
         width: 4
       })
     })
