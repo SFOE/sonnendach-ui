@@ -120,7 +120,7 @@ var initSearch = function(map, marker, onAddressFound) {
 		  return Bloodhound.tokenizers.whitespace;
 	   },
 	   remote: {   
-		   url: API3_SEARCHURL + '/rest/services/api/SearchServer?lang=de&searchText=%QUERY&type=locations',
+       url: API3_URL + '/rest/services/api/SearchServer?lang=de&searchText=%QUERY&type=locations',
        wildcard: '%QUERY',
 		   filter: function(locations) {
 			   var results = [];
