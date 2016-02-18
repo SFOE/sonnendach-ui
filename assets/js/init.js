@@ -57,7 +57,7 @@ var updateRoofInfo = function(map, marker, roof) {
   var permalink = addPermalink();
 
   var header = (headers.indexOf(permalink.header) != -1) ? permalink.header : headers[0];
-  var lang = (langs.indexOf(permalink.lang) != -1) ? permalink.lang : langs[0]; 
+  var lang = (langs.indexOf(permalink.lang) != -1) ? permalink.lang : langs[0];
 
   var suitability = getSuitabilityText(roof.attributes.klasse, window.translator);
 
