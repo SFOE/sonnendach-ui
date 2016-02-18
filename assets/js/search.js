@@ -1,3 +1,30 @@
+var boundingExtentXYs_ = function(xs, ys) {
+    var minX = Math.min.apply(null, xs);
+    var minY = Math.min.apply(null, ys);
+    var maxX = Math.max.apply(null, xs);
+    var maxY = Math.max.apply(null, ys);
+    return [minX, minY, maxX, maxY];
+};
+
+var getForViewAndSize = function(center, resolution, rotation, size) {
+    var dx = resolution * size[0] / 2;
+    var dy = resolution * size[1] / 2;
+    var cosRotation = Math.cos(rotation);
+    var sinRotation = Math.sin(rotation);
+    /** @type {Array.<number>} */
+    var xs = [-dx, -dx, dx, dx];
+    /** @type {Array.<number>} */
+    var ys = [-dy, dy, -dy, dy];
+    var i, x, y;
+    for (i = 0; i < 4; ++i) {
+        x = xs[i];
+        y = ys[i];
+        xs[i] = center[0] + x * cosRotation - y * sinRotation;
+        ys[i] = center[1] + x * sinRotation + y * cosRotation;
+    }
+    return boundingExtentXYs_(xs, ys);
+};
+
 /**
  * Launch the search of all the features available at a cordinates.
  * Returns a promise.
@@ -5,13 +32,21 @@
 var searchFeaturesFromCoord = function(map, coord, tolerance) {
   var center = map.getView().getCenter().toString();
   var mapExtent = map.getView().calculateExtent(map.getSize());
+
+  //We assure the resolution/zoom level is not pointing to overview
+  if (map.getView().getResolution() > 20.0) {
+    mapExtent = getForViewAndSize(coord, 20.0, 0.0, map.getSize());
+  }
   var pixelTolerance = getToleranceInPixels(tolerance, mapExtent, map.getSize());
+  if (pixelTolerance <= 0) {
+    pixelTolerance = 1;
+  }
   var url = API3_URL + '/rest/services/api/MapServer/identify?' + //url
       'geometryType=esriGeometryPoint' +
       '&returnGeometry=true' +
       '&layers=all:ch.bfe.solarenergie-eignung-daecher' +
       '&geometry=' + coord +
-      '&mapExtent=' + coord + ',' + coord +
+      '&mapExtent=' + mapExtent.toString() +
       '&imageDisplay=' + map.getSize().toString() + ',96' +
       '&tolerance=' + pixelTolerance +
       '&order=distance' +
