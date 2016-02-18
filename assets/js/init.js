@@ -554,4 +554,10 @@ var init = function(nointeraction) {
 
   // Remove the loading css class 
 	body.removeClass('is-loading');
+
+  $(document).ready(function ()
+  {
+      document.title = translator.get('pagetitle');
+  });
+  
 }
