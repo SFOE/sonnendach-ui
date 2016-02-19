@@ -132,7 +132,7 @@ var updateRoofInfo = function(map, marker, roof) {
 
   var heatDemand = '';
   if (roof.attributes.dg_waermebedarf > 0) {
-    heatDemand += ' ' + formatNumber(Math.round(roof.attributes.dg_waermebedarf))
+    heatDemand += ' ' + formatNumber(Math.round(roof.attributes.dg_heizung))
             + ' ' + translator.get('percent');
   } else {
     heatDemand = '-';
@@ -204,7 +204,9 @@ var updateRoofInfo = function(map, marker, roof) {
     textHeat = '';
   }
 
-  $('#heatText').html(textHeat);
+  if ($.contains(document.body, document.getElementById("heatText"))) {
+    $('#heatText').html(textHeat);
+  }
 
   if ($.contains(document.body, document.getElementById("PVbuttonText"))) {
     document.getElementById("PVbuttonText").innerHTML = 
@@ -257,8 +259,8 @@ var updateRoofInfo = function(map, marker, roof) {
   
   //***** NEW saved heating costs
   var solarHeatCost = '';
-  if (roof.attributes.dg_heizung > 0) {
-    solarHeatCost += ' ' + roof.attributes.dg_heizung
+  if (roof.attributes.dg_waermebedarf > 0) {
+    solarHeatCost += ' ' + roof.attributes.dg_waermebedarf
             + ' ' + translator.get('savingSolarheatYear');
   } else {
     solarHeatCost = translator.get('solarthermieTitelnoHeat');
