@@ -70,8 +70,10 @@ var updateRoofInfo = function(map, marker, roof) {
   $('#areaOutput').html(formatNumber(Math.round(roof.attributes.flaeche)));
   $('#eignung').html(suitability.substr(0, 1).toUpperCase() + suitability.substr(1));
   $('#eignung3').html(suitability.substr(0, 1).toUpperCase() + suitability.substr(1));
-  $('#stromertrag').html(formatNumber(Math.round((roof.attributes.gstrahlung*0.17*0.8)/100)*100));
-  //$('#duschgaenge').html(roof.attributes.duschgaenge);
+
+  if ($.contains(document.body, document.getElementById("stromertrag"))) {
+    $('#stromertrag').html(formatNumber(Math.round((roof.attributes.gstrahlung*0.17*0.8)/100)*100));
+  }
 
   //**** NEW
 
@@ -176,10 +178,38 @@ var updateRoofInfo = function(map, marker, roof) {
   //add css-class
   $(document.body).removeClass('no-roof').removeClass('no-roof-outside-perimeter').addClass('roof');
   
+  //Titel Solarstrom
+  if ($.contains(document.body, document.getElementById("TitelSolarstrom"))) {
+
+    var TitelSolarstromText = '';
+
+    if (roof.attributes.waermeertrag > 0) {
+      TitelSolarstromText += translator.get('solarstromVorTitel');
+    }
+
+    TitelSolarstromText += '<strong>'
+      + formatNumber(Math.round((roof.attributes.gstrahlung*0.17*0.8)/100)*100)
+      + '</strong> '
+      + translator.get('solarstromTitel')
+      + '<strong> '
+      + finanzertrag + ' '
+      + translator.get('solarstromTitel2')
+      + '</strong>';
+
+    if (roof.attributes.waermeertrag > 0) {
+      TitelSolarstromText += '&nbsp;...';
+    }
+
+    TitelSolarstromText += ' <a href="#twelve" class="scrolly icon major fa-info-circle" style="font-size:0.2em;cursor: pointer;"></a>';
+
+    $('#TitelSolarstrom').html(TitelSolarstromText);
+  }
+
+
   // check if no waermeertrag and if no dg_waermebedarf
   var titleHeat = '';
   if (roof.attributes.waermeertrag > 0) {
-    titleHeat += '<strong>' + formatNumber(Math.round(roof.attributes.waermeertrag/100)*100)
+    titleHeat += translator.get('solarthermieVorTitel') + '<strong>' + formatNumber(Math.round(roof.attributes.waermeertrag/100)*100)
                 + '</strong> ' + translator.get('solarthermieTitel1');
 
     if (roof.attributes.dg_waermebedarf > 0) {
@@ -193,7 +223,7 @@ var updateRoofInfo = function(map, marker, roof) {
     titleHeat = translator.get('solarthermieTitelnoHeat');
   }
 
-  $('#heatTitle').html(titleHeat);
+  $('#heatTitle').html(titleHeat + ' <a href="#twelve" class="scrolly icon major fa-info-circle" style="font-size:0.2em;cursor: pointer;"></a>');
 
   var textHeat = '';
   if (roof.attributes.duschgaenge > 0) {
@@ -209,13 +239,25 @@ var updateRoofInfo = function(map, marker, roof) {
   }
 
   if ($.contains(document.body, document.getElementById("PVbuttonText"))) {
-    document.getElementById("PVbuttonText").innerHTML = 
+
+    document.getElementById("PVbuttonText").innerHTML = '';
+
+    if (roof.attributes.waermeertrag > 0) {
+      document.getElementById("PVbuttonText").innerHTML += translator.get('solarstromVorTitel');
+    }
+
+    document.getElementById("PVbuttonText").innerHTML += 
     translator.get('PVbuttonText1') + " " + finanzertrag + " " + translator.get('solarstromTitel2');
+
+    if (roof.attributes.waermeertrag > 0) {
+      document.getElementById("PVbuttonText").innerHTML += '&nbsp;...';
+    }
+
   }
 
   if ($.contains(document.body, document.getElementById("thermiebuttonText"))) {
     document.getElementById("thermiebuttonText").innerHTML = 
-    translator.get('thermiebuttonText1') + " " + roof.attributes.dg_waermebedarf + " % " + translator.get('thermiebuttonText2');
+    translator.get('solarthermieVorTitel') + translator.get('thermiebuttonText1') + " " + roof.attributes.dg_waermebedarf + " % " + translator.get('thermiebuttonText2');
   }
 
   if ($.contains(document.body, document.getElementById("printLink"))) {
@@ -376,12 +418,12 @@ var updateSolarrechnerLinks = function () {
       
     if ($.contains(document.body, document.getElementById("buttonSolRPV"))) {
       document.getElementById("buttonSolRPV").href = 
-        'http://www.energieschweiz.ch/de-ch/erneuerbare-energien/meine-solaranlage/solarrechner.aspx?TECHNOLOGIE=1' + parameters;
+        'http://www.energieschweiz.ch/de-ch/erneuerbare-energien/meine-solaranlage/solarrechner.aspx?SYSTEM=1' + parameters;
     }
 
     if ($.contains(document.body, document.getElementById("buttonSolRThermie"))) {
       document.getElementById("buttonSolRThermie").href = 
-        'http://www.energieschweiz.ch/de-ch/erneuerbare-energien/meine-solaranlage/solarrechner.aspx?TECHNOLOGIE=2' + parameters;
+        'http://www.energieschweiz.ch/de-ch/erneuerbare-energien/meine-solaranlage/solarrechner.aspx?SYSTEM=2' + parameters;
     }
   };
 }();
