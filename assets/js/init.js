@@ -197,7 +197,7 @@ var updateRoofInfo = function(map, marker, roof) {
       + '</strong>';
 
     if (roof.attributes.waermeertrag > 0) {
-      TitelSolarstromText += '&nbsp;...';
+      TitelSolarstromText += '...';
     }
 
     TitelSolarstromText += ' <a href="#twelve" class="scrolly icon major fa-info-circle" style="font-size:0.2em;cursor: pointer;"></a>';
@@ -250,7 +250,7 @@ var updateRoofInfo = function(map, marker, roof) {
     translator.get('PVbuttonText1') + " " + finanzertrag + " " + translator.get('solarstromTitel2');
 
     if (roof.attributes.waermeertrag > 0) {
-      document.getElementById("PVbuttonText").innerHTML += '&nbsp;...';
+      document.getElementById("PVbuttonText").innerHTML += '...';
     }
 
   }
@@ -425,6 +425,12 @@ var updateSolarrechnerLinks = function () {
       document.getElementById("buttonSolRThermie").href = 
         'http://www.energieschweiz.ch/de-ch/erneuerbare-energien/meine-solaranlage/solarrechner.aspx?SYSTEM=2' + parameters;
     }
+
+    if ($.contains(document.body, document.getElementById("hintSolarrechner"))) {
+      document.getElementById("hintSolarrechner").href = 
+        'http://www.energieschweiz.ch/de-ch/erneuerbare-energien/meine-solaranlage/solarrechner.aspx?SYSTEM=1' + parameters;
+    }
+
   };
 }();
 
