@@ -513,73 +513,71 @@ var init = function(nointeraction) {
   }
 
   // Create map
-  var map = createMap('map', lang, nointeraction);
-  var marker = new ol.Overlay({
-    positioning:'bottom-center',
-    element: markerElt[0],
-    position: undefined,
-    stopEvent: false
-    //autoPan: true,
-    //autoPanMargin: 150 
-  });
-  map.addOverlay(marker);
-  map.on('singleclick', function(evt){
-    var coord = evt.coordinate;
-   
-    //Do roof search explicitely
-    searchFeaturesFromCoord(map, coord, 0.0).then(function(data) {
-      onRoofFound(map, marker, data.results[0], false); //???????
-      // We call the geocode function here to get the
-      // address information for the clicked point using
-      // the GWR layer.
-      // The false parameter indicates that geocode does
-      // not trigger a roof search.
-      // Relouch the roof search with the coordinate of address if necessary.
-      var relaunchRoofSearch = (data.results.length == 0);
-      geocode(map, coord).then(function(data) {
-        // We assume the first of the list is the closest
-        onAddressFound(map, marker, data.results[0], relaunchRoofSearch, 0.0);
+  createMap('map', lang, nointeraction).then(function(map) {;
+    var marker = new ol.Overlay({
+      positioning:'bottom-center',
+      element: markerElt[0],
+      position: undefined,
+      stopEvent: false
+    });
+    map.addOverlay(marker);
+    map.on('singleclick', function(evt){
+      var coord = evt.coordinate;
+      //Do roof search explicitely
+      searchFeaturesFromCoord(map, coord, 0.0).then(function(data) {
+        onRoofFound(map, marker, data.results[0], false); //???????
+        // We call the geocode function here to get the
+        // address information for the clicked point using
+        // the GWR layer.
+        // The false parameter indicates that geocode does
+        // not trigger a roof search.
+        // Relouch the roof search with the coordinate of address if necessary.
+        var relaunchRoofSearch = (data.results.length == 0);
+        geocode(map, coord).then(function(data) {
+          // We assume the first of the list is the closest
+          onAddressFound(map, marker, data.results[0], relaunchRoofSearch, 0.0);
+        });
       });
     });
-  });
 
-  // Init the search input
-  initSearch(map, marker, onAddressFound);
- 
-  // Init geoloaction button 
-  locationBt.click(function() {
-    body.removeClass('localized-error');
-    getLocation(map, marker, onAddressFound, function(msg) {
-      $(document.body).addClass('localized-error');
-      $('#locationError').html(msg);
-    });
-  });
+    // Init the search input
+    initSearch(map, marker, onAddressFound);
 
-  // Display the feature from permalink
-  if (permalink.featureId) {
-    searchFeatureFromId(permalink.featureId).then(function(data) {
-
-      var coord = ol.extent.getCenter(data.feature.bbox);
-      // Assure to be around resulting point with correct zoom level
-      map.getView().setCenter(coord);
-      map.getView().setResolution(0.25);
-
-      geocode(map, coord).then(function(data) {
-        // We assume the first of the list is the closest
-        onAddressFound(map, marker, data.results[0], false, 50.0);
+    // Init geoloaction button
+    locationBt.click(function() {
+      body.removeClass('localized-error');
+      getLocation(map, marker, onAddressFound, function(msg) {
+        $(document.body).addClass('localized-error');
+        $('#locationError').html(msg);
       });
-
-      goTo('one');
-      
-      // Add the featureId to the lang link href
-      $('#lang a').attr('href', function(index, attr) {
-        this.href = attr + '&featureId=' + permalink.featureId;
-      });
-
-      onRoofFound(map, marker, data.feature); //??????
-
     });
-  }
+
+    // Display the feature from permalink
+    if (permalink.featureId) {
+      searchFeatureFromId(permalink.featureId).then(function(data) {
+
+        var coord = ol.extent.getCenter(data.feature.bbox);
+        // Assure to be around resulting point with correct zoom level
+        map.getView().setCenter(coord);
+        map.getView().setResolution(0.25);
+
+        geocode(map, coord).then(function(data) {
+          // We assume the first of the list is the closest
+          onAddressFound(map, marker, data.results[0], false, 50.0);
+        });
+
+        goTo('one');
+
+        // Add the featureId to the lang link href
+        $('#lang a').attr('href', function(index, attr) {
+          this.href = attr + '&featureId=' + permalink.featureId;
+        });
+
+        onRoofFound(map, marker, data.feature); //??????
+
+      });
+    }
+  });
 
   if ($.contains(document.body, document.getElementById("socialTwitter"))) {
     document.getElementById("socialTwitter").href = 
