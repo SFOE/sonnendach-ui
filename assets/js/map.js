@@ -80,6 +80,10 @@ var createMap = function(eltId, lang, nointeraction) {
     });
     map.addControl(new ol.control.ScaleLine());
 
+    map.getInteractions().forEach(function (interaction) {
+      if(interaction instanceof ol.interaction.MouseWheelZoom) { interaction.setActive(false)}
+    });
+
     // Change cursor's style when a roof is available
     map.on('pointermove', function(evt) {
       var isHoverLayer = map.forEachLayerAtPixel(evt.pixel, function() {

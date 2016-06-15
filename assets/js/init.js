@@ -192,7 +192,7 @@ var updateRoofInfo = function(map, marker, roof) {
       + '</strong> '
       + translator.get('solarstromTitel')
       + '<strong> '
-      + finanzertrag + ' '
+      + finanzertrag + '&nbsp;'
       + translator.get('solarstromTitel2')
       + '</strong>';
 
@@ -203,8 +203,22 @@ var updateRoofInfo = function(map, marker, roof) {
     TitelSolarstromText += ' <a href="#twelve" class="scrolly icon major fa-info-circle" style="font-size:0.2em;cursor: pointer;"></a>';
 
     $('#TitelSolarstrom').html(TitelSolarstromText);
+
+    if (roof.attributes.neigung > 0) {
+      $('#pvpic1').attr("src","images/pv_schraegdach1.png");
+      $('#pvpic2').attr("src","images/pv_schraegdach2.png");
+      $('#pvpic3').attr("src","images/pv_schraegdach3.png");
+    } else {
+      $('#pvpic1').attr("src","images/pv_flachdach1.png");
+      $('#pvpic2').attr("src","images/pv_flachdach2.png");
+      $('#pvpic3').attr("src","images/pv_flachdach3.png");
+    }
+
   }
 
+  $('#pv100').html(formatNumber(Math.round((roof.attributes.gstrahlung*0.17*0.8)/100)*100*1));
+  $('#pv75').html(formatNumber(Math.round((roof.attributes.gstrahlung*0.17*0.8)/100)*100*0.75));
+  $('#pv50').html(formatNumber(Math.round((roof.attributes.gstrahlung*0.17*0.8)/100)*100*0.5));
 
   // check if no waermeertrag and if no dg_waermebedarf
   var titleHeat = '';
@@ -243,7 +257,7 @@ var updateRoofInfo = function(map, marker, roof) {
     document.getElementById("PVbuttonText").innerHTML = '';
 
     if (roof.attributes.waermeertrag > 0) {
-      document.getElementById("PVbuttonText").innerHTML += translator.get('solarstromVorTitel');
+      document.getElementById("PVbuttonText").innerHTML += translator.get('solarstromVorTitel2');
     }
 
     document.getElementById("PVbuttonText").innerHTML += 
@@ -416,19 +430,34 @@ var updateSolarrechnerLinks = function () {
       parameters += '&BEDARF_WARMWASSER=' + lastRoof.attributes.bedarf_warmwasser;
     }
       
-    if ($.contains(document.body, document.getElementById("buttonSolRPV"))) {
-      document.getElementById("buttonSolRPV").href = 
-        'http://www.energieschweiz.ch/de-ch/erneuerbare-energien/meine-solaranlage/solarrechner.aspx?SYSTEM=1&TECHNOLOGIE=1' + parameters;
+    if ($.contains(document.body, document.getElementById("buttonSolRPV100"))) {
+      document.getElementById("buttonSolRPV100").href = 
+        'http://www.energieschweiz.ch/de-ch/erneuerbare-energien/meine-solaranlage/solarrechner.aspx?SYSTEM=1&TECHNOLOGIE=1' + parameters
+        + "&FLAECHE=" + Math.round(lastRoof.attributes.flaeche);
     }
+
+    if ($.contains(document.body, document.getElementById("buttonSolRPV75"))) {
+      document.getElementById("buttonSolRPV75").href = 
+        'http://www.energieschweiz.ch/de-ch/erneuerbare-energien/meine-solaranlage/solarrechner.aspx?SYSTEM=1&TECHNOLOGIE=1' + parameters
+        + "&FLAECHE=" + Math.round(lastRoof.attributes.flaeche*0.75);
+    }
+
+    if ($.contains(document.body, document.getElementById("buttonSolRPV50"))) {
+      document.getElementById("buttonSolRPV50").href = 
+        'http://www.energieschweiz.ch/de-ch/erneuerbare-energien/meine-solaranlage/solarrechner.aspx?SYSTEM=1&TECHNOLOGIE=1' + parameters
+        + "&FLAECHE=" + Math.round(lastRoof.attributes.flaeche*0.5);
+    }    
 
     if ($.contains(document.body, document.getElementById("buttonSolRThermie"))) {
       document.getElementById("buttonSolRThermie").href = 
-        'http://www.energieschweiz.ch/de-ch/erneuerbare-energien/meine-solaranlage/solarrechner.aspx?SYSTEM=2&TECHNOLOGIE=2' + parameters;
+        'http://www.energieschweiz.ch/de-ch/erneuerbare-energien/meine-solaranlage/solarrechner.aspx?SYSTEM=2&TECHNOLOGIE=2' + parameters
+        + "&FLAECHE=" + Math.round(lastRoof.attributes.flaeche);
     }
 
     if ($.contains(document.body, document.getElementById("hintSolarrechner"))) {
       document.getElementById("hintSolarrechner").href = 
-        'http://www.energieschweiz.ch/de-ch/erneuerbare-energien/meine-solaranlage/solarrechner.aspx?SYSTEM=2&TECHNOLOGIE=2' + parameters;
+        'http://www.energieschweiz.ch/de-ch/erneuerbare-energien/meine-solaranlage/solarrechner.aspx?SYSTEM=2&TECHNOLOGIE=2' + parameters
+        + "&FLAECHE=" + Math.round(lastRoof.attributes.flaeche);
     }
 
   };
