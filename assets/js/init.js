@@ -185,6 +185,8 @@ var updateRoofInfo = function(map, marker, roof) {
 
     if (roof.attributes.waermeertrag > 0) {
       TitelSolarstromText += translator.get('solarstromVorTitel');
+    } else {
+      TitelSolarstromText += translator.get('solarstromVorTitel3');
     }
 
     TitelSolarstromText += '<strong>'
@@ -208,10 +210,16 @@ var updateRoofInfo = function(map, marker, roof) {
       $('#pvpic1').attr("src","images/pv_schraegdach1.png");
       $('#pvpic2').attr("src","images/pv_schraegdach2.png");
       $('#pvpic3').attr("src","images/pv_schraegdach3.png");
+      $('#pv100text').html(translator.get('pv100text'));
+      $('#pv75text').html(translator.get('pv75text'));
+      $('#pv50text').html(translator.get('pv50text'));
     } else {
       $('#pvpic1').attr("src","images/pv_flachdach1.png");
       $('#pvpic2').attr("src","images/pv_flachdach2.png");
       $('#pvpic3').attr("src","images/pv_flachdach3.png");
+      $('#pv100text').html(translator.get('pv100textflach'));
+      $('#pv75text').html(translator.get('pv75textflach'));
+      $('#pv50text').html(translator.get('pv50textflach'));      
     }
 
   }
@@ -410,7 +418,7 @@ var updateRoofInfo = function(map, marker, roof) {
  * Adds Parameters to Link to Solarrechner
  */
 var updateSolarrechnerLinks = function () {
-  var lastRoof, lastPlz;
+  var lastRoof, lastPlz, lastFlaeche;
   return function(roof, plz) {
     if (roof) {
       lastRoof = roof;
@@ -428,36 +436,37 @@ var updateSolarrechnerLinks = function () {
       parameters += '&NEIGUNG=' + lastRoof.attributes.neigung;
       parameters += '&AUSRICHTUNG=' + lastRoof.attributes.ausrichtung;
       parameters += '&BEDARF_WARMWASSER=' + lastRoof.attributes.bedarf_warmwasser;
+      lastFlaeche = Math.round(lastRoof.attributes.flaeche);
     }
       
     if ($.contains(document.body, document.getElementById("buttonSolRPV100"))) {
       document.getElementById("buttonSolRPV100").href = 
         'http://www.energieschweiz.ch/de-ch/erneuerbare-energien/meine-solaranlage/solarrechner.aspx?SYSTEM=1&TECHNOLOGIE=1' + parameters
-        + "&FLAECHE=" + Math.round(lastRoof.attributes.flaeche);
+        + "&FLAECHE=" + lastFlaeche;
     }
 
     if ($.contains(document.body, document.getElementById("buttonSolRPV75"))) {
       document.getElementById("buttonSolRPV75").href = 
         'http://www.energieschweiz.ch/de-ch/erneuerbare-energien/meine-solaranlage/solarrechner.aspx?SYSTEM=1&TECHNOLOGIE=1' + parameters
-        + "&FLAECHE=" + Math.round(lastRoof.attributes.flaeche*0.75);
+        + "&FLAECHE=" + Math.round(lastFlaeche*0.75);
     }
 
     if ($.contains(document.body, document.getElementById("buttonSolRPV50"))) {
       document.getElementById("buttonSolRPV50").href = 
         'http://www.energieschweiz.ch/de-ch/erneuerbare-energien/meine-solaranlage/solarrechner.aspx?SYSTEM=1&TECHNOLOGIE=1' + parameters
-        + "&FLAECHE=" + Math.round(lastRoof.attributes.flaeche*0.5);
+        + "&FLAECHE=" + Math.round(lastFlaeche*0.5);
     }    
 
     if ($.contains(document.body, document.getElementById("buttonSolRThermie"))) {
       document.getElementById("buttonSolRThermie").href = 
         'http://www.energieschweiz.ch/de-ch/erneuerbare-energien/meine-solaranlage/solarrechner.aspx?SYSTEM=2&TECHNOLOGIE=2' + parameters
-        + "&FLAECHE=" + Math.round(lastRoof.attributes.flaeche);
+        + "&FLAECHE=" + Math.round(lastFlaeche);
     }
 
     if ($.contains(document.body, document.getElementById("hintSolarrechner"))) {
       document.getElementById("hintSolarrechner").href = 
         'http://www.energieschweiz.ch/de-ch/erneuerbare-energien/meine-solaranlage/solarrechner.aspx?SYSTEM=2&TECHNOLOGIE=2' + parameters
-        + "&FLAECHE=" + Math.round(lastRoof.attributes.flaeche);
+        + "&FLAECHE=" + Math.round(lastFlaeche);
     }
 
   };
@@ -541,6 +550,19 @@ var init = function(nointeraction) {
     lang: lang,
     t: sdTranslations // Object defined in tranlations.js
   });
+
+  if (header == '1') {
+    if (lang == 'de') {
+      $('#logoech').css('background','url("images/echlogo-de.png") no-repeat center left');
+    } else if (lang == 'fr') {
+      $('#logoech').css('background','url("images/echlogo-fr.png") no-repeat center left');
+    } else if (lang == 'it') {
+      $('#logoech').css('background','url("images/echlogo-it.png") no-repeat center left');
+    } else if (lang == 'en') {
+      $('#logoech').css('background','url("images/echlogo-de.png") no-repeat center left');
+    }
+  } 
+
 
   //add locate-symbol
   if ($.contains(document.body, document.getElementById("location"))) {
