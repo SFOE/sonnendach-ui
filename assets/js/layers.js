@@ -33,7 +33,14 @@ var getWmts = function(layer, options) {
       matrixIds: $.map(resolutions, function(r, i) { return i + ''; })
     });
     var extension = options.format || 'png';
-    var timestamp = options['timestamp'] ? options['timestamp'] : options['timestamps'][0];
+    //var timestamp = options['timestamp'] ? options['timestamp'] : options['timestamps'][0];
+    
+    if(layer == 'ch.bfe.solarenergie-eignung-daecher') {
+      var timestamp = '20160613';
+    } else {
+      var timestamp = '20151231';
+    }
+
     return new ol.source.WMTS( /** @type {olx.source.WMTSOptions} */({
       crossOrigin: 'anonymous',
       attributions: [

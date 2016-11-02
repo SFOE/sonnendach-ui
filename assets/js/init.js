@@ -441,31 +441,31 @@ var updateSolarrechnerLinks = function () {
       
     if ($.contains(document.body, document.getElementById("buttonSolRPV100"))) {
       document.getElementById("buttonSolRPV100").href = 
-        'http://www.energieschweiz.ch/de-ch/erneuerbare-energien/meine-solaranlage/solarrechner.aspx?SYSTEM=1&TECHNOLOGIE=1' + parameters
+        'https://www.energieschweiz.ch/page/de-ch/solarrechner/?SYSTEM=1&TECHNOLOGIE=1' + parameters
         + "&FLAECHE=" + lastFlaeche;
     }
 
     if ($.contains(document.body, document.getElementById("buttonSolRPV75"))) {
       document.getElementById("buttonSolRPV75").href = 
-        'http://www.energieschweiz.ch/de-ch/erneuerbare-energien/meine-solaranlage/solarrechner.aspx?SYSTEM=1&TECHNOLOGIE=1' + parameters
+        'https://www.energieschweiz.ch/page/de-ch/solarrechner/?SYSTEM=1&TECHNOLOGIE=1' + parameters
         + "&FLAECHE=" + Math.round(lastFlaeche*0.75);
     }
 
     if ($.contains(document.body, document.getElementById("buttonSolRPV50"))) {
       document.getElementById("buttonSolRPV50").href = 
-        'http://www.energieschweiz.ch/de-ch/erneuerbare-energien/meine-solaranlage/solarrechner.aspx?SYSTEM=1&TECHNOLOGIE=1' + parameters
+        'https://www.energieschweiz.ch/page/de-ch/solarrechner/?SYSTEM=1&TECHNOLOGIE=1' + parameters
         + "&FLAECHE=" + Math.round(lastFlaeche*0.5);
     }    
 
     if ($.contains(document.body, document.getElementById("buttonSolRThermie"))) {
       document.getElementById("buttonSolRThermie").href = 
-        'http://www.energieschweiz.ch/de-ch/erneuerbare-energien/meine-solaranlage/solarrechner.aspx?SYSTEM=2&TECHNOLOGIE=2' + parameters
+        'https://www.energieschweiz.ch/page/de-ch/solarrechner/?SYSTEM=2&TECHNOLOGIE=2' + parameters
         + "&FLAECHE=" + Math.round(lastFlaeche);
     }
 
     if ($.contains(document.body, document.getElementById("hintSolarrechner"))) {
       document.getElementById("hintSolarrechner").href = 
-        'http://www.energieschweiz.ch/de-ch/erneuerbare-energien/meine-solaranlage/solarrechner.aspx?SYSTEM=2&TECHNOLOGIE=2' + parameters
+        'https://www.energieschweiz.ch/page/de-ch/solarrechner/?SYSTEM=2&TECHNOLOGIE=2' + parameters
         + "&FLAECHE=" + Math.round(lastFlaeche);
     }
 
@@ -649,6 +649,27 @@ var init = function(nointeraction) {
   if ($.contains(document.body, document.getElementById("socialMail"))) {
     document.getElementById("socialMail").href = 
     'mailto:?subject=' + translator.get('pagetitle') + ' ' + translator.get('domain');
+  }
+
+  if ($.contains(document.body, document.getElementById("documentationLink"))) {
+
+    document.getElementById('documentationLink').href = translator.get('documentationLink');
+  }
+
+  if ($.contains(document.body, document.getElementById("stepbystepLink"))) {
+
+    document.getElementById('stepbystepLink').href = translator.get('stepbystepLink');
+  }
+
+  if ($.contains(document.body, document.getElementById("einbettenLink"))) {
+
+    document.getElementById('einbettenLink').href = 
+      'einbetten.html?lang=' + lang;
+  }
+
+  if ($.contains(document.body, document.getElementById("hintSolarrechner"))) {
+    document.getElementById("hintSolarrechner").href = 
+      'http://www.energieschweiz.ch/de-ch/erneuerbare-energien/meine-solaranlage/solarrechner.aspx?SYSTEM=2&TECHNOLOGIE=2';
   }
 
   // Remove the loading css class 
