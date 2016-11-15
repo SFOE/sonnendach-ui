@@ -401,7 +401,7 @@ var updateRoofInfo = function(map, marker, roof) {
   var vectorLayer = clearHighlight(map, marker);
   vectorLayer.getSource().addFeature(new ol.Feature(polygon));
   marker.setPosition(polygon.getInteriorPoint().getCoordinates());
-  flyTo(map, marker.getPosition(), 0.25);
+  flyTo(map, marker.getPosition(), 0.5);
 
   if ($.contains(document.body, document.getElementById("thisIsPrint"))) {
     updateBarChart(roof, roof.attributes.klasse, roof.attributes.flaeche, 1);  
@@ -438,35 +438,46 @@ var updateSolarrechnerLinks = function () {
       parameters += '&BEDARF_WARMWASSER=' + lastRoof.attributes.bedarf_warmwasser;
       lastFlaeche = Math.round(lastRoof.attributes.flaeche);
     }
+
+    var langs = ['de', 'fr', 'it', 'en'];
+    var permalink = addPermalink();
+    var lang = (langs.indexOf(permalink.lang) != -1) ? permalink.lang : langs[0];
+
+    var linkESRechner = '';
+
+    if (lang == 'de') {
+      linkESRechner = 'https://www.energieschweiz.ch/page/de-ch/solarrechner/';
+    } else if (lang == 'fr') {
+      linkESRechner = 'https://www.suisseenergie.ch/page/fr-ch/calculateur-solaire/';
+    } else if (lang == 'it') {
+      linkESRechner = 'https://www.svizzeraenergia.ch/page/it-ch/calcolatore-solare/';
+    } else if (lang == 'en') {
+      linkESRechner = 'https://www.energieschweiz.ch/page/de-ch/solarrechner/';
+    }    
       
     if ($.contains(document.body, document.getElementById("buttonSolRPV100"))) {
       document.getElementById("buttonSolRPV100").href = 
-        'https://www.energieschweiz.ch/page/de-ch/solarrechner/?SYSTEM=1&TECHNOLOGIE=1' + parameters
-        + "&FLAECHE=" + lastFlaeche;
+        linkESRechner + '?SYSTEM=1&TECHNOLOGIE=1' + parameters + "&FLAECHE=" + lastFlaeche;
     }
 
     if ($.contains(document.body, document.getElementById("buttonSolRPV75"))) {
       document.getElementById("buttonSolRPV75").href = 
-        'https://www.energieschweiz.ch/page/de-ch/solarrechner/?SYSTEM=1&TECHNOLOGIE=1' + parameters
-        + "&FLAECHE=" + Math.round(lastFlaeche*0.75);
+        linkESRechner + '?SYSTEM=1&TECHNOLOGIE=1' + parameters + "&FLAECHE=" + Math.round(lastFlaeche*0.75);
     }
 
     if ($.contains(document.body, document.getElementById("buttonSolRPV50"))) {
       document.getElementById("buttonSolRPV50").href = 
-        'https://www.energieschweiz.ch/page/de-ch/solarrechner/?SYSTEM=1&TECHNOLOGIE=1' + parameters
-        + "&FLAECHE=" + Math.round(lastFlaeche*0.5);
+        linkESRechner + '?SYSTEM=1&TECHNOLOGIE=1' + parameters + "&FLAECHE=" + Math.round(lastFlaeche*0.5);
     }    
 
     if ($.contains(document.body, document.getElementById("buttonSolRThermie"))) {
       document.getElementById("buttonSolRThermie").href = 
-        'https://www.energieschweiz.ch/page/de-ch/solarrechner/?SYSTEM=2&TECHNOLOGIE=2' + parameters
-        + "&FLAECHE=" + Math.round(lastFlaeche);
+        linkESRechner + '?SYSTEM=2&TECHNOLOGIE=2' + parameters + "&FLAECHE=" + Math.round(lastFlaeche);
     }
 
     if ($.contains(document.body, document.getElementById("hintSolarrechner"))) {
       document.getElementById("hintSolarrechner").href = 
-        'https://www.energieschweiz.ch/page/de-ch/solarrechner/?SYSTEM=2&TECHNOLOGIE=2' + parameters
-        + "&FLAECHE=" + Math.round(lastFlaeche);
+        linkESRechner + '?SYSTEM=2&TECHNOLOGIE=2' + parameters + "&FLAECHE=" + Math.round(lastFlaeche);
     }
 
   };

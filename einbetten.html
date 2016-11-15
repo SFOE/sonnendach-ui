@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <link rel="stylesheet" href="assets/css/embed.css"/>
+<link rel="stylesheet" href="assets/css/tooltip.css"/>
 
 </head>
 <body>
@@ -56,11 +57,11 @@ initembed();
 
 //Karte initialisieren
 var layer1 = ga.layer.create('ch.swisstopo.pixelkarte-grau');
-var layer2 = ga.layer.create('ch.swisstopo.swissboundaries3d-kanton-flaeche.fill');
-var layer3 = ga.layer.create('ch.swisstopo.swissboundaries3d-gemeinde-flaeche.fill');
+var layer2 = ga.layer.create('ch.swisstopo.swissboundaries3d-gemeinde-flaeche.fill');
+
 var map = new ga.Map({
   target: 'map',
-  layers: [layer1,layer3],
+  layers: [layer1,layer2],
   view: new ol.View({
     resolution: 500
   })
