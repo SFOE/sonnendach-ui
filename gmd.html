@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <script src="assets/js/permalink.js"></script>
+
+  <script>
+
+    var init = function() {
+
+      var langs = ['de', 'fr', 'it'];
+      var permalink = addPermalink();
+
+      var lang = (langs.indexOf(permalink.lang) != -1) ? permalink.lang : langs[0];
+      var xcoord = permalink.X;
+      var ycoord = permalink.Y;
+      var zoom = permalink.zoom;
+
+      document.getElementById("map").src =
+         'http://map.geo.admin.ch/mobile.html?X=' + xcoord + 
+         '&Y=' + ycoord + 
+         '&zoom=' + zoom + 
+         '&lang=' + lang + 
+         '&topic=ech&bgLayer=ch.swisstopo.pixelkarte-grau&mobile=true&layers=ch.bfe.solarenergie-eignung-daecher';
+
+    }
+
+  </script>
+
+</head>
+
+<frameset rows="*" onload="init();">
+
+  <frame src="" name="map" id="map" scrolling="no" frameborder="0" marginwidth="0" marginheight="0">
+  
+</frameset>
+
+<body>
+
+
+</body>
+
+</html>

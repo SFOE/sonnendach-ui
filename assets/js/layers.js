@@ -42,9 +42,6 @@ var getWmts = function(layer, options) {
       var timestamp = options['timestamp'] ? options['timestamp'] : options['timestamps'][0];
     //}
 
-    
-
-
     return new ol.source.WMTS( /** @type {olx.source.WMTSOptions} */({
       crossOrigin: 'anonymous',
       attributions: [
@@ -61,4 +58,3 @@ var getWmts = function(layer, options) {
       }
     }));
 };
-
