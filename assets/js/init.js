@@ -401,7 +401,7 @@ var updateRoofInfo = function(map, marker, roof) {
   var vectorLayer = clearHighlight(map, marker);
   vectorLayer.getSource().addFeature(new ol.Feature(polygon));
   marker.setPosition(polygon.getInteriorPoint().getCoordinates());
-  flyTo(map, marker.getPosition(), 0.5);
+  flyTo(map, marker.getPosition(), 0.25);
 
   if ($.contains(document.body, document.getElementById("thisIsPrint"))) {
     updateBarChart(roof, roof.attributes.klasse, roof.attributes.flaeche, 1);  

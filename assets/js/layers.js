@@ -58,3 +58,30 @@ var getWmts = function(layer, options) {
       }
     }));
 };
+
+/**
+ * Create a tiled WMS source given a bod layer id
+ * 
+ * @method
+ * @param {string} layer layer id.
+ * @param {Object} options source options.
+ * @return {ol.source.TileWMS}
+ */
+var getWms = function(layer, options) {
+  return new ol.source.TileWMS({
+    crossOrigin: 'anonymous',
+    wrapX: false,
+    gutter: options['gutter'] || 0,
+    attributions: [
+      new ol.Attribution({html: '<a href="' +
+        options['attributionUrl'] +
+        '" target="new">' +
+        options['attribution'] + '</a>'})
+    ],
+    params: {
+      'LAYERS': options['wmsLayers'] || layer,
+      'TIME': options['timestamp']
+    },
+    url: options['wmsUrl'].split('?')[0].replace('http:',location.protocol)
+  });
+};
