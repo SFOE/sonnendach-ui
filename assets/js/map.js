@@ -25,6 +25,15 @@ var createMap = function(eltId, lang, nointeraction) {
       source: getWmts(layer2Id, layer2Config),
       useInterimTilesOnError: false
     })
+    var layer3Id = 'ch.bfe.solarenergie-eignung-daecher_wms';
+    var layer3Config = layers[layer3Id];
+    var layer3 = new ol.layer.Tile({
+      minResolution: layer3Config.minResolution,
+      maxResolution: layer3Config.maxResolution,
+      opacity: layer3Config.opacity,
+      source: getWms(layer3Id, layer3Config),
+      useInterimTilesOnError: false
+    })    
 
     // Display th highlight of the roof
     var vector = new ol.layer.Vector({
@@ -60,7 +69,7 @@ var createMap = function(eltId, lang, nointeraction) {
 
     var map = new ol.Map({
       target: eltId,
-      layers: [layer1, layer2, vector],
+      layers: [layer1, layer2, layer3, vector],
       view: new ol.View({
         resolutions: [
           650, 500, 250, 100, 50, 20, 10, 5, 2.5, 2, 1, 0.5, 0.25, 0.1
