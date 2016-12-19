@@ -30,6 +30,7 @@ var addPermalink = function() {
   var lang =  (res.lang || '').split(',');
   var featureId = (res.featureId || '').split(',');
   var header = (res.header || '').split(',');
+  var building = (res.building || '').split(',');
   var X = (res.X || '').split(',');
   var Y = (res.Y || '').split(',');
   var zoom = (res.zoom || '').split(',');
@@ -38,6 +39,7 @@ var addPermalink = function() {
     lang: (lang[0].length) ? lang[0] : undefined,
     featureId: (featureId[0].length) ? featureId[0] : undefined,
     header: (header[0].length) ? header[0] : undefined,
+    building: (building[0].length) ? building[0] : undefined,
     X: (X[0].length) ? X[0] : undefined,
     Y: (Y[0].length) ? Y[0] : undefined,
     zoom: (zoom[0].length) ? zoom[0] : undefined,

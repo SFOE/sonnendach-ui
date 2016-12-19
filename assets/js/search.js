@@ -128,6 +128,7 @@ var searchBestRoofFromBuildingId = function(buildingId) {
   });
 };
 
+
 /**
  * Transform the input element in search box
  */
