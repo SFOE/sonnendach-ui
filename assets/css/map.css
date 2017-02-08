@@ -176,6 +176,10 @@ ul.actions.uniform li > a.button > span {
     height: 195px;
 }
 
+#pvpicheader {
+    width: 350px;
+}
+
 .logoech {
   background: url('images/echlogo-de.png') no-repeat center left;
   width: 204px;
@@ -263,7 +267,11 @@ ul.actions.uniform li > a.button > span {
   #eignungSymbol {
     width: 75px;
     height: 80px;    
-  } 
+  }
+
+  #pvpicheader {
+      width: 250px;
+  }
 
   .logoech {
     width: 41px;

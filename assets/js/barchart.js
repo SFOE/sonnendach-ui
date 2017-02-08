@@ -91,7 +91,7 @@ var updateBarChart = function() {
       .attr('class', 'd3-tip')
       .offset([-10, 0])
       .html(function(d) {
-        return "<span style='color:red'>" + formatNumber(Math.round(d[1])); + "</span>";
+        return "<span>" + formatNumber(Math.round(d[1])); + "</span>";
       })
 
     var svg = d3.select("#chart").append("svg")

@@ -291,7 +291,15 @@ var updateRoofInfo = function(map, marker, roof) {
   }
 
   if ($.contains(document.body, document.getElementById("linkToSonnenfassade"))) {
-    document.getElementById('linkToSonnenfassade').href = 'http://www.bfe-gis.admin.ch/sonnenfassade/?lang=' + lang + '&building=' + roof.attributes.building_id;
+    document.getElementById('linkToSonnenfassade').href = 'http://www.energiestadtfinder.ch/sonnenfassade/?lang=' + lang + '&building=' + roof.attributes.building_id;
+  }
+
+  if ($.contains(document.body, document.getElementById("linkHeaderPic"))) {
+    document.getElementById('linkHeaderPic').href = 'http://www.energiestadtfinder.ch/sonnenfassade/?lang=' + lang + '&building=' + roof.attributes.building_id;
+  }  
+
+  if ($.contains(document.body, document.getElementById("linkSwitch"))) {
+    document.getElementById('linkSwitch').href = 'http://www.energiestadtfinder.ch/sonnenfassade/?lang=' + lang + '&building=' + roof.attributes.building_id;
   }
 
   if ($.contains(document.body, document.getElementById("documentationLink"))) {
@@ -584,6 +592,16 @@ var init = function(nointeraction) {
     document.getElementById("location").innerHTML = document.getElementById("location").innerHTML + ' <span class="icon fa-location-arrow"></span>';
   }
 
+  // SWITCH
+  $(document).scroll(function() {
+    var y = $(this).scrollTop();
+    if (y > 700) {
+      $('#switchDachFassade').fadeIn();
+    } else {
+      $('#switchDachFassade').fadeOut();
+    }
+  });
+
   // Create map
   createMap('map', lang, nointeraction).then(function(map) {;
     var marker = new ol.Overlay({
@@ -718,6 +736,16 @@ var init = function(nointeraction) {
     document.getElementById('linkToSonnenfassade').href = translator.get('domainfassade');
   }
 
+  if ($.contains(document.body, document.getElementById("linkHeaderPic"))) {
+    document.getElementById('linkHeaderPic').href = 'http://www.energiestadtfinder.ch/sonnenfassade/';
+    //document.getElementById('linkHeaderPic').href = translator.get('domainfassade');
+  }
+
+  if ($.contains(document.body, document.getElementById("linkSwitch"))) {
+    document.getElementById('linkSwitch').href = 'http://www.energiestadtfinder.ch/sonnenfassade/';
+    //document.getElementById('linkSwitch').href = translator.get('domain');
+  }
+
   if ($.contains(document.body, document.getElementById("documentationLink"))) {
 
     document.getElementById('documentationLink').href = translator.get('documentationLink');
@@ -734,9 +762,21 @@ var init = function(nointeraction) {
       'einbetten.html?lang=' + lang;
   }
 
+  var linkESRechner = '';
+
+  if (lang == 'de') {
+    linkESRechner = 'https://www.energieschweiz.ch/page/de-ch/solarrechner/';
+  } else if (lang == 'fr') {
+    linkESRechner = 'https://www.suisseenergie.ch/page/fr-ch/calculateur-solaire/';
+  } else if (lang == 'it') {
+    linkESRechner = 'https://www.svizzeraenergia.ch/page/it-ch/calcolatore-solare/';
+  } else if (lang == 'en') {
+    linkESRechner = 'https://www.energieschweiz.ch/page/de-ch/solarrechner/';
+  }  
+
   if ($.contains(document.body, document.getElementById("hintSolarrechner"))) {
     document.getElementById("hintSolarrechner").href = 
-      'http://www.energieschweiz.ch/de-ch/erneuerbare-energien/meine-solaranlage/solarrechner.aspx?SYSTEM=2&TECHNOLOGIE=2';
+      linkESRechner + '?SYSTEM=2&TECHNOLOGIE=2';
   }
 
   // Remove the loading css class 
