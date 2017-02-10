@@ -172,12 +172,12 @@ ul.actions.uniform li > a.button > span {
 }
 
 #eignungSymbol {
-    width: 180px;
-    height: 195px;
+  width: 180px;
+  height: 195px;
 }
 
 #pvpicheader {
-    width: 350px;
+  width: 350px;
 }
 
 .logoech {
@@ -270,7 +270,7 @@ ul.actions.uniform li > a.button > span {
   }
 
   #pvpicheader {
-      width: 250px;
+    width: 250px;
   }
 
   .logoech {
