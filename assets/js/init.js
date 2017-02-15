@@ -202,7 +202,7 @@ var updateRoofInfo = function(map, marker, roof) {
       TitelSolarstromText += '...';
     }
 
-    TitelSolarstromText += ' <a href="#twelve" class="scrolly icon major fa-info-circle" style="font-size:0.2em;cursor: pointer;"></a>';
+    TitelSolarstromText += ' <a href="#thirteen" class="scrolly icon major fa-info-circle" style="font-size:0.2em;cursor: pointer;"></a>';
 
     $('#TitelSolarstrom').html(TitelSolarstromText);
 
@@ -245,7 +245,7 @@ var updateRoofInfo = function(map, marker, roof) {
     titleHeat = translator.get('solarthermieTitelnoHeat');
   }
 
-  $('#heatTitle').html(titleHeat + ' <a href="#twelve" class="scrolly icon major fa-info-circle" style="font-size:0.2em;cursor: pointer;"></a>');
+  $('#heatTitle').html(titleHeat + ' <a href="#thirteen" class="scrolly icon major fa-info-circle" style="font-size:0.2em;cursor: pointer;"></a>');
 
   var textHeat = '';
   if (roof.attributes.duschgaenge > 0) {
