@@ -55,6 +55,7 @@ var searchFeaturesFromCoord = function(map, coord, tolerance) {
   return $.getJSON(url).then(function(data) {
     $(document.body).removeClass('ajax-roof');
 
+    //Wenn kein Dach gefunden, Pruefung ob im Abdeckungsperimeter:
     if (!data.results[0]) {
       var perimeterURL = API3_URL + '/rest/services/api/MapServer/identify?' + //url
         'geometryType=esriGeometryPoint' +
@@ -63,7 +64,7 @@ var searchFeaturesFromCoord = function(map, coord, tolerance) {
         '&geometry=' + coord +
         '&mapExtent=411600,55800,891600,330550' +
         '&imageDisplay=1920,1099,96' +
-        '&tolerance=10' +
+        '&tolerance=1' +
         '&order=distance' +
         '&lang=de';
       return $.getJSON(perimeterURL).then(function(perimeterData) {

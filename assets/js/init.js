@@ -518,7 +518,10 @@ var onRoofFound = function(map, marker, roof, findBestRoof) {
     if (!roof || roof.perimeter) {
       $(document.body).removeClass('roof').removeClass('no-roof-outside-perimeter').addClass('no-roof');
     } else {
+      //Fuer diese Adresse noch keine Berechnung durchgefuehrt:
       $(document.body).removeClass('roof no-roof').removeClass('no-roof').addClass('no-roof-outside-perimeter');
+      map.getView().setCenter([650000, 190000]);
+      map.getView().setResolution(750);
     }
   }
 
