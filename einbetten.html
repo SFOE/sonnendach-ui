@@ -111,18 +111,7 @@ function updateTextarea() {
   //Textarea aktualisieren
   document.getElementById("myTextarea").value = 
     "<iframe id='sonnendachCH' width='" + document.getElementById("breite").value + "' height='" + 
-    document.getElementById("hoehe").value + "' src='http://www.bfe-gis.admin.ch/sonnendach/loader.html?X=" + coordX + "&Y=" + coordY + "&zoom=" + map.getView().getZoom() + "&lang=" + lang + "' style='outline: none; border: 0;' frameborder='0'></iframe>";
-}
-
-function vorschau() {
-
-  var langs = ['de', 'fr', 'it', 'en'];
-  var permalink = addPermalink();
-  var lang = (langs.indexOf(permalink.lang) != -1) ? permalink.lang : langs[0]; 
-  var center = map.getView().getCenter();
-  var coordY = Math.round(center[0]);
-  var coordX = Math.round(center[1]);
-  window.open("vorschau.php?width=" + document.getElementById("breite").value + "&height=" + document.getElementById("hoehe").value + "&X=" + coordX + "&Y=" + coordY + "&zoom=" + map.getView().getZoom()) + "&lang=" + "de";
+    document.getElementById("hoehe").value + "' src='//www.uvek-gis.admin.ch/BFE/sonnendach/loader.html?X=" + coordX + "&Y=" + coordY + "&zoom=" + map.getView().getZoom() + "&lang=" + lang + "' style='outline: none; border: 0;' frameborder='0'></iframe>";
 }
 
 //Textfeld initialisieren
