@@ -52,6 +52,7 @@ var searchFeaturesFromCoord = function(map, coord, tolerance) {
       '&order=distance' +
       '&lang=de';
   $(document.body).addClass('ajax-roof');
+
   return $.getJSON(url).then(function(data) {
     $(document.body).removeClass('ajax-roof');
 
@@ -83,6 +84,7 @@ var searchFeaturesFromCoord = function(map, coord, tolerance) {
         perimeter: true
       }]};
     } else {
+      UpdateURLinBrowser(data.results[0].featureId);
       return data;
     }
   });
