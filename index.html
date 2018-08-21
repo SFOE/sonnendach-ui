@@ -240,6 +240,8 @@
           <div class="6u$ 12u$(medium) important(medium)">
             <div id="map" style="width: 100%; height: 360px;"></div>
             <a href="https://map.geo.admin.ch/?lang=de&topic=energie&bgLayer=ch.swisstopo.swissimage&catalogNodes=2419,2420,2427,2480,2429,2431,2434,2436,2767,2441,3206&layers=ch.bfe.solarenergie-eignung-daecher" id="vollbildLink" target="_blank"><span class="trn" style="font-size:80%">vollbildLink</span></a>
+            &nbsp;|&nbsp;
+            <a href="" id="problemmeldenLink" target="_blank"><span class="trn" style="font-size:80%">problemmeldenLink</span></a>            
           </div>
         </div>
         <div class="12u$ 12u$(medium) important(medium) show-roof arrows">
@@ -406,13 +408,33 @@
           <p></p>
             <div id="chart"></div>
           <div class="12u$ 12u$(medium) important(medium) show-roof arrows">
+            <a href="#seventwo" class="scrolly icon major fa-angle-double-down"></a>
+          </div>          
+        </div>
+      </section>
+
+    <!-- seventwo: Stromtarif -->
+      <section id="seventwo" class="main style2 special show-roof">
+        <div class="container">
+          <header class="major">
+            <span class="icon major fa-money"></span>
+            <h2><span class="trn">stromtarifTitel</span> <a href="#thirteen" class="scrolly icon major fa-info-circle" style="font-size:0.2em;cursor: pointer;"></a></h2>
+          </header>
+          <div class="row 150%">
+            <div class="12u 12u$(medium)">
+              <h1 style="margin: 0 0 0.2em 0 !important;"><span id="stromtarifEWZahl">0.00</span> <span id="stromtarifEWEinheit"></h1>
+              <h3><a href="" target="_blank" id="stromtarifEWlink"><span id="stromtarifEW"></span></a></h3>
+            </div>
+          </div>
+          <div class="12u$ 12u$(medium) important(medium) show-roof arrows">
             <a href="#eight" class="scrolly icon major fa-angle-double-down"></a>
           </div>          
         </div>
       </section>
 
+
     <!-- Eight: Drucken -->
-      <section id="eight" class="main style2 special show-roof">
+      <section id="eight" class="main style1 special show-roof">
         <div class="container">
           <header class="major">
             <span class="icon major fa-print"></span>
@@ -428,26 +450,8 @@
         </div>
       </section>
 
-
-    <!-- Nine: EnergieSchweiz -->
-      <section id="nine" class="main style1 special show-roof">
-        <div class="container">
-          <header class="major">
-            <span class="icon major fa-question-circle"></span>
-            <h2><span class="trn">energieSchweizTitel</span></h2>
-          </header>
-          <p></p>
-          <ul class="actions uniform">
-            <li><a href="" class="button" id="stepbystepLink" target="_blank"><span class="trn">energieSchweizButton</span></a></li>
-          </ul>
-          <div class="12u$ 12u$(medium) important(medium) show-roof arrows">
-            <a href="#ten" class="scrolly icon major fa-angle-double-down"></a>
-          </div>          
-        </div>
-      </section>
-
     <!-- Ten: Sonnenfassade -->
-      <section id="ten" class="main style2 special">
+      <section id="nine" class="main style2 special">
         <div class="container">
           <header class="major">
             <span class="icon major fa-home"></span>
@@ -462,13 +466,30 @@
             </li>
           </ul>
           <div class="12u$ 12u$(medium) important(medium) show-roof arrows">
-            <a href="#eleven" class="scrolly icon major fa-angle-double-down"></a>
+            <a href="#ten" class="scrolly icon major fa-angle-double-down"></a>
           </div>          
         </div>
       </section>      
 
+    <!-- Nine: EnergieSchweiz -->
+      <section id="ten" class="main style1 special">
+        <div class="container">
+          <header class="major">
+            <span class="icon major fa-question-circle"></span>
+            <h2><span class="trn">energieSchweizTitel</span></h2>
+          </header>
+          <p></p>
+          <ul class="actions uniform">
+            <li><a href="" class="button" id="stepbystepLink" target="_blank"><span class="trn">energieSchweizButton</span></a></li>
+          </ul>
+          <div class="12u$ 12u$(medium) important(medium) show-roof arrows">
+            <a href="#eleven" class="scrolly icon major fa-angle-double-down"></a>
+          </div>          
+        </div>
+      </section>
+
     <!-- Eleven: Dokumentation -->
-      <section id="eleven" class="main style1 special">
+      <section id="eleven" class="main style2 special">
         <div class="container">
           <header class="major">
             <span class="icon major fa-book"></span>
@@ -485,7 +506,7 @@
       </section>
 
     <!-- Twelve: Einbetten -->
-      <section id="twelve" class="main style2 special">
+      <section id="twelve" class="main style1 special">
         <div class="container">
           <header class="major">
             <span class="icon major fa-share-square-o"></span>
@@ -502,7 +523,7 @@
       </section>
 
     <!-- Thirteen: Hinweis -->
-      <section id="thirteen" class="main style1 special">
+      <section id="thirteen" class="main style2 special">
         <div class="container">
           <header class="major">
             <span class="icon major fa-info-circle"></span>
@@ -522,7 +543,11 @@
           <p>
             <strong><span class="trn">printKombiTitel</span></strong><br>
             <span class="trn">hintBeAwareKombi</span>
-          </p>          
+          </p>
+          <p>
+            <strong><span class="trn">stromtarifTitel</span></strong><br>
+            <span class="trn">hintBeAwareEinspeise</span>
+          </p>  
           <p>
             <span class="trn">hintBeAwareButton</span>
           </p>
@@ -544,7 +569,7 @@
       </ul>
       <ul class="copyright">
         <li><span class="trn">copyrightMain</span></li>
-        <li>v 1.2.2</li>
+        <li>v 1.4</li>
         <li><span class="trn">contact</span></li>
         <li class="trn">impressumAnalyse</li>
         <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
@@ -577,6 +602,7 @@
     <script src="assets/js/location.js"></script>
     <script src="assets/js/permalink.js"></script>
     <script src="assets/js/translations.js"></script>
+    <script src="assets/js/vese_api.js"></script>  
     <script src="assets/js/init.js"></script>
 
     <script>
