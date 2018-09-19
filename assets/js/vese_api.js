@@ -65,7 +65,7 @@ function getTarifData(EvuData) {
 
   for (var i = 0; i < EvuData.length; i++) {
 
-    query = "https://opendata.vese.ch/pvtarif/api/getData/evu?evuId=" + EvuData[i].nrElcom + "&year=17&licenseKey=110xketkdbydpa8ph7s36nmeqxrq5eg8f1xbzz1g";
+    query = "https://opendata.vese.ch/pvtarif/api/getData/evu?evuId=" + EvuData[i].nrElcom + "&year=18&licenseKey=110xketkdbydpa8ph7s36nmeqxrq5eg8f1xbzz1g";
 
     $.getJSON(query).then(function(data) {
 
