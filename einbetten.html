@@ -106,12 +106,12 @@ function updateTextarea() {
   var permalink = addPermalink();
   var lang = (langs.indexOf(permalink.lang) != -1) ? permalink.lang : langs[0]; 
   var center = map.getView().getCenter();
-  var coordY = Math.round(center[0]);
-  var coordX = Math.round(center[1]);
+  var coordX = 2000000 + Math.round(center[0]);
+  var coordY = 1000000 + Math.round(center[1]);
   //Textarea aktualisieren
   document.getElementById("myTextarea").value = 
     "<iframe id='sonnendachCH' width='" + document.getElementById("breite").value + "' height='" + 
-    document.getElementById("hoehe").value + "' src='//www.uvek-gis.admin.ch/BFE/sonnendach/loader.html?X=" + coordX + "&Y=" + coordY + "&zoom=" + map.getView().getZoom() + "&lang=" + lang + "' style='outline: none; border: 0;' frameborder='0'></iframe>";
+    document.getElementById("hoehe").value + "' src='//www.uvek-gis.admin.ch/BFE/sonnendach/loader.html?E=" + coordX + "&N=" + coordY + "&zoom=" + map.getView().getZoom() + "&lang=" + lang + "' style='outline: none; border: 0;' frameborder='0'></iframe>";
 }
 
 //Textfeld initialisieren
