@@ -128,7 +128,7 @@ function getPotentialOfMunicipality(MunicipalityNumber, MunicipalityName) {
 
   if (MunicipalityNumber) {
 
-  url = "https://www.energiestadtfinder.ch/gemeinde.json";
+  url = "//www.uvek-gis.admin.ch/BFE/ogd/52/Solarenergiepotenziale_der_Schweizer_Gemeinden_20180926.json";
 
     $.getJSON(url).then(function(data) {
 
@@ -141,15 +141,15 @@ function getPotentialOfMunicipality(MunicipalityNumber, MunicipalityName) {
           }
 
           if ($.contains(document.body, document.getElementById("Gemeindepotential1strom"))) {
-            document.getElementById('Gemeindepotential1strom').innerHTML = val.Scenario1PotentialElectricity;
+            document.getElementById('Gemeindepotential1strom').innerHTML = val.Scenario1PotentialSolarElectricity;
           }
 
           if ($.contains(document.body, document.getElementById("Gemeindepotential2strom"))) {
-            document.getElementById('Gemeindepotential2strom').innerHTML = val.Scenario2PotentialElectricity;
+            document.getElementById('Gemeindepotential2strom').innerHTML = val.Scenario2PotentialSolarElectricity;
           }
 
           if ($.contains(document.body, document.getElementById("Gemeindepotential2waerme"))) {
-            document.getElementById('Gemeindepotential2waerme').innerHTML = val.Scenario2PotentialHeat;
+            document.getElementById('Gemeindepotential2waerme').innerHTML = val.Scenario2PotentialSolarHeat;
           }          
 
           if ($.contains(document.body, document.getElementById("GemeindepotentialEinheit"))) {
@@ -165,7 +165,7 @@ function getPotentialOfMunicipality(MunicipalityNumber, MunicipalityName) {
           }          
 
           if ($.contains(document.body, document.getElementById("GemeindepotentialLink"))) {
-            document.getElementById('GemeindepotentialLink').href = val.URLFactsheet;
+            document.getElementById('GemeindepotentialLink').href = "https://www.uvek-gis.admin.ch/BFE/storymaps/ECH_SolarpotGemeinden/pdf/" + val.MunicipalityNumber + ".pdf";
           }
 
           if ($.contains(document.body, document.getElementById("GemeindepotentialLinkText"))) {
