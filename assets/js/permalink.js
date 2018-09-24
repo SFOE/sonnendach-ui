@@ -33,6 +33,8 @@ var addPermalink = function() {
   var building = (res.building || '').split(',');
   var X = (res.X || '').split(',');
   var Y = (res.Y || '').split(',');
+  var E = (res.E || '').split(',');
+  var N = (res.N || '').split(',');  
   var zoom = (res.zoom || '').split(',');
 
   var url = {
@@ -42,6 +44,8 @@ var addPermalink = function() {
     building: (building[0].length) ? building[0] : undefined,
     X: (X[0].length) ? X[0] : undefined,
     Y: (Y[0].length) ? Y[0] : undefined,
+    E: (E[0].length) ? E[0] : undefined,
+    N: (N[0].length) ? N[0] : undefined,    
     zoom: (zoom[0].length) ? zoom[0] : undefined,
   }; 
   return url;

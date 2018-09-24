@@ -12,13 +12,23 @@
       var permalink = addPermalink();
 
       var lang = (langs.indexOf(permalink.lang) != -1) ? permalink.lang : langs[0];
-      var xcoord = permalink.X;
-      var ycoord = permalink.Y;
+      var xcoord1 = permalink.X;
+      var ycoord1 = permalink.Y;
+      var xcoord2 = permalink.E;
+      var ycoord2 = permalink.N;
       var zoom = permalink.zoom;
 
+      var coords = [];
+      coords.push(xcoord1);
+      coords.push(xcoord2);
+      coords.push(ycoord1);
+      coords.push(ycoord2);
+
+      coords.sort(function(a, b){return b-a});
+
       document.getElementById("map").src =
-         '//map.geo.admin.ch/mobile.html?E=' + xcoord + 
-         '&N=' + ycoord + 
+         '//map.geo.admin.ch/mobile.html?E=' + coords[0] + 
+         '&N=' + coords[1] + 
          '&zoom=' + zoom + 
          '&lang=' + lang + 
          '&topic=energie&bgLayer=ch.swisstopo.swissimage&mobile=true&layers=ch.bfe.solarenergie-eignung-daecher';
