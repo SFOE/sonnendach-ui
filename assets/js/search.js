@@ -29,7 +29,7 @@ var getForViewAndSize = function(center, resolution, rotation, size) {
  * Launch the search of all the features available at a cordinates.
  * Returns a promise.
  */
-var searchFeaturesFromCoord = function(map, coord, tolerance) {
+var searchFeaturesFromCoord = function(map, coord, tolerance, lang) {
   var center = map.getView().getCenter().toString();
   var mapExtent = map.getView().calculateExtent(map.getSize());
 
@@ -84,7 +84,7 @@ var searchFeaturesFromCoord = function(map, coord, tolerance) {
         perimeter: true
       }]};
     } else {
-      UpdateURLinBrowser(data.results[0].featureId);
+      UpdateURLinBrowser(data.results[0].featureId, lang);
       return data;
     }
   });
