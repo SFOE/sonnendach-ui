@@ -50,6 +50,11 @@ var getWmts = function(layer, options) {
       ],
       url: ('http://wmts{5-9}.geo.admin.ch/1.0.0/{Layer}/default/{Time}/21781/' +
           '{TileMatrix}/{TileRow}/{TileCol}.').replace('http:',location.protocol) + extension,
+      //url: ('//tod.dev.bgdi.ch/1.0.0/{Layer}/default/{Time}/21781/' +
+      //    '{TileMatrix}/{TileRow}/{TileCol}.').replace('http:',location.protocol) + extension,
+
+      //https://tod.dev.bgdi.ch/1.0.0/ch.bfe.solarenergie-eignung-daecher/default/current/2056/27/4081/1669.png
+
       tileGrid: tileGrid,
       layer: options['serverLayerName'] ? options['serverLayerName'] : layer,
       requestEncoding: 'REST',
@@ -67,21 +72,21 @@ var getWmts = function(layer, options) {
  * @param {Object} options source options.
  * @return {ol.source.TileWMS}
  */
-var getWms = function(layer, options) {
-  return new ol.source.TileWMS({
-    crossOrigin: 'anonymous',
-    wrapX: false,
-    gutter: options['gutter'] || 0,
-    attributions: [
-      new ol.Attribution({html: '<a href="' +
-        options['attributionUrl'] +
-        '" target="new">' +
-        options['attribution'] + '</a>'})
-    ],
-    params: {
-      'LAYERS': options['wmsLayers'] || layer,
-      'TIME': options['timestamp']
-    },
-    url: options['wmsUrl'].split('?')[0].replace('http:',location.protocol)
-  });
-};
+//var getWms = function(layer, options) {
+//  return new ol.source.TileWMS({
+//    crossOrigin: 'anonymous',
+//    wrapX: false,
+//    gutter: options['gutter'] || 0,
+//    attributions: [
+//      new ol.Attribution({html: '<a href="' +
+//        options['attributionUrl'] +
+//        '" target="new">' +
+//        options['attribution'] + '</a>'})
+//    ],
+//    params: {
+//      'LAYERS': options['wmsLayers'] || layer,
+//      'TIME': options['timestamp']
+//    },
+//    url: options['wmsUrl'].split('?')[0].replace('http:',location.protocol)
+//  });
+//};

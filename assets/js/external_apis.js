@@ -76,8 +76,8 @@ function getTarifData(EvuData) {
 
         if ($.contains(document.body, document.getElementById("stromtarifEWZahl"))) {
 
-          if (Number(document.getElementById("stromtarifEWZahl").innerHTML) < Number(data.energyAuto1)) {
-            document.getElementById("stromtarifEWZahl").innerHTML = data.energyAuto1;
+          if (Number(document.getElementById("stromtarifEWZahl").innerHTML) < (Number(data.energy1) + Number(data.eco1))) {
+            document.getElementById("stromtarifEWZahl").innerHTML = (Number(data.energy1) + Number(data.eco1));
             document.getElementById("stromtarifEWEinheit").innerHTML = " " + translator.get('stromtarifEWEinheit');
             document.getElementById("stromtarifEW").innerHTML = data.nomEw;
             document.getElementById("stromtarifEWlink").href = data.link;
