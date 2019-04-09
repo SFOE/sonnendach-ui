@@ -21,7 +21,7 @@ var createMap = function(eltId, lang, nointeraction) {
     var layer2 = new ol.layer.Tile({
       minResolution: layer2Config.minResolution,
       maxResolution: layer2Config.maxResolution,
-      opacity: layer2Config.opacity,
+      opacity: 0.65,
       source: getWmts(layer2Id, layer2Config),
       useInterimTilesOnError: false
     })

@@ -513,7 +513,8 @@ var updateSolarrechnerLinks = function () {
 
     if ($.contains(document.body, document.getElementById("vollbildLink"))) {
       document.getElementById("vollbildLink").href = 
-        "https://map.geo.admin.ch/?lang=" + lang + "&topic=energie&bgLayer=ch.swisstopo.swissimage&catalogNodes=2420,2427,2480,2429,2431,2434,2436,2767,2441,3206,2419&layers=ch.bfe.solarenergie-eignung-daecher&zoom=12&X=" + lastcoordx + "&Y=" + lastcoordy;
+        "https://map.geo.admin.ch/?lang=" + lang + "&topic=energie&bgLayer=ch.swisstopo.swissimage&catalogNodes=2419,2420,2427,2480,2429,2431,2434,2436,2767,2441,3206&layers=ch.swisstopo.amtliches-strassenverzeichnis,ch.bfe.solarenergie-eignung-daecher&zoom=12&X=" + lastcoordx + "&Y=" + lastcoordy + "&layers_opacity=0.85,0.65";
+
     }
 
     if ($.contains(document.body, document.getElementById("problemmeldenLink"))) {

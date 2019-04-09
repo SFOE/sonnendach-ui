@@ -68,7 +68,7 @@ function getTarifData(EvuData) {
 
   for (var i = 0; i < EvuData.length; i++) {
 
-    query = "https://opendata.vese.ch/pvtarif/api/getData/evu?evuId=" + EvuData[i].nrElcom + "&year=18&licenseKey=110xketkdbydpa8ph7s36nmeqxrq5eg8f1xbzz1g";
+    query = "https://opendata.vese.ch/pvtarif/api/getData/evu?evuId=" + EvuData[i].nrElcom + "&year=19&licenseKey=110xketkdbydpa8ph7s36nmeqxrq5eg8f1xbzz1g";
 
     $.getJSON(query).then(function(data) {
 
@@ -128,7 +128,7 @@ function getPotentialOfMunicipality(MunicipalityNumber, MunicipalityName) {
 
   if (MunicipalityNumber) {
 
-  url = "//www.uvek-gis.admin.ch/BFE/ogd/52/Solarenergiepotenziale_der_Schweizer_Gemeinden_20180926.json";
+  url = "//www.uvek-gis.admin.ch/BFE/ogd/52/Solarenergiepotenziale_Gemeinden_Daecher_und_Fassaden_2019.01.01_Version_Sonnendach.json";
 
     $.getJSON(url).then(function(data) {
 
@@ -141,15 +141,15 @@ function getPotentialOfMunicipality(MunicipalityNumber, MunicipalityName) {
           }
 
           if ($.contains(document.body, document.getElementById("Gemeindepotential1strom"))) {
-            document.getElementById('Gemeindepotential1strom').innerHTML = val.Scenario1PotentialSolarElectricity;
+            document.getElementById('Gemeindepotential1strom').innerHTML = val.Scenario3_RoofsFacades_PotentialSolarElectricity_GWh;
           }
 
           if ($.contains(document.body, document.getElementById("Gemeindepotential2strom"))) {
-            document.getElementById('Gemeindepotential2strom').innerHTML = val.Scenario2PotentialSolarElectricity;
+            document.getElementById('Gemeindepotential2strom').innerHTML = val.Scenario4_RoofsFacades_PotentialSolarElectricity_GWh;
           }
 
           if ($.contains(document.body, document.getElementById("Gemeindepotential2waerme"))) {
-            document.getElementById('Gemeindepotential2waerme').innerHTML = val.Scenario2PotentialSolarHeat;
+            document.getElementById('Gemeindepotential2waerme').innerHTML = val.Scenario4_RoofsFacades_PotentialSolarHeat_GWh;
           }          
 
           if ($.contains(document.body, document.getElementById("GemeindepotentialEinheit"))) {
