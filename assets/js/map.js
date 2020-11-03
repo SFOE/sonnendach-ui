@@ -16,7 +16,7 @@ var createMap = function(eltId, lang, nointeraction) {
       source: getWmts(layer1Id, layer1Config),
       useInterimTilesOnError: false
     })
-    var layer2Id = 'ch.bfe.solarenergie-eignung-daecher';
+    var layer2Id = 'ch.bfe.solarenergie-eignung-daecher_wmts';
     var layer2Config = layers[layer2Id];
     var layer2 = new ol.layer.Tile({
       minResolution: layer2Config.minResolution,
