@@ -17,8 +17,8 @@ var onAddressFound = function(map, marker, address, autoSearchRoof, roofSearchTo
     if (!address.attrs) { // Address comes from geolocation
       coord = [address.geometry.x, address.geometry.y];
       var attr = address.attributes;
-      label = attr.strname1 + ' ' + (attr.deinr || '') +
-          ' <br>' + attr.plz4 + ' ' + attr.plzname;
+      label = attr.strname_deinr + ' <br>' + attr.dplz4 + ' ' + attr.dplzname;
+      //label = attr.strname1 + ' ' + (attr.deinr || '') + ' <br>' + attr.plz4 + ' ' + attr.plzname;
     } else { // Address comes from search box
       // WARNING! Coordinates are inverted here.
       coord = [address.attrs.y, address.attrs.x];
@@ -460,7 +460,7 @@ var updateSolarrechnerLinks = function () {
       parameters += '&POSTLEITZAHL=' + lastPlz;
       parameters += '&X=' + lastcoordx;
       parameters += '&Y=' + lastcoordy;
-      parameters += '&ADRESSE=' + lastaddress;
+      //parameters += '&ADRESSE=' + lastaddress;
     }
 
     if (lastRoof) {
