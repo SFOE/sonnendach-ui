@@ -460,7 +460,7 @@ var updateSolarrechnerLinks = function () {
       parameters += '&POSTLEITZAHL=' + lastPlz;
       parameters += '&X=' + lastcoordx;
       parameters += '&Y=' + lastcoordy;
-      parameters += '&ADRESSE=' + lastaddress;
+      //parameters += '&ADRESSE=' + lastaddress;
     }
 
     if (lastRoof) {
