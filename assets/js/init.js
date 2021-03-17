@@ -467,6 +467,7 @@ var updateSolarrechnerLinks = function () {
       parameters += '&NEIGUNG=' + lastRoof.attributes.neigung;
       parameters += '&AUSRICHTUNG=' + lastRoof.attributes.ausrichtung;
       parameters += '&BEDARF_WARMWASSER=' + lastRoof.attributes.bedarf_warmwasser;
+      parameters += '&DACH_ID=' + lastRoof.featureId;
       lastFlaeche = Math.round(lastRoof.attributes.flaeche);
     }
 
@@ -477,13 +478,13 @@ var updateSolarrechnerLinks = function () {
     var linkESRechner = '';
 
     if (lang == 'de') {
-      linkESRechner = 'https://www.energieschweiz.ch/page/de-ch/solarrechner/';
+      linkESRechner = 'https://energieschweiz.ch/tools/solarrechner/';
     } else if (lang == 'fr') {
-      linkESRechner = 'https://www.suisseenergie.ch/page/fr-ch/calculateur-solaire/';
+      linkESRechner = 'https://suisseenergie.ch/tools/calculateur-solaire/';
     } else if (lang == 'it') {
-      linkESRechner = 'https://www.svizzeraenergia.ch/page/it-ch/calcolatore-solare/';
+      linkESRechner = 'https://svizzeraenergia.ch/tools/calcolatore-solare/';
     } else if (lang == 'en') {
-      linkESRechner = 'https://www.energieschweiz.ch/page/de-ch/solarrechner/';
+      linkESRechner = 'https://energieschweiz.ch/tools/solarrechner/';
     }    
       
     if ($.contains(document.body, document.getElementById("buttonSolRPV100"))) {
