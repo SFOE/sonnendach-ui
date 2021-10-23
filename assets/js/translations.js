@@ -806,7 +806,7 @@ var sdTranslations = {
 
 	energieSchweizTitel: {
 
-		de: 'Wie komme ich zu meiner Solaranlage?',
+		de: 'Wie komme ich zur meiner Solaranlage?',
 
 		fr: 'Comment réaliser mon installation solaire?',
 
