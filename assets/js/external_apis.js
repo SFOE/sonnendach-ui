@@ -46,7 +46,7 @@ function getEVUs(MunicipalityNumber) {
 
   if (MunicipalityNumber) {
 
-	query = "https://opendata.vese.ch/pvtarif/api/getData/muni?idofs=" + MunicipalityNumber + "&licenseKey=110xketkdbydpa8ph7s36nmeqxrq5eg8f1xbzz1g";
+	query = "https://bfe-cors.geotest.ch/https://opendata.vese.ch/pvtarif/api/getData/muni?idofs=" + MunicipalityNumber + "&licenseKey=110xketkdbydpa8ph7s36nmeqxrq5eg8f1xbzz1g";
 
     $.getJSON(query).then(function(data) {
 
@@ -65,61 +65,125 @@ function getEVUs(MunicipalityNumber) {
 
 
 function getTarifData(EvuData) {
+	console.log(EvuData[0])
+	
+	if ("nrElcom" in EvuData[0]) {
+		console.log("asdf")
 
-  for (var i = 0; i < EvuData.length; i++) {
+		query = "https://bfe-cors.geotest.ch/https://opendata.vese.ch/pvtarif/api/getData/evu?evuId=" + EvuData[0].nrElcom + "&year=22&licenseKey=110xketkdbydpa8ph7s36nmeqxrq5eg8f1xbzz1g";
 
-    query = "https://opendata.vese.ch/pvtarif/api/getData/evu?evuId=" + EvuData[i].nrElcom + "&year=20&licenseKey=110xketkdbydpa8ph7s36nmeqxrq5eg8f1xbzz1g";
+		$.getJSON(query).then(function(data) {
 
-    $.getJSON(query).then(function(data) {
+		  if (data.valid) {
 
-      if (data.valid) {
+			fillContent1(data)
 
-        if ($.contains(document.body, document.getElementById("stromtarifEWZahl"))) {
+		  } else {
+			
+			if ($.contains(document.body, document.getElementById("stromtarifEWZahl1"))) {     
 
-          if (Number(document.getElementById("stromtarifEWZahl").innerHTML) < (Number(data.energy1) + Number(data.eco1))) {
-            document.getElementById("stromtarifEWZahl").innerHTML = (Number(data.energy1) + Number(data.eco1));
-            document.getElementById("stromtarifEWEinheit").innerHTML = " " + translator.get('stromtarifEWEinheit');
-            document.getElementById("stromtarifEW").innerHTML = data.nomEw;
-            document.getElementById("stromtarifEWlink").href = data.link;
-          }   
+			  document.getElementById("stromtarifEWZahl1").innerHTML = "";
 
-        }
+			}
 
-      } else {
-        
-        if ($.contains(document.body, document.getElementById("stromtarifEWZahl"))) {     
+		  }
 
-          document.getElementById("stromtarifEWZahl").innerHTML = "";
+		});
+		
+	}
 
-        }
+	if ("nrElcom" in EvuData[1]) {
 
-      }
-      
- 
-     
-    });
+		query = "https://bfe-cors.geotest.ch/https://opendata.vese.ch/pvtarif/api/getData/evu?evuId=" + EvuData[1].nrElcom + "&year=22&licenseKey=110xketkdbydpa8ph7s36nmeqxrq5eg8f1xbzz1g";
 
-  }
+		$.getJSON(query).then(function(data) {
 
+		  if (data.valid) {
+
+			fillContent2(data)
+
+		  } else {
+			
+			if ($.contains(document.body, document.getElementById("stromtarifEWZahl2"))) {     
+
+			  document.getElementById("stromtarifEWZahl2").innerHTML = "";
+
+			}
+
+		  }
+
+		});
+		
+	}	
+
+
+}
+
+function fillContent1(data) {
+
+	if ($.contains(document.body, document.getElementById("stromtarifEWZahl1"))) {
+
+	  if (Number(document.getElementById("stromtarifEWZahl1").innerHTML) < (Number(data.energy1) + Number(data.eco1))) {
+		document.getElementById("stromtarifEWZahl1").innerHTML = (Number(data.energy1) + Number(data.eco1));
+		document.getElementById("stromtarifEWEinheit1").innerHTML = " " + translator.get('stromtarifEWEinheit');
+		document.getElementById("stromtarifEW1").innerHTML = data.nomEw;
+		document.getElementById("stromtarifEWlink1").href = data.link;
+	  }   
+
+	}
+}
+
+function fillContent2(data) {
+
+	if ($.contains(document.body, document.getElementById("stromtarifEWZahl2"))) {
+		
+		document.getElementById('tarif2').style = "visibility: visible;"
+
+	  if (Number(document.getElementById("stromtarifEWZahl2").innerHTML) < (Number(data.energy1) + Number(data.eco1))) {
+		document.getElementById("stromtarifEWZahl2").innerHTML = (Number(data.energy1) + Number(data.eco1));
+		document.getElementById("stromtarifEWEinheit2").innerHTML = " " + translator.get('stromtarifEWEinheit');
+		document.getElementById("stromtarifEW2").innerHTML = data.nomEw;
+		document.getElementById("stromtarifEWlink2").href = data.link;
+	  }   
+
+	}
 }
 
 function resetTarifInfo() {
 
-  if ($.contains(document.body, document.getElementById("stromtarifEWZahl"))) {
-    document.getElementById('stromtarifEWZahl').innerHTML = "0.00";
+  if ($.contains(document.body, document.getElementById("stromtarifEWZahl1"))) {
+    document.getElementById('stromtarifEWZahl1').innerHTML = "0.00";
   }
 
-  if ($.contains(document.body, document.getElementById("stromtarifEWEinheit"))) {
-    document.getElementById('stromtarifEWEinheit').innerHTML = "";
+  if ($.contains(document.body, document.getElementById("stromtarifEWEinheit1"))) {
+    document.getElementById('stromtarifEWEinheit1').innerHTML = "";
   }
 
-  if ($.contains(document.body, document.getElementById("stromtarifEW"))) {
-    document.getElementById('stromtarifEW').innerHTML = translator.get('stromtarifNO');
+  if ($.contains(document.body, document.getElementById("stromtarifEW1"))) {
+    document.getElementById('stromtarifEW1').innerHTML = translator.get('stromtarifNO');
   }
 
-  if ($.contains(document.body, document.getElementById("stromtarifEWlink"))) {
-    document.getElementById('stromtarifEWlink').href = "http://www.pvtarif.ch";
+  if ($.contains(document.body, document.getElementById("stromtarifEWlink1"))) {
+    document.getElementById('stromtarifEWlink1').href = "http://www.pvtarif.ch";
   }
+
+  if ($.contains(document.body, document.getElementById("stromtarifEWZahl2"))) {
+    document.getElementById('stromtarifEWZahl2').innerHTML = "0.00";
+  }
+
+  if ($.contains(document.body, document.getElementById("stromtarifEWEinheit2"))) {
+    document.getElementById('stromtarifEWEinheit2').innerHTML = "";
+  }
+
+  if ($.contains(document.body, document.getElementById("stromtarifEW2"))) {
+    document.getElementById('stromtarifEW2').innerHTML = translator.get('stromtarifNO');
+  }
+
+  if ($.contains(document.body, document.getElementById("stromtarifEWlink2"))) {
+    document.getElementById('stromtarifEWlink2').href = "http://www.pvtarif.ch";
+  }
+  
+  document.getElementById('tarif2').style = "visibility: hidden;"
 
 }
 
@@ -128,7 +192,7 @@ function getPotentialOfMunicipality(MunicipalityNumber, MunicipalityName) {
 
   if (MunicipalityNumber) {
 
-  url = "//www.uvek-gis.admin.ch/BFE/ogd/52/Solarenergiepotenziale_Gemeinden_Daecher_und_Fassaden_2019.01.01_Version_Sonnendach.json";
+  url = "//www.uvek-gis.admin.ch/BFE/ogd/52/Solarenergiepotenziale_Gemeinden_Daecher_und_Fassaden_Version_Sonnendach.json";
 
     $.getJSON(url).then(function(data) {
 

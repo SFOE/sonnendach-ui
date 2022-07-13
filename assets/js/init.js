@@ -478,13 +478,13 @@ var updateSolarrechnerLinks = function () {
     var linkESRechner = '';
 
     if (lang == 'de') {
-      linkESRechner = 'https://energieschweiz.ch/tools/solarrechner/';
+      linkESRechner = 'https://www.energieschweiz.ch/tools/solarrechner/';
     } else if (lang == 'fr') {
-      linkESRechner = 'https://suisseenergie.ch/tools/calculateur-solaire/';
+      linkESRechner = 'https://www.suisseenergie.ch/tools/calculateur-solaire/';
     } else if (lang == 'it') {
-      linkESRechner = 'https://svizzeraenergia.ch/tools/calcolatore-solare/';
+      linkESRechner = 'https://www.svizzeraenergia.ch/tools/calcolatore-solare/';
     } else if (lang == 'en') {
-      linkESRechner = 'https://energieschweiz.ch/tools/solarrechner/';
+      linkESRechner = 'https://www.energieschweiz.ch/tools/solarrechner/';
     }    
       
     if ($.contains(document.body, document.getElementById("buttonSolRPV100"))) {
