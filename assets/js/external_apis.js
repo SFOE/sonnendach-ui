@@ -65,10 +65,8 @@ function getEVUs(MunicipalityNumber) {
 
 
 function getTarifData(EvuData) {
-	console.log(EvuData[0])
 	
-	if ("nrElcom" in EvuData[0]) {
-		console.log("asdf")
+	if (EvuData[0].hasOwnProperty("nrElcom")) {
 
 		query = "https://bfe-cors.geotest.ch/https://opendata.vese.ch/pvtarif/api/getData/evu?evuId=" + EvuData[0].nrElcom + "&year=22&licenseKey=110xketkdbydpa8ph7s36nmeqxrq5eg8f1xbzz1g";
 
@@ -92,7 +90,7 @@ function getTarifData(EvuData) {
 		
 	}
 
-	if ("nrElcom" in EvuData[1]) {
+	if (EvuData.length > 1 && EvuData[1].hasOwnProperty("nrElcom")) {
 
 		query = "https://bfe-cors.geotest.ch/https://opendata.vese.ch/pvtarif/api/getData/evu?evuId=" + EvuData[1].nrElcom + "&year=22&licenseKey=110xketkdbydpa8ph7s36nmeqxrq5eg8f1xbzz1g";
 
@@ -114,9 +112,7 @@ function getTarifData(EvuData) {
 
 		});
 		
-	}	
-
-
+	}
 }
 
 function fillContent1(data) {
@@ -183,8 +179,9 @@ function resetTarifInfo() {
     document.getElementById('stromtarifEWlink2').href = "http://www.pvtarif.ch";
   }
   
-  document.getElementById('tarif2').style = "visibility: hidden;"
-
+  if ($.contains(document.body, document.getElementById("tarif2"))) {
+	document.getElementById('tarif2').style = "visibility: hidden;"
+  }
 }
 
 

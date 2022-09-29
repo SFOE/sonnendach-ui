@@ -85,7 +85,7 @@ var updateRoofInfo = function(map, marker, roof) {
   $('#eignung3').html(suitability.substr(0, 1).toUpperCase() + suitability.substr(1));
 
   if ($.contains(document.body, document.getElementById("stromertrag"))) {
-    $('#stromertrag').html(formatNumber(Math.round((roof.attributes.gstrahlung*0.17*0.8)/100)*100));
+    $('#stromertrag').html(formatNumber(Math.round((roof.attributes.gstrahlung*0.2*0.8)/100)*100));
   }
 
   //**** NEW
@@ -170,10 +170,10 @@ var updateRoofInfo = function(map, marker, roof) {
 
   var finanzertrag;
 
-  if (roof.attributes.finanzertrag < 1000) {
-    finanzertrag = formatNumber(Math.round(roof.attributes.finanzertrag/10)*10);
+  if (roof.attributes.gstrahlung*0.2*0.8/10 < 1000) {
+    finanzertrag = formatNumber(Math.round(roof.attributes.gstrahlung*0.2*0.8/10/10)*10);
   } else {
-    finanzertrag = formatNumber(Math.round(roof.attributes.finanzertrag/100)*100);
+    finanzertrag = formatNumber(Math.round(roof.attributes.gstrahlung*0.2*0.8/10/100)*100);
   }
 
   if ($.contains(document.body, document.getElementById("finanzertrag"))) {
@@ -203,7 +203,7 @@ var updateRoofInfo = function(map, marker, roof) {
     }
 
     TitelSolarstromText += '<strong>'
-      + formatNumber(Math.round((roof.attributes.gstrahlung*0.17*0.8)/100)*100)
+      + formatNumber(Math.round((roof.attributes.gstrahlung*0.20*0.8)/100)*100)
       + '</strong> '
       + translator.get('solarstromTitel')
       + '<strong> '
@@ -237,9 +237,9 @@ var updateRoofInfo = function(map, marker, roof) {
 
   }
 
-  $('#pv100').html(formatNumber(Math.round((roof.attributes.gstrahlung*0.17*0.8)/100)*100*1));
-  $('#pv75').html(formatNumber(Math.round((roof.attributes.gstrahlung*0.17*0.8)/100)*100*0.75));
-  $('#pv50').html(formatNumber(Math.round((roof.attributes.gstrahlung*0.17*0.8)/100)*100*0.5));
+  $('#pv100').html(formatNumber(Math.round((roof.attributes.gstrahlung*0.2*0.8)/100)*100*1));
+  $('#pv75').html(formatNumber(Math.round((roof.attributes.gstrahlung*0.2*0.8)/100)*100*0.75));
+  $('#pv50').html(formatNumber(Math.round((roof.attributes.gstrahlung*0.2*0.8)/100)*100*0.5));
 
   // check if no waermeertrag and if no dg_waermebedarf
   var titleHeat = '';
